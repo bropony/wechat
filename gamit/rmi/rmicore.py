@@ -53,7 +53,7 @@ class RmiServant:
             self.rmiServer.send(connId, __os.getBuffer())
 
 
-class CallBackBase(metaclass=abc.ABCMeta):
+class RmiRequestBase(metaclass=abc.ABCMeta):
     def __init__(self, connId, msgId, servant):
         self.connId = connId
         self.msgId = msgId
@@ -69,4 +69,29 @@ class CallBackBase(metaclass=abc.ABCMeta):
     def __response(self):
         pass
 
-##
+
+class RmiProxy:
+    msgId = 0
+
+    @classmethod
+    def getMsgId(cls):
+        cls.msgId += 1
+        return cls.msgId
+
+    def __init__(self, name):
+        self.name = name
+        self.rmiClient = None
+
+    def setRmiClient(self, rmiClient):
+        self.rmiClient = rmiClient
+
+    def invoke(self, __os, callback):
+        self.rmiClient.onCall(__os, callback)
+
+class RmiResponseBase(metaclass=abc.ABCMeta):
+    def __init__(self, msgId):
+        self.msgId = msgId
+
+    @abc.abstractmethod
+    def __onResponse(self, __is):
+        pass

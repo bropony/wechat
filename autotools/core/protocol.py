@@ -18,13 +18,27 @@ class __OrderedMeta__(type):
         return c
 
 class RmiType(metaclass=__OrderedMeta__):
-    def __init__(self, name, type, isbasic):
-        self.__name = name
-        self.__type = type
-        self.__isbasic = isbasic
-        
+    @classmethod
+    def isBasice(cls):
+        return False
 
 class BasicType(RmiType):
+    @classmethod
+    def getPyInit(cls, name):
+        return "{} = {}()".format(name, cls.__name)
+
+    @classmethod
+    def getPyRead(cls, name):
+        return "{} = __is.read{}()".format(name, cls.__name.capitalize())
+
+    @classmethod
+    def getPyWrite(cls, name):
+        return  "__os.write{}({})".format(cls.__name.capitalize(), name)
+
+    @classmethod
+    def isBasic(cls):
+        return  True
+
     def __init__(self, name, type):
          super().__init__(name, type, True)
 
@@ -74,6 +88,19 @@ class Struct(RmiType):
         super().__init__(name, type, False)
 
 
-class Sequence(RmiType):
-    def __init__(self):
-        pass
+class __Sequence(RmiType):
+    def __init__(self, type, name):
+        self.type = type
+        self.name = name
+
+    def getPyInit(self):
+        return "{} = []".format(self.name)
+
+    def getPyRead(self, scope):
+        return "{0}.read{1}(__is, {1})".format(scope, self.name)
+
+    def getPyWrite(self, scope):
+        return "{0}.write{1}(__os, {1})".format(scope, self.name)
+
+def sequence(type, name):
+    obj = __Sequence(type, name)

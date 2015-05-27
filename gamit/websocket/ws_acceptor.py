@@ -2,12 +2,12 @@
 # network server acceptor using websocket
 #
 
-from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactory
-
+from twisted.internet import  reactor
+from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactor
 from gamit.log.logger import Logger
 import logging
 
-class __MyServerProtocol(WebSocketServerProtocol):
+class _WSServerProtocol(WebSocketServerProtocol):
     """
     websocket server protocol
     """
@@ -18,9 +18,9 @@ class __MyServerProtocol(WebSocketServerProtocol):
         return cls.connIdBase
 
 
-    def __init__(self, proxy):
-        super().__init__()
-        self.proxy = proxy
+    #def __init__(self, proxy):
+    #    super().__init__()
+    #   self.proxy = proxy
 
     def onConnect(self, request):
         self.connId = self.getConnId()
@@ -46,6 +46,7 @@ class WsAcceptor:
     """
     def __init__(self, ip, port):
         self.connMap = {}
+        self.factory = None
         self.ip = ip
         self.port = port
 
@@ -56,13 +57,15 @@ class WsAcceptor:
     
     ####
     def start(self, isDebug):
-        wsUrl = "{}:{}".format(self.ip, self.port)
+        wsUrl = "ws://{}:{}".format(self.ip, self.port)
 
         factory = WebSocketServerFactory(wsUrl, debug=isDebug)
-        factor.protocol = __MyServerProtocol
+        _WSServerProtocol.proxy = self
+        factory.protocol = _WSServerProtocol
 
         reactor.listenTCP(self.port, factory)
 
+        self.factory = factory
         self.running = True
     
     ####
