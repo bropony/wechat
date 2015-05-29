@@ -75,7 +75,7 @@ class RmiServer:
             if interface in self.servantMap:
                 self.servantMap[interface].invoke(connId, method, __is)
             else:
-                raise SerializeError("Servant {} not regitered".format(interface))
+                raise SerializeError("Servant {} not registered".format(interface))
         except Exception as ex:
             Logger.logInfo(ex.__traceback__)
 #end of RmiServer
