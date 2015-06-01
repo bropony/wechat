@@ -9,7 +9,7 @@
 """
 
 import os.path
-import  re
+import re
 
 class TypeBase:
     def __init__(self, scope, name):
@@ -80,20 +80,80 @@ class Method(TypeBase):
         super().__init__(scope, name)
         self.infields = []
         self.outfields = []
-        self.nameSet = {}
+        self.nameSet = set()
 
-    def parse(self, lines):
-        pass
+    def addInField(self, name, type):
+        if name in self.nameSet:
+            return False
 
+        self.nameSet.add(name)
+        self.infields.append(Field(name, type))
+        return True
+
+    def addOutField(self, name, type):
+        if name in self.nameSet:
+            return False
+
+        self.nameSet.add(name)
+        self.outfields.append(Field(name, type))
+        return True
 
 class Interface(TypeBase):
     def __init__(self, scope, name):
         super().__init__(scope, name)
         self.methodList = []
+        self.nameSet = set()
 
-    def addMethod(self, name, lines):
-        pass
+    def addMethod(self, name, lno, lines, structManager):
+        lines = [line.strip() for line in lines]
+        declaration = " ".join(lines)
+        syntaxError = "Syntax error at line {}".format(lno)
 
+        m = re.match(r'.+\((.*)\)', declaration)
+        if not m:
+            return syntaxError
+        fieldGroup = m.group(1).strip()
+
+        method = Method(self.scope, name)
+        tags = []
+        if fieldGroup:
+            tags = re.split(r',', fieldGroup)
+        allowIn = True
+        for tag in tags:
+            tag = tag.strip()
+            m = re.match(r'(in|out)\s+([.a-zA-Z_]+)\s+(\w+)', tag)
+            if not m:
+                return syntaxError
+            action, argType, argName = m.groups()
+            if action == "in":
+                if not allowIn:
+                    return "At line {}: An in parameters found after out parameters".format(lno)
+            elif action == "out":
+                allowIn = False
+            else:
+                return syntaxError
+            argDataType = structManager.find(argType, scope=self.scope)
+            if not argDataType:
+                print("argTyep:", argType, "scope:", self.scope)
+                return "At line {}: {} is not defined.".format(lno, argType)
+
+            m = re.match(r'[a-zA-Z](\w*)', argName)
+            if not m:
+                return "At line {}: '{}' is not a valid identifier.".format(lno, argName)
+
+            if action == "in":
+                if not method.addInField(argName, argDataType):
+                    return "At line {}: duplicated parameter identifier '{}'".format(lno, argName)
+            else:
+                if not method.addOutField(argName, argDataType):
+                    return "At line {}: duplicated parameter identifier '{}'".format(lno, argName)
+
+        if name in self.nameSet:
+            return "At line {}: multi-definition of method '{}'".format(lno, name)
+        self.methodList.append(method)
+        self.nameSet.add(name)
+
+        return None
 
 class Loader:
     def __init__(self, scope, rootdir, relPath, manager):
@@ -181,23 +241,24 @@ class Loader:
 
             line = self.clearLine(line)
             if not line.strip():
+                line = self.readline(fin)
                 continue
 
-            if re.match(r'^\s+'):
+            if re.match(r'^\s+', line):
                 self.raiseExp("No spaces allowed at beginnig of line %d" % fin.lno)
 
             line = line.rstrip()
             keyWord = self.getKeyWord(line)
 
             if keyWord in self.parsers:
-                line = self.parsers[keyWord](self, line, fin)
+                line = self.parsers[keyWord](line, fin)
             else:
                 self.raiseExp("Syntax error at line %d" % fin.lno)
         # end of while
         fin.close()
 
     def parseInclude(self, line, fin):
-        m = re.match(r'^include\s*"([^"]+)"$')
+        m = re.match(r'^include\s*"([^"]+)"$', line)
         if not m:
             self.raiseExp("Syntax error at line %d" % fin.lno)
         file = m.group(1)
@@ -206,7 +267,7 @@ class Loader:
         return self.readline(fin)
 
     def parseStruct(self, line, fin):
-        m = re.match("^struct\s+(\w+):$")
+        m = re.match("^struct\s+(\w+):$", line)
         if not m:
             self.raiseSyntaxError(fin.lno)
         structName = m.group(1)
@@ -231,7 +292,7 @@ class Loader:
             if m:
                 indentSet.add(m.group(1))
                 newLine = newLine.strip()
-                re.match(r'^(\w+)\s*(\w+)$')
+                m = re.match(r'^([.a-zA-Z_]+)\s*(\w+)$', newLine)
                 if m:
                     fieldTypeName, fieldName = m.group(1), m.group(2)
                     fieldType = self.structManager.find(fieldTypeName, scope=self.scope)
@@ -256,7 +317,7 @@ class Loader:
         return newLine
 
     def parseEnum(self, line, fin):
-        m = re.match(r'enum\s+(\w+):$')
+        m = re.match(r'enum\s+(\w+):$', line)
         if not m:
             self.raiseSyntaxError(fin.lno)
         enumName = m.group(1)
@@ -271,16 +332,16 @@ class Loader:
         newLine = ""
         while True:
             newLine = self.readline(fin)
-            if not line:
+            if not newLine:
                 break
-            newLine = self.clearLine(line)
+            newLine = self.clearLine(newLine)
             if not newLine.strip():
                 continue
-            m = re.match(r'^(\s+)')
+            m = re.match(r'^(\s+)', newLine)
             if m:
                 indentSet.add(m.group(1))
                 newLine = newLine.strip()
-                m = re.match(r'^(\w+)\s*=\s*(\d+)$')
+                m = re.match(r'^(\w+)\s*=\s*(\d+)$', newLine)
                 if m:
                     fieldName = m.group(1)
                     fieldValue = int(m.group(2))
@@ -296,14 +357,14 @@ class Loader:
         if len(indentSet) > 1:
             self.raiseSyntaxError("Indent not consistent between line {} to {}".format(oldLno, fin.lno))
 
-        if len(enum.fields) == 0:
-            self.raiseExp("No field defined for struct %s" % enumName)
+        if len(enum.pairs) == 0:
+            self.raiseExp("No field defined for enum %s" % enumName)
 
         self.add(enum)
         return newLine
 
     def parseList(self, line, fin):
-        m = re.match(r'^list\s*<\s*(\w+)\s*>\s*(\w+)$')
+        m = re.match(r'^list\s*<\s*([.a-zA-Z_]+)\s*>\s*(\w+)$', line)
         if not m:
             self.raiseSyntaxError(fin.lno)
         dataTypeName = m.group(1)
@@ -325,7 +386,7 @@ class Loader:
         return self.readline(fin)
 
     def parseDict(self, line, fin):
-        m = re.match(r'^dict\s*<\s*(\w+)\s*,\s*(\w+)\s*>\s*(\w+)$')
+        m = re.match(r'^dict\s*<\s*(\w+)\s*,\s*([.a-zA-Z_]+)\s*>\s*(\w+)$', line)
         if not m:
             self.raiseSyntaxError(fin.lno)
 
@@ -345,7 +406,7 @@ class Loader:
         if not valType:
             self.raiseExp("At line{}: Identifier {} is not found.".format(fin.lno, valType))
 
-        dictT = Dict(varName, keyType, valType)
+        dictT = Dict(self.scope, varName, keyType, valType)
         if self.structManager.find(dictT.fullname):
             self.raiseExp("Multi definition of '{}' at line {}".format(varName, fin.lno))
 
@@ -369,9 +430,9 @@ class Loader:
         beginOfMethod = False
         while True:
             line = self.readline(fin)
-            line = self.clearLine(line)
             if not line:
-                continue
+                break
+            line = self.clearLine(line)
             if not line.strip():
                 continue
 
@@ -399,7 +460,9 @@ class Loader:
             self.raiseSyntaxError("Indent not consistent between line {} to {}".format(oldLno, fin.lno))
 
         for elem in methodTags:
-            interface.addMethod(elem[0], elem[1], elem[2])
+            what = interface.addMethod(elem[0], elem[1], elem[2], self.structManager)
+            if what:
+                self.raiseExp(what)
 
         self.add(interface)
         return line

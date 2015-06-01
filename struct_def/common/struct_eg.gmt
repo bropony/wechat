@@ -1,0 +1,25 @@
+# this is a struct definiton test
+
+list<int> SeqInt
+dict<int, string> DictIntString
+
+#first strcut
+struct SAddress:
+    int code
+    string city
+    string district
+    string details
+    
+#a nam
+struct SHuman:
+    int age
+    string name
+    SAddress address
+    SeqInt hobbies
+
+list<SHuman> SeqHuman
+
+#enum
+enum ETest:
+    hello = 1
+    world = 2

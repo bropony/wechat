@@ -9,7 +9,7 @@
 """
 import sys
 from optparse import OptionParser
-from autotools.gmtloader.structmanager import StructManager
+from gmtloader.structmanager import StructManager
 
 class Gmt2Py:
     def __init__(self, manger, loader):
@@ -33,21 +33,21 @@ def main():
 
     options, args = parser.parse_args()
 
-    if len(sys.argv) < 2 or options.help:
+    if len(sys.argv) < 2:
         parser.print_help()
         return
 
     scope = options.scope or ""
     inRootDir = options.inRootDir or "."
     outRootDir = options.outRootDir or "."
-    files = options.files or []
+    sources = options.sources or []
 
-    if not files:
+    if not sources:
         return
 
     structManager = StructManager(scope, inRootDir, outRootDir)
     loaders = []
-    for f in files:
+    for f in sources:
         loader = structManager.loadFile(f)
         gmt = Gmt2Py(structManager, loader)
         gmt.generate()

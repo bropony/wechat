@@ -8,7 +8,7 @@
 * @desc structmanager.py
 """
 
-from autotools.gmtloader.loader import *
+from gmtloader.loader import *
 import datetime
 
 class StructManager:
@@ -36,11 +36,16 @@ class StructManager:
         loader.loadFile()
         return loader
 
-    def find(self, name):
+    def find(self, name, scope=""):
         if name in self.typeMap:
             return self.typeMap[name]
+
+        newName = scope + "." + name
+        if newName in self.typeMap:
+            return self.typeMap[newName]
         return None
 
     def add(self, dataType):
         self.typeMap[dataType.fullname] = dataType
+        print("[StructManager.add]", dataType.fullname)
 # end of StructManager
