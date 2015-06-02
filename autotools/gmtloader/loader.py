@@ -174,6 +174,8 @@ class Loader:
         self.includeAllowed = True
         self.types = []
         self.typeMap = {}
+        self.includes = []
+        self.hasInterface = False
 
         self.parsers = dict()
         self.parsers["include"] = self.parseInclude
@@ -262,7 +264,8 @@ class Loader:
         if not m:
             self.raiseExp("Syntax error at line %d" % fin.lno)
         file = m.group(1)
-        self.structManager.loadFile(file)
+        loader = self.structManager.loadFile(file)
+        self.includes.append(loader.scope)
 
         return self.readline(fin)
 
@@ -465,6 +468,7 @@ class Loader:
                 self.raiseExp(what)
 
         self.add(interface)
+        self.hasInterface = True
         return line
     # end of parseInterface
 # end of Loader
