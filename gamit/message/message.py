@@ -14,9 +14,9 @@ class MessageBlock:
 
     @classmethod
     def register(cls, messageType):
-        if messageType.__name__ in cls.__msgMap:
-            raise MessageRegisteredError()
-
+        #if messageType.__name__ in cls.__msgMap:
+        #    raise MessageRegisteredError()
+        #
         cls.__msgMap[messageType.__name__] = messageType
 
     def __init__(self, dataType, toIdList=None, data=None):

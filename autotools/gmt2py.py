@@ -38,7 +38,7 @@ class Gmt2Py:
             self.raiseExcept("outdir {} does not exist".format(rootDir))
 
         packages = re.split(r'\.', scope)
-        print("makedir", scope, packages)
+        #print("makedir", scope, packages)
         currentPath = rootDir
         for pkg in packages[:-1]:
             currentPath = os.path.join(currentPath, pkg)
@@ -62,7 +62,7 @@ class Gmt2Py:
         self.fout.write("\n")
 
     def generate(self):
-        print("Generation Python code of {}".format(self.loader.filepath))
+        print("Generation Python code for {}".format(self.loader.filepath))
         outRootDir = self.structManager.outRootDir
         scope = self.loader.scope
         pyFilePath = self.makedir(outRootDir, scope)
@@ -105,6 +105,9 @@ class Gmt2Py:
         self.write("from gamit.message.message import MessageBlock")
         if self.loader.hasInterface:
             self.write("from gamit.rmi.rmicore import *")
+            self.write("from gamit.serialize.serializer import Serializer")
+            self.write("from gamit.serialize.datatype import RmiDataType")
+            self.write("import abc")
 
         for imp in self.loader.includes:
             self.write("import {}".format(imp))
@@ -201,6 +204,8 @@ class Gmt2Py:
 
         self.indent = 0
         self.writeEmptyLine()
+        self.write("MessageBlock.register({})".format(structType.name))
+        self.writeEmptyLine()
 
     def parseEnum(self, enumType):
         self.indent = 0
@@ -250,6 +255,12 @@ class Gmt2Py:
         self.write("dataSize = __is.readInt()")
         self.write("for _ in range(dataSize):")
         self.indent = 2
+        keyInitExpr = self.getTypePyInitExpression(dictType.keyType, self.loader.scope)
+        keyInitExpr = "key_ = {}".format(keyInitExpr)
+        valInitExpr = self.getTypePyInitExpression(dictType.valType, self.loader.scope)
+        valInitExpr = "val_ = {}".format(valInitExpr)
+        self.write(keyInitExpr)
+        self.write(valInitExpr)
         keyReadExpr = self.getPyReadExpression(dictType.keyType, "key_", self.loader.scope)
         valReadExpr = self.getPyReadExpression(dictType.valType, "val_", self.loader.scope)
         self.write(keyReadExpr)
@@ -274,19 +285,161 @@ class Gmt2Py:
         self.writeEmptyLine()
 
     def parseInterface(self, interfaceType):
-        pass
+        for method in interfaceType.methodList:
+            self.parseRmiRequest(interfaceType, method)
+
+        for method in interfaceType.methodList:
+            self.parseRmiResponse(interfaceType, method)
+
+        self.parseServant(interfaceType)
+        self.parseProxy(interfaceType)
 
     def parseRmiRequest(self, interfaceType, method):
-        pass
+        self.indent = 0
+        clsName = "{}_{}_Request".format(interfaceType.name, method.name.capitalize())
+        self.write("class {}(RmiRequestBase):".format(clsName))
+        self.indent = 1
+        self.write("def __init__(self, connId, msgId, servant):")
+        self.indent = 2
+        self.write("super().__init__(connId, msgId, servant)")
+        self.writeEmptyLine()
+        self.indent = 1
+
+        self.fout.write(self.getIndent(self.indent))
+        self.fout.write("def response(self")
+        for field in method.outfields:
+            self.fout.write(", {}".format(field.name))
+        self.fout.write("):\n")
+        self.indent = 2
+        self.write("__os = self.__os")
+        self.write("__os.writeInt(self.msgId)")
+        for field in method.outfields:
+            writeExpr = self.getPyWriteExpression(field.type, field.name, self.loader.scope)
+            self.write(writeExpr)
+        self.writeEmptyLine()
+        self.write("self.sendout()")
+
+        self.writeEmptyLine()
 
     def parseRmiResponse(self, interfaceType, method):
-        pass
+        self.indent = 0
+        clsName = "{}_{}_Response".format(interfaceType.name, method.name.capitalize())
+        self.write("class {}(RmiResponseBase):".format(clsName))
+        self.indent = 1
+
+        self.write("def __init__(self):")
+        self.indent = 2
+        self.write("super().__init__()")
+        self.writeEmptyLine()
+        self.indent = 1
+
+        self.write("def __onResponse(self, __is):")
+        self.indent = 2
+        for field in method.outfields:
+            initExpr = self.getTypePyInitExpression(field.type, self.loader.scope)
+            initExpr = "{} = {}".format(field.name, initExpr)
+            readExpr = self.getPyReadExpression(field.type, field.name, self.loader.scope)
+            self.write(initExpr)
+            self.write(readExpr)
+        self.writeEmptyLine()
+
+        self.fout.write(self.getIndent(self.indent))
+        self.fout.write("self.onResponse(")
+        isFirst = True
+        for field in method.outfields:
+            if not isFirst:
+                self.fout.write(", ")
+            else:
+                isFirst = False
+            self.fout.write(field.name)
+        self.fout.write(")\n")
+        self.writeEmptyLine()
+
+        self.indent = 1
+        self.write("@abc.abstractmethod")
+        self.fout.write(self.getIndent(self.indent))
+        self.fout.write("def onResponse(self")
+        for field in method.outfields:
+            self.fout.write(", {}".format(field.name))
+        self.fout.write("):\n")
+        self.indent = 2
+        self.write("pass")
+
+        self.writeEmptyLine()
+        self.writeEmptyLine()
 
     def parseServant(self, interfaceType):
-        pass
+        clsName = "{}Servant".format(interfaceType.name)
+        self.indent = 0
+
+        self.write("class {}(RmiServant):".format(clsName))
+        self.indent = 1
+        self.write("def __init__(self, name):")
+        self.indent = 2
+        self.write("super.__init__(name)")
+        self.writeEmptyLine()
+
+        self.indent = 1
+        for method in interfaceType.methodList:
+            self.indent = 1
+            self.write("def __{}(self, __connId, __msgId, __is):".format(method.name))
+            self.indent = 2
+            for field in method.infields:
+                initExpr = self.getTypePyInitExpression(field.type, self.loader.scope)
+                initExpr = "{} = {}".format(field.name, initExpr)
+                readExpr = self.getPyReadExpression(field.type, field.name, self.loader.scope)
+                self.write(initExpr)
+                self.write(readExpr)
+            clsName = "{}_{}_Request".format(interfaceType.name, method.name.capitalize())
+            self.write("__request = {}(__connId, __msgId, self)".format(clsName))
+            self.fout.write(self.getIndent(self.indent))
+            self.fout.write("self.{}(".format(method.name))
+            for field in method.infields:
+                self.fout.write("{}, ".format(field.name))
+            self.fout.write("__request)\n")
+            self.indent = 1
+            self.writeEmptyLine()
+            self.write("@abc.abstractmethod")
+            self.fout.write(self.getIndent(self.indent))
+            self.fout.write("def {}(self".format(method.name))
+            for field in method.infields:
+                self.fout.write(", {}".format(field.name))
+            self.fout.write(", __request):\n")
+            self.indent = 2
+            self.write("pass")
+            self.writeEmptyLine()
 
     def parseProxy(self, interfaceType):
-        pass
+        clsName = "{}Proxy".format(interfaceType.name)
+        self.indent = 0
+        self.write("class {}(RmiProxy):".format(clsName))
+
+        self.indent = 1
+        self.write("def __init__(self,  msgId):")
+        self.indent = 2
+        self.write("super().__init__(msgId)")
+        self.writeEmptyLine()
+
+        for method in interfaceType.methodList:
+            self.indent = 1
+            self.fout.write(self.getIndent(self.indent))
+            self.fout.write("def {}(self, __response".format(method.name))
+            for field in method.infields:
+                self.fout.write(", {}".format(field.name))
+            self.fout.write("):\n")
+            self.indent = 2
+            self.write("__os = Serializer()")
+            self.write("__os.startToWrite()")
+            self.write("__os.writeByte(RmiDataType.RmiCall)")
+            self.write("__msgId = self.getMsgId()")
+            self.write("__os.writeInt(__msgId)")
+            self.write("__response.__setMsgId(__msgId)")
+            for field in method.infields:
+                writeExpr = self.getPyWriteExpression(field.type, field.name, self.loader.scope)
+                self.write(writeExpr)
+            self.write("self.invoke(__os, __response)")
+            self.writeEmptyLine()
+        self.writeEmptyLine()
 
 def main():
     parser = OptionParser()

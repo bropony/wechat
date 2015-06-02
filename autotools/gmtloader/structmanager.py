@@ -18,6 +18,7 @@ class StructManager:
         self.outRootDir = outRootDir
         self.typeMap = {}
         self.initBasicTypes()
+        self.loadedMap = {}
 
     def initBasicTypes(self):
         self.add(BasicType("bool", bool))
@@ -32,8 +33,13 @@ class StructManager:
         self.add(BasicType("binary", bytes))
 
     def loadFile(self, relPath):
+        if relPath in self.loadedMap:
+            return self.loadedMap[relPath]
+
         loader = Loader(self.baseScope, self.inRootDir, relPath, self)
         loader.loadFile()
+        self.loadedMap[relPath] = loader
+
         return loader
 
     def find(self, name, scope=""):
@@ -47,5 +53,5 @@ class StructManager:
 
     def add(self, dataType):
         self.typeMap[dataType.fullname] = dataType
-        print("[StructManager.add]", dataType.fullname)
+        #print("[StructManager.add]", dataType.fullname)
 # end of StructManager

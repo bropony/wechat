@@ -1,12 +1,12 @@
 include "common/struct_eg.gmt"
 
-list<common.struct_eg.SAddress> SeqAddress
-dict<int, common.struct_eg.SAddress> DictIntSAddress
+list<message.common.struct_eg.SAddress> SeqAddress
+dict<int, message.common.struct_eg.SAddress> DictIntSAddress
 
 interface ITest:
     method sayHello()
     
-    method search(in string name, out common.struct_eg.SHuman human)
+    method search(in string name, out message.common.struct_eg.SHuman human)
     
     method aLongFunc(in int yes, in string iDo,
         out int no, out string iDonot)
@@ -14,7 +14,7 @@ interface ITest:
     method somethingWrong(
         )
         
-    method hey(in common.struct_eg.SeqInt what, out common.struct_eg.DictIntString how)
+    method hey(in message.common.struct_eg.SeqInt what, out message.common.struct_eg.DictIntString how)
 
 interface ICheck:
     method oops()

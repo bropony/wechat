@@ -36,12 +36,14 @@ class RmiServant:
         if not name in self.methodMap:
             raise SerializeError("{} is not member mthod of {}".format(name, self.name))
 
+        msgId = 0
         try:
-            self.methodMap[name](connId, __is)
+            msgId = __is.readInt()
+            self.methodMap[name](connId, msgId, __is)
         except Exception as ex:
             what = ex.args[0] if len(ex.args) > 0 else "UnkownError"
             code = ex.args[1] if len(ex.args) > 1 else 0
-            msgId = ex.args[2] if len(ex.args) > 2 else 0
+            #msgId = ex.args[2] if len(ex.args) > 2 else 0
 
             __os = Serializer()
             __os.startToWrite()
@@ -66,7 +68,7 @@ class RmiRequestBase(metaclass=abc.ABCMeta):
         self.servant.rmiServer.send(self.connId, self.__os.getBuffer())
 
     @abc.abstractmethod
-    def __response(self):
+    def response(self):
         pass
 
 
@@ -89,9 +91,13 @@ class RmiProxy:
         self.rmiClient.onCall(__os, callback)
 
 class RmiResponseBase(metaclass=abc.ABCMeta):
-    def __init__(self, msgId):
+    def __init__(self):
+        self.msgId = 0
+
+    def __setMsgId(self, msgId):
         self.msgId = msgId
 
     @abc.abstractmethod
     def __onResponse(self, __is):
         pass
+
