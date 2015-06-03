@@ -9,16 +9,43 @@
 """
 
 import sys
+import os
 import os.path
 
 # add parent dir to searching paths
-absPath = os.path.abspath(sys.argv[0])
-absPath, _ = os.path.split(absPath)
-absPath, _ = os.path.split(absPath)
-sys.path.append(absPath)
+main_dir, _ = os.path.split(__file__)
+parent_dir, _ = os.path.split(main_dir)
+sys.path.append(parent_dir)
+
+# imports
+import staticdata.dataloader
+from staticdata.serverconfig import ServerConfigManager
+from gamit.log.logger import Logger
+
+from application import Application
 
 def main():
-    pass
+    #load server configs
+    ServerConfigManager.loadConfig()
+
+    # start logger
+    loggerDir = os.path.join(os.getcwd(), "log")
+    if not os.path.exists(loggerDir):
+        os.mkdir(loggerDir)
+    Logger.startLogging(loggerDir, ServerConfigManager.isDebug)
+
+    Logger.logInfo("loading configs...")
+    staticdata.dataloader.loadConfigs()
+
+    app = Application()
+
+    Logger.logInfo("initiating app...")
+    if app.init():
+        Logger.logInfo("starting app...")
+        app.start()
+
+    Logger.logInfo("stopping app...")
+    app.stop()
 
 if __name__ == "__main__":
     main()

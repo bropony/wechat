@@ -4,6 +4,7 @@
 
 from twisted.python import log
 #from twisted.python.logfile import DailyLogFile
+import sys
 import logging
 import os.path
 import datetime
@@ -22,9 +23,8 @@ class Logger:
     def startLogging(cls, logDir, isDebug):
         if not isDebug:
             cls._logLevel = logging.INFO
-            
-        #logFile = DailyLogFile.fromFullPath(os.path.join(logDir, "log.txt"))
-        #log.startLogging(logFile)
+
+        cls._logger.FileLogObserver(sys.stdout).start()
         cls._logdir = logDir
         cls.updateLogFile()
 
@@ -35,7 +35,7 @@ class Logger:
         if filename != cls._logfilepath:
             if cls._logfile:
                 cls._logfile.close()
-            cls._logfile = open(os.path.join(cls._logdir, filename), "w")
+            cls._logfile = open(os.path.join(cls._logdir, filename), "a")
             cls._logfilepath = filename
             cls._logger.startLogging(cls._logfile)
 

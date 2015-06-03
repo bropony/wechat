@@ -10,6 +10,7 @@
 
 from gamit.log.logger import Logger
 from gamit.message.messagemanager import MessageManager
+from gamit.message.message import MessageBlock
 from gamit.serialize.serializer import Serializer, SerializeError
 from gamit.serialize.datatype import RmiDataType
 from twisted.internet import reactor
@@ -59,11 +60,15 @@ class RmiClient:
         except Exception as ex:
             Logger.logInfo(ex.__traceback__)
 
+    def sendMessage(self, command, toIdList, data):
+        msg = MessageBlock(command, toIdList, data)
+        self.connector.send(msg.getOsBuffer(), True)
+
     def onResponse(self, __is):
         msgId = __is.readInt()
         if msgId in self.callbackMap:
             self.callbackMap[msgId].__onResponse(__is)
 
     def onCall(self, __os, callback):
-        self.send(__os.getBuffer(), True)
+        self.connector.send(__os.getBuffer(), True)
         self.callbackMap[callback.__msgId] = callback

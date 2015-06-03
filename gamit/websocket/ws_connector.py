@@ -99,7 +99,7 @@ class WsConnector:
             self.ws.sendClose()
             self.ws = None
 
-    def send(self, payload, isBinary):
+    def send(self, payload, isBinary=True):
         if not self.running:
             Logger.logInfo("WsConnector.send", " Connect closed")
             return

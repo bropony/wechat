@@ -7,3 +7,17 @@
 *
 * @desc dataloader.py
 """
+
+if __name__ != "__main__":
+    pass
+    # from staticdata.serverconfig import ServerConfigManager
+else:
+    pass
+    # from serverconfig import ServerConfigManager
+
+def loadConfigs():
+    pass
+    # ServerConfigManager.loadConfig()
+
+if __name__ == "__main__":
+    loadConfigs()

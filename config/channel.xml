@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<root>
+    <channel type="1" id="1001" ip="public_ip" port="80var" />
+    <channel type="2" id="2001" ip="db_ip1" port="70var" />
+    <channel type="3" id="3001" ip="db_ip2" port="71var" />
+</root>
