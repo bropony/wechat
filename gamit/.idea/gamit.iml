@@ -4,8 +4,8 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="PyCharm" />
-    <orderEntry type="module" module-name="message" />
-    <orderEntry type="module" module-name="autotools" />
+    <orderEntry type="module" module-name="gate" />
+    <orderEntry type="module" module-name="staticdata" />
+    <orderEntry type="module" module-name="config" />
   </component>
 </module>

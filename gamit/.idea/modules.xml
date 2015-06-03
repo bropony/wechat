@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../autotools/.idea/autotools.iml" filepath="$PROJECT_DIR$/../autotools/.idea/autotools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../config/.idea/config.iml" filepath="$PROJECT_DIR$/../config/.idea/config.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gamit.iml" filepath="$PROJECT_DIR$/.idea/gamit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gate/.idea/gate.iml" filepath="$PROJECT_DIR$/../gate/.idea/gate.iml" />
       <module fileurl="file://$PROJECT_DIR$/../message/.idea/message.iml" filepath="$PROJECT_DIR$/../message/.idea/message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../staticdata/.idea/staticdata.iml" filepath="$PROJECT_DIR$/../staticdata/.idea/staticdata.iml" />
     </modules>
   </component>
 </project>
