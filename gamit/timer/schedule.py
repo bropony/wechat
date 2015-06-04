@@ -55,7 +55,7 @@ class Scheduler:
         self._loop()
 
     def _loop(self):
-        newMap = []
+        newMap = {}
         for timerId, timerPrx in self.timerMap.items():
             if timerPrx.handleTimeout():
                 newMap[timerId] = timerPrx
