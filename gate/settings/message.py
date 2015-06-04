@@ -7,3 +7,9 @@
 *
 * @desc message.py
 """
+
+from gamit.singleton.singleton import Singleton
+class MessageSetting(Singleton):
+    @staticmethod
+    def initMessangeHandler(messageManager):
+        pass

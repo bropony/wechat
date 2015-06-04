@@ -1,16 +1,16 @@
 """
-* @name proxy.py
+* @name servant.py
 *
 * @author ahda86@gmail.com
 *
-* @date 2015/6/3 19:47
+* @date 2015/6/4 10:30
 *
-* @desc proxy.py
+* @desc servant.py
 """
 
 from gamit.singleton.singleton import Singleton
 
-class ProxySetting(Singleton):
+class ServantSetting(Singleton):
     @staticmethod
-    def initDbCacheProxy(client):
+    def initServant(server):
         pass

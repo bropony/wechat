@@ -14,7 +14,7 @@ class MessageManager:
         self.idHandlerMap = {}
 
     def addCommandHandler(self, command, handler):
-        if not issubclass(handler, CommandHandlerBase):
+        if not issubclass(handler.__class__, CommandHandlerBase):
             raise NotACommandHandlerError()
 
         self.handlerMap[command] = handler

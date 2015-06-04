@@ -43,6 +43,8 @@ def main():
     if app.init():
         Logger.logInfo("starting app...")
         app.start()
+    else:
+        raise Exception("Initiating Application Failed.")
 
     Logger.logInfo("stopping app...")
     app.stop()
