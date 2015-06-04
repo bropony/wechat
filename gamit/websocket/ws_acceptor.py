@@ -3,7 +3,7 @@
 #
 
 from twisted.internet import  reactor
-from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactor
+from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactory
 from gamit.log.logger import Logger
 import logging
 
