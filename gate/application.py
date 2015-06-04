@@ -21,6 +21,7 @@ from gamit.rmi import protocol as Protocol
 from gamit.rmi.rmiserver import RmiServer
 from gamit.rmi.rmiclient import RmiClient
 from gamit.message.messagemanager import MessageManager
+from gamit.timer.schedule import Scheduler
 
 # choose a network protocol
 NETWORK_PROTOCOL = Protocol.WEBSOCKET
@@ -44,10 +45,13 @@ class Application:
         self.server = None
         self.clientMap = {}
         self.messageManager = None
+        self.scheduler = Scheduler()
 
     def start(self):
         self.server.start()
 
+        self.scheduler.start()
+        
         for _, client in self.clientMap:
             client.start()
 
