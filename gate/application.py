@@ -51,7 +51,7 @@ class Application:
         self.server.start()
 
         self.scheduler.start()
-        
+
         for _, client in self.clientMap:
             client.start()
 

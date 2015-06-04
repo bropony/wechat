@@ -63,6 +63,6 @@ class Scheduler:
         self.timerMap = newMap
         print("scheduler._loop")
 
-        reactor.callLater(0.03, self._loop, self)
+        reactor.callLater(0.03, self._loop)
 
 ####
