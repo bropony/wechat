@@ -78,7 +78,7 @@ class Application:
             return False
 
         acceptor = Acceptor(channel.id, channel.port)
-        rmiServer = RmiServer(acceptor)
+        rmiServer = RmiServer(acceptor, ServerConfigManager.isDebug)
         self.server = rmiServer
 
         ServantSetting.initServant(self.server)

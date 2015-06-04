@@ -13,10 +13,11 @@ from gamit.serialize.datatype import RmiDataType
 from twisted.internet import reactor
 
 class RmiServer:
-    def __init__(self, acceptor, loopInterval=0.03):
+    def __init__(self, acceptor, isDebug, loopInterval=0.03):
         self.acceptor = acceptor
         self.acceptor.setRmiServer(self)
         self.interval = loopInterval
+        self.isDebug = isDebug
 
         self.servantMap = {}
         self.connIdSet = set()
@@ -27,7 +28,7 @@ class RmiServer:
         servant.setRmiServer(self)
 
     def start(self):
-        self.acceptor.start()
+        self.acceptor.start(self.isDebug)
 
     def stop(self):
         self.acceptor.stop()

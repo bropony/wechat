@@ -16,7 +16,8 @@ from gamit.serialize.datatype import RmiDataType
 from twisted.internet import reactor
 
 class RmiClient:
-    def __init__(self, connector, msgMgr):
+    def __init__(self, connector, msgMgr, isDebug):
+        self.isDebug = isDebug
         self.connector = connector
         self.connector.setRmiClient(self)
         self.messageManager = msgMgr
@@ -24,7 +25,7 @@ class RmiClient:
         self.proxyMap = {}
 
     def start(self):
-        self.connector.start()
+        self.connector.start(self.isDebug)
 
     def stop(self):
         self.connector.stop()
