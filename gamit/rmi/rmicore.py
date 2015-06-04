@@ -21,9 +21,9 @@ class RmiServant:
             obj = self.__class__.__dict__[func]
             if not inspect.isfunction(obj):
                 continue
-            if func.endswidth("_"):
+            if func.endswith("_"):
                 continue
-            if not func.endswidth("__"):
+            if not func.endswith("__"):
                 continue
             if not func[2:] in self.__class__.__dict__:
                 continue
