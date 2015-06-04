@@ -58,7 +58,7 @@ class Application:
         for _, client in self.clientMap:
             client.stop()
 
-        reactor.stop()
+        #reactor.stop()
 
     def init(self):
         if not self._initRmiServer():
