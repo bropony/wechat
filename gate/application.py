@@ -23,7 +23,7 @@ from gamit.message.messagemanager import MessageManager
 # choose a network protocol
 NETWORK_PROTOCOL = Protocol.WEBSOCKET
 
-if NETWORK_PROTOCO == Protocol.WEBSOCKET:
+if NETWORK_PROTOCOL == Protocol.WEBSOCKET:
     from gamit.websocket.ws_acceptor import WsAcceptor as Acceptor
     from gamit.websocket.ws_connector import WsConnector as Connector
 elif NETWORK_PROTOCOL == Protocol.ASIO:
