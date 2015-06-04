@@ -18,7 +18,7 @@ from gamit.rmi import protocol as Protocol
 
 from gamit.rmi.rmiserver import RmiServer
 from gamit.rmi.rmiclient import RmiClient
-from gamit.rmi.message.messagemanager import MessageManager
+from gamit.message.messagemanager import MessageManager
 
 # choose a network protocol
 NETWORK_PROTOCOL = Protocol.WEBSOCKET
