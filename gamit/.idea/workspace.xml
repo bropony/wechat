@@ -9,10 +9,15 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rmi/protocol.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/application.py" afterPath="$PROJECT_DIR$/../gate/application.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/gate/command.py" afterPath="$PROJECT_DIR$/../message/gate/command.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/gate.py" afterPath="$PROJECT_DIR$/../gate/gate.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/gate/gatemsg.py" afterPath="$PROJECT_DIR$/../message/gate/gatemsg.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/gmt2py.py" afterPath="$PROJECT_DIR$/../autotools/gmt2py.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/gate/itest.py" afterPath="$PROJECT_DIR$/../message/gate/itest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/settings/message.py" afterPath="$PROJECT_DIR$/../gate/settings/message.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/message/messagemanager.py" afterPath="$PROJECT_DIR$/message/messagemanager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/settings/proxy.py" afterPath="$PROJECT_DIR$/../gate/settings/proxy.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/common/publicdef.py" afterPath="$PROJECT_DIR$/../message/common/publicdef.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/settings/servant.py" afterPath="$PROJECT_DIR$/../gate/settings/servant.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websocket/ws_acceptor.py" afterPath="$PROJECT_DIR$/websocket/ws_acceptor.py" />
     </list>
@@ -59,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ws_connector.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ws_connector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28146145">
+            <state vertical-scroll-proportion="0.0">
               <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
               <folding />
             </state>
@@ -115,14 +120,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="itest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="itest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../message/gate/itest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="18" selection-start-line="126" selection-start-column="6" selection-end-line="126" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.5142084">
+              <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
               <folding>
                 <element signature="e#200#215#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gmt2py.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="378" column="27" selection-start-line="378" selection-start-column="27" selection-end-line="378" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -133,18 +148,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="69" column="23" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="message.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../gate/settings/message.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="89" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
-              <folding>
-                <element signature="e#103#148#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -167,7 +170,6 @@
         <option value="$PROJECT_DIR$/rmi/rmicore.py" />
         <option value="$PROJECT_DIR$/../message/common/interface_eg.py" />
         <option value="$PROJECT_DIR$/../autotools/gmtloader/structmanager.py" />
-        <option value="$PROJECT_DIR$/../autotools/gmt2py.py" />
         <option value="$PROJECT_DIR$/app/apptype.py" />
         <option value="$PROJECT_DIR$/../staticdata/__init__.py" />
         <option value="$PROJECT_DIR$/../config/channel.xml" />
@@ -187,6 +189,7 @@
         <option value="$PROJECT_DIR$/../gate/settings/servant.py" />
         <option value="$PROJECT_DIR$/../gate/application.py" />
         <option value="$PROJECT_DIR$/websocket/ws_acceptor.py" />
+        <option value="$PROJECT_DIR$/../autotools/gmt2py.py" />
       </list>
     </option>
   </component>
@@ -262,35 +265,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gamit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gamit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gamit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="websocket" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gamit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gamit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rmi" />
+              <option name="myItemId" value="autotools" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -603,6 +578,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -646,6 +622,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="470" column="32" selection-start-line="470" selection-start-column="32" selection-end-line="470" selection-end-column="32" />
+          <folding>
+            <element signature="e#102#116#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -660,6 +639,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="50" column="42" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -667,6 +647,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="388" column="50" selection-start-line="388" selection-start-column="50" selection-end-line="388" selection-end-column="50" />
+          <folding>
+            <element signature="e#102#116#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -688,6 +671,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="470" column="32" selection-start-line="470" selection-start-column="32" selection-end-line="470" selection-end-column="32" />
+          <folding>
+            <element signature="e#102#116#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -702,13 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -843,7 +822,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding>
-            <element signature="e#204#219#0" expanded="true" />
+            <element signature="e#204#219#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -918,36 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../message/gate/itest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="126" column="18" selection-start-line="126" selection-start-column="6" selection-end-line="126" selection-end-column="18" />
-          <folding>
-            <element signature="e#200#215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rmi/rmiserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="18" />
-          <folding>
-            <element signature="e#74#109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gate/settings/servant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="e#103#150#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gate/application.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -970,9 +919,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28146145">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rmi/rmiserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="18" />
+          <folding>
+            <element signature="e#74#109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="378" column="27" selection-start-line="378" selection-start-column="27" selection-end-line="378" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gate/settings/servant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <folding>
+            <element signature="e#103#150#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../message/gate/itest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5142084">
+          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+          <folding>
+            <element signature="e#200#215#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

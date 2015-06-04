@@ -376,7 +376,7 @@ class Gmt2Py:
         self.indent = 1
         self.write("def __init__(self, name):")
         self.indent = 2
-        self.write("super.__init__(name)")
+        self.write("super().__init__(name)")
         self.writeEmptyLine()
 
         self.indent = 1

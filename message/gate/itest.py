@@ -1,7 +1,7 @@
 #
 # file: itest.py
 #
-# date: 2015-06-04 15:47:55.841957
+# date: 2015-06-04 16:19:16.880546
 #
 # author: ahda86@gmail.com
 #
@@ -126,7 +126,7 @@ class ITest_Signup_Response(RmiResponseBase):
 
 class ITestServant(RmiServant):
     def __init__(self, name):
-        super.__init__(name)
+        super().__init__(name)
 
     def __getIntList(self, __connId, __msgId, __is):
         size = int()
