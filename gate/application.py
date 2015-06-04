@@ -89,6 +89,7 @@ class Application:
             self.messageManager = MessageManager(self.server)
 
         MessageSetting.initMessangeHandler(self.messageManager)
+        return True
 
     # serve as a proxy (client side logic)
     def _initDbCacheProxy(self):
