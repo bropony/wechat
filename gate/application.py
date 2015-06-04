@@ -86,7 +86,7 @@ class Application:
 
     def _initMessageManager(self):
         if not self.messageManager:
-            self.messageManager = MessageManager()
+            self.messageManager = MessageManager(self.server)
 
         MessageSetting.initMessangeHandler(self.messageManager)
 
