@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../autotools" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../client_test" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../config" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../gate" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../message" vcs="svn" />

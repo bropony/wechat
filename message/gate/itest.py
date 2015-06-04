@@ -1,8 +1,6 @@
 #
 # file: itest.py
 #
-# date: 2015-06-04 16:19:16.880546
-#
 # author: ahda86@gmail.com
 #
 # CAUTION: This file is Auto-Generated.
@@ -169,8 +167,8 @@ class ITestServant(RmiServant):
         pass
 
 class ITestProxy(RmiProxy):
-    def __init__(self,  msgId):
-        super().__init__(msgId)
+    def __init__(self, name):
+        super().__init__(name)
 
     def getIntList(self, __response, size):
         __os = Serializer()

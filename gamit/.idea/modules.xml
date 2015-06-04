@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../autotools/.idea/autotools.iml" filepath="$PROJECT_DIR$/../autotools/.idea/autotools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../client_test/.idea/client_test.iml" filepath="$PROJECT_DIR$/../client_test/.idea/client_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/../config/.idea/config.iml" filepath="$PROJECT_DIR$/../config/.idea/config.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gamit.iml" filepath="$PROJECT_DIR$/.idea/gamit.iml" />
       <module fileurl="file://$PROJECT_DIR$/../gate/.idea/gate.iml" filepath="$PROJECT_DIR$/../gate/.idea/gate.iml" />

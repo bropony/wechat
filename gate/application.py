@@ -111,7 +111,7 @@ class Application:
             return False
 
         connector = Connector(channel.id, channel.port)
-        rmiClient = RmiClient(connector, self.messageManager)
+        rmiClient = RmiClient(connector, self.messageManager, ServerConfigManager.isDebug)
 
         self.clientMap[AppType.DBCACHE] = rmiClient
         ProxySetting.initDbCacheProxy(rmiClient)

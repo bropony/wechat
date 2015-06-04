@@ -23,6 +23,8 @@ class RmiClient:
         self.messageManager = msgMgr
         self.callbackMap = {}
         self.proxyMap = {}
+        self.onOpenCallback = None
+        self.openCallArgv = []
 
     def start(self):
         self.connector.start(self.isDebug)
@@ -31,8 +33,12 @@ class RmiClient:
         self.connector.stop()
         self.callbackMap = {}
 
-    def addProxy(self, name, proxy):
-        self.proxyMap[name] = proxy
+    def setOnOpenCallback(self, cb, *argv):
+        self.onOpenCallback = cb
+        self.openCallArgv = argv
+
+    def addProxy(self, proxy):
+        self.proxyMap[proxy.name] = proxy
         proxy.setRmiClient(self)
 
     def getProxy(self, name):
@@ -42,7 +48,9 @@ class RmiClient:
             return None
 
     def onOpen(self, ws):
-        pass
+        if self.onOpenCallback:
+            cb = self.onOpenCallback
+            cb(*self.openCallArgv)
 
     def onClose(self):
         pass

@@ -91,8 +91,8 @@ class Gmt2Py:
     def parseHeader(self, pyFilePath):
         self.write("#")
         self.write("# file: {}".format(os.path.split(pyFilePath)[-1]))
-        self.write("#")
-        self.write("# date: {}".format(datetime.datetime.now()))
+        # self.write("#")
+        # self.write("# date: {}".format(datetime.datetime.now()))
         self.write("#")
         self.write("# author: ahda86@gmail.com")
         self.write("#")
@@ -415,9 +415,9 @@ class Gmt2Py:
         self.write("class {}(RmiProxy):".format(clsName))
 
         self.indent = 1
-        self.write("def __init__(self,  msgId):")
+        self.write("def __init__(self, name):")
         self.indent = 2
-        self.write("super().__init__(msgId)")
+        self.write("super().__init__(name)")
         self.writeEmptyLine()
 
         for method in interfaceType.methodList:
