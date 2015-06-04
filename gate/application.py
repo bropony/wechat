@@ -92,6 +92,8 @@ class Application:
 
     # serve as a proxy (client side logic)
     def _initDbCacheProxy(self):
+        return True #do nothing at all
+
         channel = ServerConfigManager.getChannelByType(AppType.DBCACHE)
         if not channel:
             Logger.logInfo("DbCache channel not configured.")

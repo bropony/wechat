@@ -9,8 +9,9 @@
 """
 
 from gamit.singleton.singleton import Singleton
+from message.gate.itest import ITestServant
 
 class ServantSetting(Singleton):
     @staticmethod
     def initServant(server):
-        pass
+        server.addServant(ITestServant("ITest"))
