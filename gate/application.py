@@ -11,6 +11,8 @@
 import sys
 import os
 
+from twisted.internet import reactor
+
 from staticdata.serverconfig import ServerConfigManager
 import gamit.app.apptype as AppType
 from gamit.log.logger import Logger
@@ -49,10 +51,14 @@ class Application:
         for _, client in self.clientMap:
             client.start()
 
+        reactor.run()
+
     def stop(self):
         self.server.stop()
         for _, client in self.clientMap:
             client.stop()
+
+        reactor.stop()
 
     def init(self):
         if not self._initRmiServer():
