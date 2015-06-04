@@ -58,7 +58,7 @@ class Application:
         self.client = RmiClient(connector, self.messageManager, ServerConfigManager.isDebug)
 
         self.client.setOnOpenCallback(runTest)
-        
+
         ProxySetting.initGateProxy(self.client)
         return True
 # end of Application
