@@ -1,0 +1,14 @@
+include "common/publicdef.gmt"
+include "gate/gatemsg.gmt"
+
+interface ITest:
+    method getIntList(in int size, out message.common.publicdef.SeqInt intList)
+    
+    method getDictIntString(in int size, 
+                            out message.common.publicdef.DictIntString intStrMap)
+                            
+    method getFloatList(in int size,
+                        out message.common.publicdef.SeqFloat floatList)
+    
+    method signup(in message.gate.gatemsg.SSignup signup,
+                  out message.gate.gatemsg.SLoginReturn loginReturn)

@@ -1,0 +1,6 @@
+#
+# command def
+#
+
+enum ETestCommand:
+    FirstMessage = 10001

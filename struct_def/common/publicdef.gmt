@@ -1,0 +1,15 @@
+#
+# definition of some frequently used data structure.
+#
+
+#lists
+list<int> SeqInt
+list<long> SeqLong
+list<string> SeqString
+list<float> SeqFloat
+
+#dicts
+dict<int, int> DictIntInt
+dict<int, string> DictIntString
+dict<string, int> DictStringInt
+dict<string, string> DictStringString

@@ -1,0 +1,32 @@
+#
+# some structs
+#
+
+include "common/publicdef.gmt"
+
+struct SSignup:
+    string username
+    string nickname
+    string password
+    int sex # 1 for male, 2 for female
+    
+struct SLogin:
+    string username
+    string password
+    
+struct SLoginReturn:
+    int userId
+    string username
+    string nickname
+    string sessionKey
+    int sex
+    
+
+struct SMessage:
+    short var1
+    int var2
+    long var3
+    float var4
+    double var5
+    string var6
+    date var7
