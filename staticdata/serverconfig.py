@@ -65,7 +65,7 @@ class __ServerConfig:
             channelId = int(attrib["id"])
             channelIp = attrib["ip"]
             chnanelPort = attrib["port"]
-            chnanelPort = chnanelPort.replace("var", self.portVar)
+            chnanelPort = int(chnanelPort.replace("var", self.portVar))
 
             channel = Channel(channelType, channelId, channelIp, chnanelPort)
             self.channels[channelId] = channel

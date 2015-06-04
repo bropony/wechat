@@ -22,6 +22,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rmi/rmicore.py" afterPath="$PROJECT_DIR$/rmi/rmicore.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rmi/rmiserver.py" afterPath="$PROJECT_DIR$/rmi/rmiserver.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/settings/servant.py" afterPath="$PROJECT_DIR$/../gate/settings/servant.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/serverconfig.py" afterPath="$PROJECT_DIR$/../staticdata/serverconfig.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websocket/ws_acceptor.py" afterPath="$PROJECT_DIR$/websocket/ws_acceptor.py" />
     </list>
     <ignored path="gamit.iws" />
@@ -43,10 +44,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gate/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.797023">
+            <state vertical-scroll-proportion="0.0">
               <caret line="80" column="68" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="68" />
               <folding>
                 <element signature="e#108#118#0" expanded="true" />
@@ -55,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serverconfig.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="serverconfig.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../staticdata/serverconfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.6657646">
+              <caret line="67" column="71" selection-start-line="67" selection-start-column="71" selection-end-line="67" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -178,7 +179,6 @@
         <option value="$PROJECT_DIR$/../staticdata/__init__.py" />
         <option value="$PROJECT_DIR$/../config/channel.xml" />
         <option value="$PROJECT_DIR$/../config/server_config.xml" />
-        <option value="$PROJECT_DIR$/../staticdata/serverconfig.py" />
         <option value="$PROJECT_DIR$/log/logger.py" />
         <option value="$PROJECT_DIR$/../staticdata/dataloader.py" />
         <option value="$PROJECT_DIR$/websocket/ws_connector.py" />
@@ -196,6 +196,7 @@
         <option value="$PROJECT_DIR$/rmi/rmiserver.py" />
         <option value="$PROJECT_DIR$/rmi/rmiclient.py" />
         <option value="$PROJECT_DIR$/../gate/application.py" />
+        <option value="$PROJECT_DIR$/../staticdata/serverconfig.py" />
       </list>
     </option>
   </component>
@@ -977,21 +978,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../staticdata/serverconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gate/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.797023">
+        <state vertical-scroll-proportion="0.0">
           <caret line="80" column="68" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="68" />
           <folding>
             <element signature="e#108#118#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../staticdata/serverconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6657646">
+          <caret line="67" column="71" selection-start-line="67" selection-start-column="71" selection-end-line="67" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
