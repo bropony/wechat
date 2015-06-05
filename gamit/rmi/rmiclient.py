@@ -57,13 +57,13 @@ class RmiClient:
 
     def onMessage(self, payload, isBinary):
         try:
-            __is = Serializer(payload)
-            __is.startToRead()
-            rmiType = __is.readByte()
+            _is = Serializer(payload)
+            _is.startToRead()
+            rmiType = _is.readByte()
             if rmiType == RmiDataType.RmiResponse:
-                self.onResponse(__is)
+                self.onResponse(_is)
             elif rmiType == RmiDataType.MessageBlock:
-                self.messageManager.onMessage(__is)
+                self.messageManager.onMessage(_is)
             else:
                 raise SerializeError("Unknown RmiDataType")
         except Exception as ex:
@@ -73,11 +73,11 @@ class RmiClient:
         msg = MessageBlock(command, toIdList, data)
         self.connector.send(msg.getOsBuffer(), True)
 
-    def onResponse(self, __is):
-        msgId = __is.readInt()
+    def onResponse(self, _is):
+        msgId = _is.readInt()
         if msgId in self.callbackMap:
-            self.callbackMap[msgId].__onResponse(__is)
+            self.callbackMap[msgId]._onResponse(_is)
 
-    def onCall(self, __os, callback):
-        self.connector.send(__os.getBuffer(), True)
-        self.callbackMap[callback.__msgId] = callback
+    def onCall(self, _os, callback):
+        self.connector.send(_os.getBuffer(), True)
+        self.callbackMap[callback._msgId] = callback

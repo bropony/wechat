@@ -42,13 +42,13 @@ class RmiServer:
 
     def onMessage(self, connId, payload, isBinary):
         try:
-            __is = Serializer(payload)
-            __is.startToRead()
-            rmiType = __is.readByte()
+            _is = Serializer(payload)
+            _is.startToRead()
+            rmiType = _is.readByte()
             if rmiType == RmiDataType.RmiCall:
-                self.onInvoke(connId, __is)
+                self.onInvoke(connId, _is)
             elif rmiType == RmiDataType.MessageBlock:
-                self.messageManager.onMessage(__is)
+                self.messageManager.onMessage(_is)
             else:
                 raise SerializeError("Unknown RmiDataType")
         except Exception as ex:
@@ -66,15 +66,15 @@ class RmiServer:
         for connId in self.connIdSet:
             self.send(connId, payload, isBinary)
 
-    def response(self, connId, __os):
-        self.send(connId, __os.getBuffer())
+    def response(self, connId, _os):
+        self.send(connId, _os.getBuffer())
 
-    def onInvoke(self, connId, __is):
+    def onInvoke(self, connId, _is):
         try:
-            interface = __is.readString()
-            method = __is.readString()
+            interface = _is.readString()
+            method = _is.readString()
             if interface in self.servantMap:
-                self.servantMap[interface].invoke(connId, method, __is)
+                self.servantMap[interface].invoke(connId, method, _is)
             else:
                 raise SerializeError("Servant {} not registered".format(interface))
         except Exception as ex:

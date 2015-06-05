@@ -145,32 +145,32 @@ class Gmt2Py:
     def getPyReadExpression(self, dataType, name, currentScope):
         res = "Oops"
         if isinstance(dataType, BasicType):
-            res = "{} = __is.read{}()".format(name, dataType.name.capitalize())
+            res = "{} = _is.read{}()".format(name, dataType.name.capitalize())
         elif isinstance(dataType, Struct):
-            res = "{}.read__(__is)".format(name)
+            res = "{}._read(_is)".format(name)
         elif isinstance(dataType, List) or isinstance(dataType, Dict):
             if dataType.scope == currentScope:
-                res = "read{}(__is, {})".format(dataType.name, name)
+                res = "read{}(_is, {})".format(dataType.name, name)
             else:
-                res = "{}.read{}(__is, {})".format(dataType.scope, dataType.name, name)
+                res = "{}.read{}(_is, {})".format(dataType.scope, dataType.name, name)
         elif isinstance(dataType, Enum):
-            res = "{} = __is.readInt()".format(name)
+            res = "{} = _is.readInt()".format(name)
 
         return res
 
     def getPyWriteExpression(self, dataTye, name, currentScope):
         res = "Oops"
         if isinstance(dataTye, BasicType):
-            res = "__os.write{}({})".format(dataTye.name.capitalize(), name)
+            res = "_os.write{}({})".format(dataTye.name.capitalize(), name)
         elif isinstance(dataTye, Struct):
-            res = "{}.write__(__os)".format(name)
+            res = "{}._write(_os)".format(name)
         elif isinstance(dataTye, List) or isinstance(dataTye, Dict):
             if dataTye.scope == currentScope:
-                res = "write{}(__os, {})".format(dataTye.name, name)
+                res = "write{}(_os, {})".format(dataTye.name, name)
             else:
-                res = "{}.write{}(__os, {})".format(dataTye.scope, dataTye.name, name)
+                res = "{}.write{}(_os, {})".format(dataTye.scope, dataTye.name, name)
         elif isinstance(dataTye, Enum):
-            res = "__os.writeInt({})".format(name)
+            res = "_os.writeInt({})".format(name)
 
         return res
 
@@ -188,7 +188,7 @@ class Gmt2Py:
         self.writeEmptyLine()
 
         self.indent = 1
-        self.write("def read__(self, __is):")
+        self.write("def _read(self, _is):")
         self.indent = 2
         for field in structType.fields:
             fieldName = "self." + field.name
@@ -197,7 +197,7 @@ class Gmt2Py:
         self.writeEmptyLine()
 
         self.indent = 1
-        self.write("def write__(self, __os):")
+        self.write("def _write(self, _os):")
         self.indent = 2
         for field in structType.fields:
             fieldName = "self." + field.name
@@ -224,9 +224,9 @@ class Gmt2Py:
         #capName = listType.name.capitalize()
         capName = listType.name
 
-        self.write("def read{}(__is, valList):".format(capName))
+        self.write("def read{}(_is, valList):".format(capName))
         self.indent = 1
-        self.write("dataSize = __is.readInt()")
+        self.write("dataSize = _is.readInt()")
         self.write("for _ in range(dataSize):")
         self.indent = 2
         initExpr = self.getTypePyInitExpression(listType.type, self.loader.scope)
@@ -238,10 +238,10 @@ class Gmt2Py:
         self.indent = 0
         self.writeEmptyLine()
 
-        self.write("def write{}(__os, valList):".format(capName))
+        self.write("def write{}(_os, valList):".format(capName))
         self.indent = 1
         self.write("dataSize = len(valList)")
-        self.write("__os.writeInt(dataSize)")
+        self.write("_os.writeInt(dataSize)")
         self.write("for val in valList:")
         self.indent = 2
         writeExp = self.getPyWriteExpression(listType.type, "val", self.loader.scope)
@@ -252,9 +252,9 @@ class Gmt2Py:
 
     def parseDict(self, dictType):
         self.indent = 0
-        self.write("def read{}(__is, valDict):".format(dictType.name))
+        self.write("def read{}(_is, valDict):".format(dictType.name))
         self.indent = 1
-        self.write("dataSize = __is.readInt()")
+        self.write("dataSize = _is.readInt()")
         self.write("for _ in range(dataSize):")
         self.indent = 2
         keyInitExpr = self.getTypePyInitExpression(dictType.keyType, self.loader.scope)
@@ -272,10 +272,10 @@ class Gmt2Py:
         self.indent = 0
         self.writeEmptyLine()
 
-        self.write("def write{}(__os, valDict):".format(dictType.name))
+        self.write("def write{}(_os, valDict):".format(dictType.name))
         self.indent = 1
         self.write("dataSize = len(valDict)")
-        self.write("__os.writeInt(dataSize)")
+        self.write("_os.writeInt(dataSize)")
         self.write("for item in valDict.items():")
         self.indent = 2
         keyWriteExpr = self.getPyWriteExpression(dictType.keyType, "item[0]", self.loader.scope)
@@ -313,8 +313,8 @@ class Gmt2Py:
             self.fout.write(", {}".format(field.name))
         self.fout.write("):\n")
         self.indent = 2
-        self.write("__os = self.__os")
-        self.write("__os.writeInt(self.msgId)")
+        self.write("_os = self._os")
+        self.write("_os.writeInt(self.msgId)")
         for field in method.outfields:
             writeExpr = self.getPyWriteExpression(field.type, field.name, self.loader.scope)
             self.write(writeExpr)
@@ -335,7 +335,7 @@ class Gmt2Py:
         self.writeEmptyLine()
         self.indent = 1
 
-        self.write("def __onResponse(self, __is):")
+        self.write("def _onResponse(self, _is):")
         self.indent = 2
         for field in method.outfields:
             initExpr = self.getTypePyInitExpression(field.type, self.loader.scope)
@@ -384,7 +384,7 @@ class Gmt2Py:
         self.indent = 1
         for method in interfaceType.methodList:
             self.indent = 1
-            self.write("def __{}(self, __connId, __msgId, __is):".format(method.name))
+            self.write("def _{}(self, _connId, _msgId, _is):".format(method.name))
             self.indent = 2
             for field in method.infields:
                 initExpr = self.getTypePyInitExpression(field.type, self.loader.scope)
@@ -393,12 +393,12 @@ class Gmt2Py:
                 self.write(initExpr)
                 self.write(readExpr)
             clsName = "{}_{}_Request".format(interfaceType.name, method.name.capitalize())
-            self.write("__request = {}(__connId, __msgId, self)".format(clsName))
+            self.write("_request = {}(_connId, _msgId, self)".format(clsName))
             self.fout.write(self.getIndent(self.indent))
             self.fout.write("self.{}(".format(method.name))
             for field in method.infields:
                 self.fout.write("{}, ".format(field.name))
-            self.fout.write("__request)\n")
+            self.fout.write("_request)\n")
             self.indent = 1
             self.writeEmptyLine()
             self.write("@abc.abstractmethod")
@@ -406,7 +406,7 @@ class Gmt2Py:
             self.fout.write("def {}(self".format(method.name))
             for field in method.infields:
                 self.fout.write(", {}".format(field.name))
-            self.fout.write(", __request):\n")
+            self.fout.write(", _request):\n")
             self.indent = 2
             self.write("pass")
             self.writeEmptyLine()
@@ -425,21 +425,21 @@ class Gmt2Py:
         for method in interfaceType.methodList:
             self.indent = 1
             self.fout.write(self.getIndent(self.indent))
-            self.fout.write("def {}(self, __response".format(method.name))
+            self.fout.write("def {}(self, _response".format(method.name))
             for field in method.infields:
                 self.fout.write(", {}".format(field.name))
             self.fout.write("):\n")
             self.indent = 2
-            self.write("__os = Serializer()")
-            self.write("__os.startToWrite()")
-            self.write("__os.writeByte(RmiDataType.RmiCall)")
-            self.write("__msgId = self.getMsgId()")
-            self.write("__os.writeInt(__msgId)")
-            self.write("__response.__setMsgId(__msgId)")
+            self.write("_os = Serializer()")
+            self.write("_os.startToWrite()")
+            self.write("_os.writeByte(RmiDataType.RmiCall)")
+            self.write("_msgId = self.getMsgId()")
+            self.write("_os.writeInt(_msgId)")
+            self.write("_response._setMsgId(_msgId)")
             for field in method.infields:
                 writeExpr = self.getPyWriteExpression(field.type, field.name, self.loader.scope)
                 self.write(writeExpr)
-            self.write("self.invoke(__os, __response)")
+            self.write("self.invoke(_os, _response)")
             self.writeEmptyLine()
         self.writeEmptyLine()
 

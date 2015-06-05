@@ -20,17 +20,17 @@ class SSignup:
         self.password = str()
         self.sex = int()
 
-    def read__(self, __is):
-        self.username = __is.readString()
-        self.nickname = __is.readString()
-        self.password = __is.readString()
-        self.sex = __is.readInt()
+    def _read(self, _is):
+        self.username = _is.readString()
+        self.nickname = _is.readString()
+        self.password = _is.readString()
+        self.sex = _is.readInt()
 
-    def write__(self, __os):
-        __os.writeString(self.username)
-        __os.writeString(self.nickname)
-        __os.writeString(self.password)
-        __os.writeInt(self.sex)
+    def _write(self, _os):
+        _os.writeString(self.username)
+        _os.writeString(self.nickname)
+        _os.writeString(self.password)
+        _os.writeInt(self.sex)
 
 MessageBlock.register(SSignup)
 
@@ -39,13 +39,13 @@ class SLogin:
         self.username = str()
         self.password = str()
 
-    def read__(self, __is):
-        self.username = __is.readString()
-        self.password = __is.readString()
+    def _read(self, _is):
+        self.username = _is.readString()
+        self.password = _is.readString()
 
-    def write__(self, __os):
-        __os.writeString(self.username)
-        __os.writeString(self.password)
+    def _write(self, _os):
+        _os.writeString(self.username)
+        _os.writeString(self.password)
 
 MessageBlock.register(SLogin)
 
@@ -57,19 +57,19 @@ class SLoginReturn:
         self.sessionKey = str()
         self.sex = int()
 
-    def read__(self, __is):
-        self.userId = __is.readInt()
-        self.username = __is.readString()
-        self.nickname = __is.readString()
-        self.sessionKey = __is.readString()
-        self.sex = __is.readInt()
+    def _read(self, _is):
+        self.userId = _is.readInt()
+        self.username = _is.readString()
+        self.nickname = _is.readString()
+        self.sessionKey = _is.readString()
+        self.sex = _is.readInt()
 
-    def write__(self, __os):
-        __os.writeInt(self.userId)
-        __os.writeString(self.username)
-        __os.writeString(self.nickname)
-        __os.writeString(self.sessionKey)
-        __os.writeInt(self.sex)
+    def _write(self, _os):
+        _os.writeInt(self.userId)
+        _os.writeString(self.username)
+        _os.writeString(self.nickname)
+        _os.writeString(self.sessionKey)
+        _os.writeInt(self.sex)
 
 MessageBlock.register(SLoginReturn)
 
@@ -83,23 +83,23 @@ class SMessage:
         self.var6 = str()
         self.var7 = datetime.datetime.now()
 
-    def read__(self, __is):
-        self.var1 = __is.readShort()
-        self.var2 = __is.readInt()
-        self.var3 = __is.readLong()
-        self.var4 = __is.readFloat()
-        self.var5 = __is.readDouble()
-        self.var6 = __is.readString()
-        self.var7 = __is.readDate()
+    def _read(self, _is):
+        self.var1 = _is.readShort()
+        self.var2 = _is.readInt()
+        self.var3 = _is.readLong()
+        self.var4 = _is.readFloat()
+        self.var5 = _is.readDouble()
+        self.var6 = _is.readString()
+        self.var7 = _is.readDate()
 
-    def write__(self, __os):
-        __os.writeShort(self.var1)
-        __os.writeInt(self.var2)
-        __os.writeLong(self.var3)
-        __os.writeFloat(self.var4)
-        __os.writeDouble(self.var5)
-        __os.writeString(self.var6)
-        __os.writeDate(self.var7)
+    def _write(self, _os):
+        _os.writeShort(self.var1)
+        _os.writeInt(self.var2)
+        _os.writeLong(self.var3)
+        _os.writeFloat(self.var4)
+        _os.writeDouble(self.var5)
+        _os.writeString(self.var6)
+        _os.writeDate(self.var7)
 
 MessageBlock.register(SMessage)
 

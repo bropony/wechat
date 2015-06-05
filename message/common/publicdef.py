@@ -1,8 +1,6 @@
 #
 # file: publicdef.py
 #
-# date: 2015-06-04 16:19:16.868545
-#
 # author: ahda86@gmail.com
 #
 # CAUTION: This file is Auto-Generated.
@@ -14,119 +12,119 @@ import datetime
 from gamit.message.message import MessageBlock
 
 
-def readSeqInt(__is, valList):
-    dataSize = __is.readInt()
+def readSeqInt(_is, valList):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         val = int()
-        val = __is.readInt()
+        val = _is.readInt()
         valList.append(val)
 
-def writeSeqInt(__os, valList):
+def writeSeqInt(_os, valList):
     dataSize = len(valList)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for val in valList:
-        __os.writeInt(val)
+        _os.writeInt(val)
 
-def readSeqLong(__is, valList):
-    dataSize = __is.readInt()
+def readSeqLong(_is, valList):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         val = int()
-        val = __is.readLong()
+        val = _is.readLong()
         valList.append(val)
 
-def writeSeqLong(__os, valList):
+def writeSeqLong(_os, valList):
     dataSize = len(valList)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for val in valList:
-        __os.writeLong(val)
+        _os.writeLong(val)
 
-def readSeqString(__is, valList):
-    dataSize = __is.readInt()
+def readSeqString(_is, valList):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         val = str()
-        val = __is.readString()
+        val = _is.readString()
         valList.append(val)
 
-def writeSeqString(__os, valList):
+def writeSeqString(_os, valList):
     dataSize = len(valList)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for val in valList:
-        __os.writeString(val)
+        _os.writeString(val)
 
-def readSeqFloat(__is, valList):
-    dataSize = __is.readInt()
+def readSeqFloat(_is, valList):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         val = float()
-        val = __is.readFloat()
+        val = _is.readFloat()
         valList.append(val)
 
-def writeSeqFloat(__os, valList):
+def writeSeqFloat(_os, valList):
     dataSize = len(valList)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for val in valList:
-        __os.writeFloat(val)
+        _os.writeFloat(val)
 
-def readDictIntInt(__is, valDict):
-    dataSize = __is.readInt()
+def readDictIntInt(_is, valDict):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         key_ = int()
         val_ = int()
-        key_ = __is.readInt()
-        val_ = __is.readInt()
+        key_ = _is.readInt()
+        val_ = _is.readInt()
         valDict[key_] = val_
 
-def writeDictIntInt(__os, valDict):
+def writeDictIntInt(_os, valDict):
     dataSize = len(valDict)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for item in valDict.items():
-        __os.writeInt(item[0])
-        __os.writeInt(item[1])
+        _os.writeInt(item[0])
+        _os.writeInt(item[1])
 
-def readDictIntString(__is, valDict):
-    dataSize = __is.readInt()
+def readDictIntString(_is, valDict):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         key_ = int()
         val_ = str()
-        key_ = __is.readInt()
-        val_ = __is.readString()
+        key_ = _is.readInt()
+        val_ = _is.readString()
         valDict[key_] = val_
 
-def writeDictIntString(__os, valDict):
+def writeDictIntString(_os, valDict):
     dataSize = len(valDict)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for item in valDict.items():
-        __os.writeInt(item[0])
-        __os.writeString(item[1])
+        _os.writeInt(item[0])
+        _os.writeString(item[1])
 
-def readDictStringInt(__is, valDict):
-    dataSize = __is.readInt()
+def readDictStringInt(_is, valDict):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         key_ = str()
         val_ = int()
-        key_ = __is.readString()
-        val_ = __is.readInt()
+        key_ = _is.readString()
+        val_ = _is.readInt()
         valDict[key_] = val_
 
-def writeDictStringInt(__os, valDict):
+def writeDictStringInt(_os, valDict):
     dataSize = len(valDict)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for item in valDict.items():
-        __os.writeString(item[0])
-        __os.writeInt(item[1])
+        _os.writeString(item[0])
+        _os.writeInt(item[1])
 
-def readDictStringString(__is, valDict):
-    dataSize = __is.readInt()
+def readDictStringString(_is, valDict):
+    dataSize = _is.readInt()
     for _ in range(dataSize):
         key_ = str()
         val_ = str()
-        key_ = __is.readString()
-        val_ = __is.readString()
+        key_ = _is.readString()
+        val_ = _is.readString()
         valDict[key_] = val_
 
-def writeDictStringString(__os, valDict):
+def writeDictStringString(_os, valDict):
     dataSize = len(valDict)
-    __os.writeInt(dataSize)
+    _os.writeInt(dataSize)
     for item in valDict.items():
-        __os.writeString(item[0])
-        __os.writeString(item[1])
+        _os.writeString(item[0])
+        _os.writeString(item[1])
 

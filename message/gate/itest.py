@@ -23,9 +23,9 @@ class ITest_Getintlist_Request(RmiRequestBase):
         super().__init__(connId, msgId, servant)
 
     def response(self, intList):
-        __os = self.__os
-        __os.writeInt(self.msgId)
-        message.common.publicdef.writeSeqInt(__os, intList)
+        _os = self._os
+        _os.writeInt(self.msgId)
+        message.common.publicdef.writeSeqInt(_os, intList)
 
         self.sendout()
 
@@ -34,9 +34,9 @@ class ITest_Getdictintstring_Request(RmiRequestBase):
         super().__init__(connId, msgId, servant)
 
     def response(self, intStrMap):
-        __os = self.__os
-        __os.writeInt(self.msgId)
-        message.common.publicdef.writeDictIntString(__os, intStrMap)
+        _os = self._os
+        _os.writeInt(self.msgId)
+        message.common.publicdef.writeDictIntString(_os, intStrMap)
 
         self.sendout()
 
@@ -45,9 +45,9 @@ class ITest_Getfloatlist_Request(RmiRequestBase):
         super().__init__(connId, msgId, servant)
 
     def response(self, floatList):
-        __os = self.__os
-        __os.writeInt(self.msgId)
-        message.common.publicdef.writeSeqFloat(__os, floatList)
+        _os = self._os
+        _os.writeInt(self.msgId)
+        message.common.publicdef.writeSeqFloat(_os, floatList)
 
         self.sendout()
 
@@ -56,9 +56,9 @@ class ITest_Signup_Request(RmiRequestBase):
         super().__init__(connId, msgId, servant)
 
     def response(self, loginReturn):
-        __os = self.__os
-        __os.writeInt(self.msgId)
-        loginReturn.write__(__os)
+        _os = self._os
+        _os.writeInt(self.msgId)
+        loginReturn._write(_os)
 
         self.sendout()
 
@@ -66,9 +66,9 @@ class ITest_Getintlist_Response(RmiResponseBase):
     def __init__(self):
         super().__init__()
 
-    def __onResponse(self, __is):
+    def _onResponse(self, _is):
         intList = []
-        message.common.publicdef.readSeqInt(__is, intList)
+        message.common.publicdef.readSeqInt(_is, intList)
 
         self.onResponse(intList)
 
@@ -81,9 +81,9 @@ class ITest_Getdictintstring_Response(RmiResponseBase):
     def __init__(self):
         super().__init__()
 
-    def __onResponse(self, __is):
+    def _onResponse(self, _is):
         intStrMap = {}
-        message.common.publicdef.readDictIntString(__is, intStrMap)
+        message.common.publicdef.readDictIntString(_is, intStrMap)
 
         self.onResponse(intStrMap)
 
@@ -96,9 +96,9 @@ class ITest_Getfloatlist_Response(RmiResponseBase):
     def __init__(self):
         super().__init__()
 
-    def __onResponse(self, __is):
+    def _onResponse(self, _is):
         floatList = []
-        message.common.publicdef.readSeqFloat(__is, floatList)
+        message.common.publicdef.readSeqFloat(_is, floatList)
 
         self.onResponse(floatList)
 
@@ -111,9 +111,9 @@ class ITest_Signup_Response(RmiResponseBase):
     def __init__(self):
         super().__init__()
 
-    def __onResponse(self, __is):
+    def _onResponse(self, _is):
         loginReturn = message.gate.gatemsg.SLoginReturn()
-        loginReturn.read__(__is)
+        loginReturn._read(_is)
 
         self.onResponse(loginReturn)
 
@@ -126,88 +126,88 @@ class ITestServant(RmiServant):
     def __init__(self, name):
         super().__init__(name)
 
-    def __getIntList(self, __connId, __msgId, __is):
+    def _getIntList(self, _connId, _msgId, _is):
         size = int()
-        size = __is.readInt()
-        __request = ITest_Getintlist_Request(__connId, __msgId, self)
-        self.getIntList(size, __request)
+        size = _is.readInt()
+        _request = ITest_Getintlist_Request(_connId, _msgId, self)
+        self.getIntList(size, _request)
 
     @abc.abstractmethod
-    def getIntList(self, size, __request):
+    def getIntList(self, size, _request):
         pass
 
-    def __getDictIntString(self, __connId, __msgId, __is):
+    def _getDictIntString(self, _connId, _msgId, _is):
         size = int()
-        size = __is.readInt()
-        __request = ITest_Getdictintstring_Request(__connId, __msgId, self)
-        self.getDictIntString(size, __request)
+        size = _is.readInt()
+        _request = ITest_Getdictintstring_Request(_connId, _msgId, self)
+        self.getDictIntString(size, _request)
 
     @abc.abstractmethod
-    def getDictIntString(self, size, __request):
+    def getDictIntString(self, size, _request):
         pass
 
-    def __getFloatList(self, __connId, __msgId, __is):
+    def _getFloatList(self, _connId, _msgId, _is):
         size = int()
-        size = __is.readInt()
-        __request = ITest_Getfloatlist_Request(__connId, __msgId, self)
-        self.getFloatList(size, __request)
+        size = _is.readInt()
+        _request = ITest_Getfloatlist_Request(_connId, _msgId, self)
+        self.getFloatList(size, _request)
 
     @abc.abstractmethod
-    def getFloatList(self, size, __request):
+    def getFloatList(self, size, _request):
         pass
 
-    def __signup(self, __connId, __msgId, __is):
+    def _signup(self, _connId, _msgId, _is):
         signup = message.gate.gatemsg.SSignup()
-        signup.read__(__is)
-        __request = ITest_Signup_Request(__connId, __msgId, self)
-        self.signup(signup, __request)
+        signup._read(_is)
+        _request = ITest_Signup_Request(_connId, _msgId, self)
+        self.signup(signup, _request)
 
     @abc.abstractmethod
-    def signup(self, signup, __request):
+    def signup(self, signup, _request):
         pass
 
 class ITestProxy(RmiProxy):
     def __init__(self, name):
         super().__init__(name)
 
-    def getIntList(self, __response, size):
-        __os = Serializer()
-        __os.startToWrite()
-        __os.writeByte(RmiDataType.RmiCall)
-        __msgId = self.getMsgId()
-        __os.writeInt(__msgId)
-        __response.__setMsgId(__msgId)
-        __os.writeInt(size)
-        self.invoke(__os, __response)
+    def getIntList(self, _response, size):
+        _os = Serializer()
+        _os.startToWrite()
+        _os.writeByte(RmiDataType.RmiCall)
+        _msgId = self.getMsgId()
+        _os.writeInt(_msgId)
+        _response._setMsgId(_msgId)
+        _os.writeInt(size)
+        self.invoke(_os, _response)
 
-    def getDictIntString(self, __response, size):
-        __os = Serializer()
-        __os.startToWrite()
-        __os.writeByte(RmiDataType.RmiCall)
-        __msgId = self.getMsgId()
-        __os.writeInt(__msgId)
-        __response.__setMsgId(__msgId)
-        __os.writeInt(size)
-        self.invoke(__os, __response)
+    def getDictIntString(self, _response, size):
+        _os = Serializer()
+        _os.startToWrite()
+        _os.writeByte(RmiDataType.RmiCall)
+        _msgId = self.getMsgId()
+        _os.writeInt(_msgId)
+        _response._setMsgId(_msgId)
+        _os.writeInt(size)
+        self.invoke(_os, _response)
 
-    def getFloatList(self, __response, size):
-        __os = Serializer()
-        __os.startToWrite()
-        __os.writeByte(RmiDataType.RmiCall)
-        __msgId = self.getMsgId()
-        __os.writeInt(__msgId)
-        __response.__setMsgId(__msgId)
-        __os.writeInt(size)
-        self.invoke(__os, __response)
+    def getFloatList(self, _response, size):
+        _os = Serializer()
+        _os.startToWrite()
+        _os.writeByte(RmiDataType.RmiCall)
+        _msgId = self.getMsgId()
+        _os.writeInt(_msgId)
+        _response._setMsgId(_msgId)
+        _os.writeInt(size)
+        self.invoke(_os, _response)
 
-    def signup(self, __response, signup):
-        __os = Serializer()
-        __os.startToWrite()
-        __os.writeByte(RmiDataType.RmiCall)
-        __msgId = self.getMsgId()
-        __os.writeInt(__msgId)
-        __response.__setMsgId(__msgId)
-        signup.write__(__os)
-        self.invoke(__os, __response)
+    def signup(self, _response, signup):
+        _os = Serializer()
+        _os.startToWrite()
+        _os.writeByte(RmiDataType.RmiCall)
+        _msgId = self.getMsgId()
+        _os.writeInt(_msgId)
+        _response._setMsgId(_msgId)
+        signup._write(_os)
+        self.invoke(_os, _response)
 
 

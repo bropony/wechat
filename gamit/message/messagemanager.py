@@ -41,9 +41,9 @@ class MessageManager:
         except Exception as ex:
             Logger.logInfo(ex.__traceback__)
 
-    def onMessage(self, __is):
+    def onMessage(self, _is):
         try:
-            msg = MessageBlock(__is)
+            msg = MessageBlock(_is)
             command = msg.command
             processed = False
             for id in msg.toIdList:

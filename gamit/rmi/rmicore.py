@@ -23,36 +23,36 @@ class RmiServant:
                 continue
             if func.endswith("_"):
                 continue
-            if not func.endswith("__"):
+            if not func.startswith("_"):
                 continue
-            if not func[2:] in self.__class__.__dict__:
+            if not func[1:] in self.__class__.__dict__:
                 continue
             self.methodMap[func] = obj
 
     def setRmiServer(self, rmiServer):
         self.rmiServer = rmiServer
 
-    def invoke(self, connId, name, __is):
+    def invoke(self, connId, name, _is):
         if not name in self.methodMap:
             raise SerializeError("{} is not member mthod of {}".format(name, self.name))
 
         msgId = 0
         try:
-            msgId = __is.readInt()
-            self.methodMap[name](connId, msgId, __is)
+            msgId = _is.readInt()
+            self.methodMap[name](connId, msgId, _is)
         except Exception as ex:
             what = ex.args[0] if len(ex.args) > 0 else "UnkownError"
             code = ex.args[1] if len(ex.args) > 1 else 0
             #msgId = ex.args[2] if len(ex.args) > 2 else 0
 
-            __os = Serializer()
-            __os.startToWrite()
-            __os.writeByte(RmiDataType.RmiException)
-            __os.writeInt(msgId)
-            __os.writeString(what)
-            __os.writeInt(code)
+            _os = Serializer()
+            _os.startToWrite()
+            _os.writeByte(RmiDataType.RmiException)
+            _os.writeInt(msgId)
+            _os.writeString(what)
+            _os.writeInt(code)
 
-            self.rmiServer.send(connId, __os.getBuffer())
+            self.rmiServer.send(connId, _os.getBuffer())
 
 
 class RmiRequestBase(metaclass=abc.ABCMeta):
@@ -60,14 +60,14 @@ class RmiRequestBase(metaclass=abc.ABCMeta):
         self.connId = connId
         self.msgId = msgId
         self.servant = servant
-        self.__os = Serializer()
-        self.__os.startToWrite()
-        self.__os.writeByte(RmiDataType.RmiResponse)
+        self._os = Serializer()
+        self._os.startToWrite()
+        self._os.writeByte(RmiDataType.RmiResponse)
 
     def sendout(self):
-        self.servant.rmiServer.send(self.connId, self.__os.getBuffer())
+        self.servant.rmiServer.send(self.connId, self._os.getBuffer())
 
-    @abc.abstractmethod
+    #@abc.abstractmethod
     def response(self):
         pass
 
@@ -87,17 +87,17 @@ class RmiProxy:
     def setRmiClient(self, rmiClient):
         self.rmiClient = rmiClient
 
-    def invoke(self, __os, callback):
-        self.rmiClient.onCall(__os, callback)
+    def invoke(self, _os, callback):
+        self.rmiClient.onCall(_os, callback)
 
 class RmiResponseBase(metaclass=abc.ABCMeta):
     def __init__(self):
         self.msgId = 0
 
-    def __setMsgId(self, msgId):
+    def _setMsgId(self, msgId):
         self.msgId = msgId
 
-    @abc.abstractmethod
-    def __onResponse(self, __is):
+    #@abc.abstractmethod
+    def _onResponse(self, _is):
         pass
 
