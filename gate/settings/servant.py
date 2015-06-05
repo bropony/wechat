@@ -8,10 +8,12 @@
 * @desc servant.py
 """
 
+from gamit.log.logger import Logger
 from gamit.singleton.singleton import Singleton
 from logic.itestimpl import ItestImpl
 
 class ServantSetting(Singleton):
     @staticmethod
     def initServant(server):
+        Logger.logInfo("adding servant ITest")
         server.addServant(ItestImpl("ITest"))
