@@ -19,6 +19,7 @@ import gamit.app.apptype as AppType
 from gamit.log.logger import Logger
 
 from settings.proxy import ProxySetting
+from settings.message import MessageSetting
 from test.runtest import runTest
 from core.enginehelper import EngineHelper
 
@@ -47,6 +48,7 @@ class Application:
 
     def initMessageManager(self):
         self.messageManager = MessageManager(None)
+        MessageSetting.initMessangeHandler(self.messageManager)
         EngineHelper.setMessageManager(self.messageManager)
         return True
 
