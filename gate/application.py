@@ -91,6 +91,7 @@ class Application:
         acceptor = Acceptor(channel.ip, channel.port)
         rmiServer = RmiServer(acceptor, ServerConfigManager.isDebug)
         self.server = rmiServer
+        self.messageManager = rmiServer.messageManager
 
         ServantSetting.initServant(self.server)
         return True
