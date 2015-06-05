@@ -17,3 +17,10 @@ class ITest_Getintlist_Response_Impl(ITest_Getintlist_Response):
 
     def onError(self, what, code):
         print("onError:", what, code)
+
+class ITest_Signup_Response_Impl(ITest_Signup_Response):
+    def onResponse(self, loginReturn):
+        print("ITest_Signup_Response_Impl.onResponse", loginReturn)
+
+    def onError(what, code):
+        print("onError:", what, code)

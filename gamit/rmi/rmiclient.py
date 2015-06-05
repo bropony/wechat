@@ -62,7 +62,7 @@ class RmiClient:
             rmiType = _is.readByte()
             if rmiType == RmiDataType.RmiResponse:
                 self.onResponse(_is)
-            if rmiType == RmiDataType.RmiException:
+            elif rmiType == RmiDataType.RmiException:
                 self.onError(_is)
             elif rmiType == RmiDataType.MessageBlock:
                 self.messageManager.onMessage(_is)

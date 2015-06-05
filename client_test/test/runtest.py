@@ -15,7 +15,7 @@ from core.enginehelper import EngineHelper
 from message.gate import gatemsg
 from message.gate.command import ETestCommand
 
-from test.ItestTest import ITest_Getintlist_Response_Impl
+from test.ItestTest import ITest_Getintlist_Response_Impl, ITest_Signup_Response_Impl
 
 def runTest():
     #Logger.logInfo("Sending out first message")
@@ -27,3 +27,6 @@ def runTest():
     if proxy:
         reponse = ITest_Getintlist_Response_Impl()
         proxy.getIntList(reponse, 10)
+
+        xxx = ITest_Signup_Response_Impl()
+        proxy.signup(xxx, gatemsg.SSignup())
