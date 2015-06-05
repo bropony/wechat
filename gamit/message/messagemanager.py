@@ -53,6 +53,8 @@ class MessageManager:
             if not processed:
                 if command in self.handlerMap:
                     self.handlerMap[command].onMessage(msg.command, msg.toIdList, msg.data)
+                else:
+                    Logger.logDebug("MessageManager.onMessage", "Command not found", command)
 
         except Exception as ex:
             Logger.logInfo(ex.__traceback__)
