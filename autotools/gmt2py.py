@@ -147,7 +147,7 @@ class Gmt2Py:
         if isinstance(dataType, BasicType):
             res = "{} = __is.read{}()".format(name, dataType.name.capitalize())
         elif isinstance(dataType, Struct):
-            res = "{}.__read(__is)".format(name)
+            res = "{}.read__(__is)".format(name)
         elif isinstance(dataType, List) or isinstance(dataType, Dict):
             if dataType.scope == currentScope:
                 res = "read{}(__is, {})".format(dataType.name, name)
@@ -163,7 +163,7 @@ class Gmt2Py:
         if isinstance(dataTye, BasicType):
             res = "__os.write{}({})".format(dataTye.name.capitalize(), name)
         elif isinstance(dataTye, Struct):
-            res = "{}.__write(__os)".format(name)
+            res = "{}.write__(__os)".format(name)
         elif isinstance(dataTye, List) or isinstance(dataTye, Dict):
             if dataTye.scope == currentScope:
                 res = "write{}(__os, {})".format(dataTye.name, name)
@@ -188,7 +188,7 @@ class Gmt2Py:
         self.writeEmptyLine()
 
         self.indent = 1
-        self.write("def __read(self, __is):")
+        self.write("def read__(self, __is):")
         self.indent = 2
         for field in structType.fields:
             fieldName = "self." + field.name
@@ -197,7 +197,7 @@ class Gmt2Py:
         self.writeEmptyLine()
 
         self.indent = 1
-        self.write("def __write(self, __os):")
+        self.write("def write__(self, __os):")
         self.indent = 2
         for field in structType.fields:
             fieldName = "self." + field.name

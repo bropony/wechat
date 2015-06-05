@@ -41,7 +41,7 @@ class MessageBlock:
         if name not in self.__msgMap:
             raise MessageNotRegisteredError()
         self.data = self.__msgMap[name]()  # 4 data
-        self.data.__read(self.__is)
+        self.data.read__(self.__is)
 
     def __write(self):
         self.__os.startToWrite()
@@ -52,7 +52,7 @@ class MessageBlock:
         for id in self.toIdList:
             self.__os.writeInt(id)
         self.__os.writeString(self.data.__class__.__name__) # 3 message name
-        self.data.__write(self.__os)      # 4 data
+        self.data.write__(self.__os)      # 4 data
 
     def getOsBuffer(self):
         return self.__os._buffer
