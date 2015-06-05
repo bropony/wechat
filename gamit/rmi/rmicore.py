@@ -15,11 +15,11 @@ class RmiMethod:
 
 class RmiServant:
     def __init__(self, name):
-        Logger.logDebug(name, ".__init__")
-
         self.name = name
         self.methodMap = {}
         self.rmiServer = None
+
+        print("oops", self.__class__.__dict__)
         for func in self.__class__.__dict__:
             obj = self.__class__.__dict__[func]
             if not inspect.ismethod(obj):
