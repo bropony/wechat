@@ -22,6 +22,9 @@ class RmiServant:
             obj = self.__class__.__dict__[func]
             if not inspect.ismethod(obj):
                 continue
+            else:
+                Logger.logDebug("RmiServant: ", func)
+                
             if func.endswith("_"):
                 continue
             if not func.startswith("_"):
