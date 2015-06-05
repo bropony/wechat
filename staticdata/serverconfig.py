@@ -21,10 +21,7 @@ class Channel:
 
 class __ServerConfig:
     def __init__(self):
-        self.publicIp = ""
-        self.privateIp = ""
-        self.db1Ip = ""
-        self.db2Ip = ""
+        self.ipMap = {}
         self.portVar = ""
         self.dbVer = ""
         self.isDebug = False
@@ -41,14 +38,8 @@ class __ServerConfig:
         for child in root:
             tag = child.tag
             text = child.text or ""
-            if tag == "public_ip":
-                self.publicIp = text
-            elif tag == "private_ip":
-                self.privateIp = text
-            elif tag == "db_ip1":
-                self.db1Ip = text
-            elif tag == "db_ip2":
-                self.db2Ip = text
+            if tag.endswith("_ip"):
+                self.ipMap[tag] = text
             elif tag == "port_var":
                 self.portVar = text
             elif tag == "db_ver":
@@ -64,6 +55,9 @@ class __ServerConfig:
             channelType = int(attrib["type"])
             channelId = int(attrib["id"])
             channelIp = attrib["ip"]
+            if channelIp in self.ipMap:
+                channelIp = self.ipMap[channelIp]
+                
             chnanelPort = attrib["port"]
             chnanelPort = int(chnanelPort.replace("var", self.portVar))
 

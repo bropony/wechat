@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/application.py" afterPath="$PROJECT_DIR$/../client_test/application.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/client_test.py" afterPath="$PROJECT_DIR$/../client_test/client_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/test/runtest.py" afterPath="$PROJECT_DIR$/../client_test/test/runtest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/serverconfig.py" afterPath="$PROJECT_DIR$/../staticdata/serverconfig.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websocket/ws_acceptor.py" afterPath="$PROJECT_DIR$/websocket/ws_acceptor.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websocket/ws_connector.py" afterPath="$PROJECT_DIR$/websocket/ws_connector.py" />
     </list>
@@ -63,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ws_connector.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ws_connector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43707713">
+            <state vertical-scroll-proportion="0.0">
               <caret line="66" column="56" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="56" />
               <folding>
                 <element signature="e#113#176#0" expanded="true" />
@@ -80,6 +81,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serverconfig.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../staticdata/serverconfig.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.691475">
+              <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -129,18 +140,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rmiclient.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rmi/rmiclient.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="25" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="25" />
-              <folding>
-                <element signature="e#108#143#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -173,7 +172,6 @@
         <option value="$PROJECT_DIR$/../gate/settings/servant.py" />
         <option value="$PROJECT_DIR$/rmi/rmicore.py" />
         <option value="$PROJECT_DIR$/rmi/rmiserver.py" />
-        <option value="$PROJECT_DIR$/../staticdata/serverconfig.py" />
         <option value="$PROJECT_DIR$/timer/schedule.py" />
         <option value="$PROJECT_DIR$/asio/asio_acceptor.py" />
         <option value="$PROJECT_DIR$/asio/asio_connector.py" />
@@ -190,6 +188,7 @@
         <option value="$PROJECT_DIR$/../client_test/application.py" />
         <option value="$PROJECT_DIR$/websocket/ws_acceptor.py" />
         <option value="$PROJECT_DIR$/websocket/ws_connector.py" />
+        <option value="$PROJECT_DIR$/../staticdata/serverconfig.py" />
       </list>
     </option>
   </component>
@@ -233,6 +232,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="gamit" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="staticdata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -754,14 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../staticdata/serverconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="71" selection-start-line="67" selection-start-column="71" selection-end-line="67" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/timer/timerbase.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -913,6 +914,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../client_test/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="75" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="75" />
+          <folding>
+            <element signature="e#111#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="56" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="56" />
+          <folding>
+            <element signature="e#113#176#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../config/server_config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -929,16 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client_test/application.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="75" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="75" />
-          <folding>
-            <element signature="e#111#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/websocket/ws_acceptor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -949,13 +960,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
+    <entry file="file://$PROJECT_DIR$/../staticdata/serverconfig.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43707713">
-          <caret line="66" column="56" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="56" />
-          <folding>
-            <element signature="e#113#176#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.691475">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
