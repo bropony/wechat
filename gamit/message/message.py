@@ -10,7 +10,7 @@ class MessageNotRegisteredError(Exception):
     pass
 
 class MessageBlock:
-    __msgMap = {}
+    _msgMap = {}
 
     @classmethod
     def register(cls, messageType):
