@@ -9,7 +9,7 @@
 """
 
 from gamit.message.commandhandler import CommandHandlerBase
-from core.messagehelper import MessageHelper
+from gamit.message.messagemanager import MessageManager
 
 class TestMessageHandler(CommandHandlerBase):
     def onMessage(self, command, toIdList, data):
@@ -17,6 +17,6 @@ class TestMessageHandler(CommandHandlerBase):
         for key, val in data.__dict__.items():
             print("{}: {}".format(key, val))
 
-        MessageHelper.messageManager.broadcast(command, data)
+        # MessageManager.broadcast(command, data)
 
 #

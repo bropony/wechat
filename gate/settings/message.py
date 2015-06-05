@@ -10,10 +10,11 @@
 
 from message.gate.command import ETestCommand
 from messagehandler.testmessagehandler import TestMessageHandler
+from gamit.message.messagemanager import MessageManager
 
 from gamit.singleton.singleton import Singleton
 
 class MessageSetting(Singleton):
     @staticmethod
-    def initMessangeHandler(messageManager):
-        messageManager.addCommandHandler(ETestCommand.FirstMessage, TestMessageHandler())
+    def initMessangeHandler():
+        MessageManager.addCommandHandler(ETestCommand.FirstMessage, TestMessageHandler())

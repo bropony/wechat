@@ -13,18 +13,23 @@ from gamit.message.messagemanager import MessageManager
 from gamit.message.message import MessageBlock
 from gamit.serialize.serializer import Serializer, SerializeError
 from gamit.serialize.datatype import RmiDataType
+from gamit.rmi.proxymanager import ProxyManager
+from gamit.rmi.sessionmanager import SessionManager
 from twisted.internet import reactor
 
 class RmiClient:
-    def __init__(self, connector, msgMgr, isDebug):
+    def __init__(self, channelType, connector, isDebug):
+        self.channelType = channelType
         self.isDebug = isDebug
         self.connector = connector
         self.connector.setRmiClient(self)
-        self.messageManager = msgMgr
+        self.messageManager = MessageManager
         self.callbackMap = {}
         self.proxyMap = {}
         self.onOpenCallback = None
         self.openCallArgv = []
+
+        SessionManager.addSession(channelType, self)
 
     def start(self):
         self.connector.start(self.isDebug)
@@ -40,6 +45,7 @@ class RmiClient:
     def addProxy(self, proxy):
         self.proxyMap[proxy.name] = proxy
         proxy.setRmiClient(self)
+        ProxyManager.addProxy(self.channelType, proxy)
 
     def getProxy(self, name):
         if name in self.proxyMap:

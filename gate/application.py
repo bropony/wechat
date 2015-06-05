@@ -39,7 +39,6 @@ else:
 from settings.proxy import *
 from settings.servant import *
 from settings.message import *
-from core.messagehelper import MessageHelper
 
 class Application:
     def __init__(self):
@@ -100,8 +99,7 @@ class Application:
         if not self.messageManager:
             self.messageManager = MessageManager(self.server)
 
-        MessageHelper.setMessageManager(self.messageManager)
-        MessageSetting.initMessangeHandler(self.messageManager)
+        MessageSetting.initMessangeHandler()
         return True
 
     # serve as a proxy (client side logic)
@@ -114,7 +112,7 @@ class Application:
             return False
 
         connector = Connector(channel.ip, channel.port)
-        rmiClient = RmiClient(connector, self.messageManager, ServerConfigManager.isDebug)
+        rmiClient = RmiClient(channel.type, connector, ServerConfigManager.isDebug)
 
         self.clientMap[AppType.DBCACHE] = rmiClient
         ProxySetting.initDbCacheProxy(rmiClient)
