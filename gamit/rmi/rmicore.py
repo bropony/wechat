@@ -92,10 +92,10 @@ class RmiProxy:
 
 class RmiResponseBase(metaclass=abc.ABCMeta):
     def __init__(self):
-        self.msgId = 0
+        self._msgId = 0
 
     def _setMsgId(self, msgId):
-        self.msgId = msgId
+        self._msgId = msgId
 
     #@abc.abstractmethod
     def _onResponse(self, _is):
