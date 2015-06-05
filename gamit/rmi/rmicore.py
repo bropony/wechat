@@ -25,7 +25,9 @@ class RmiServant:
                 continue
             if not func.startswith("_"):
                 continue
-            if not func[1:] in self.__class__.__dict__:
+
+            func = func[1:]
+            if func not in self.__class__.__dict__:
                 continue
             self.methodMap[func] = obj
 
