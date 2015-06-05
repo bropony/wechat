@@ -20,6 +20,7 @@ from gamit.log.logger import Logger
 
 from settings.proxy import ProxySetting
 from test.runtest import runTest
+from core.enginehelper import EngineHelper
 
 class Application:
     def __init__(self):
@@ -46,6 +47,7 @@ class Application:
 
     def initMessageManager(self):
         self.messageManager = MessageManager(None)
+        EngineHelper.setMessageManager(self.messageManager)
         return True
 
     def initClient(self):
@@ -59,6 +61,7 @@ class Application:
         self.client = RmiClient(connector, self.messageManager, ServerConfigManager.isDebug)
 
         self.client.setOnOpenCallback(runTest)
+        EngineHelper.setClient(self.client)
 
         ProxySetting.initGateProxy(self.client)
         return True

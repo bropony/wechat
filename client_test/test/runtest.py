@@ -8,5 +8,13 @@
 * @desc runtest.py
 """
 
+from gamit.log.logger import Logger
+
+from core.enginehelper import EngineHelper
+from message.gate import gatemsg
+from message.gate import command
+
 def runTest():
-    print("Hello Server")
+    Logger.logInfo("Sending out first message")
+    data = gatemsg.SMessage()
+    EngineHelper.client.sendMessage(command.FirstMessage, [], data)

@@ -39,6 +39,7 @@ else:
 from settings.proxy import *
 from settings.servant import *
 from settings.message import *
+from core.messagehelper import MessageHelper
 
 class Application:
     def __init__(self):
@@ -98,6 +99,7 @@ class Application:
         if not self.messageManager:
             self.messageManager = MessageManager(self.server)
 
+        MessageHelper.setMessageManager(self.messageManager)
         MessageSetting.initMessangeHandler(self.messageManager)
         return True
 
