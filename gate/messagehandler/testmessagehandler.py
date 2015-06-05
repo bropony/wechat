@@ -14,7 +14,7 @@ from core.messagehelper import MessageHelper
 class TestMessageHandler(CommandHandlerBase):
     def onMessage(self, command, toIdList, data):
         print("message received: ", command)
-        for key, val in data.__dict__:
+        for key, val in data.__dict__.items():
             print("{}: {}".format(key, val))
 
         MessageHelper.messageManager.broadcast(command, data)
