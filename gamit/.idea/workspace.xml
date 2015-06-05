@@ -98,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/../client_test/test/runtest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.48849797">
-              <caret line="19" column="73" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+              <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
               <folding>
                 <element signature="e#103#138#0" expanded="true" />
               </folding>
@@ -142,7 +142,7 @@
         <entry file="file://$PROJECT_DIR$/../message/gate/command.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="18" />
+              <caret line="17" column="16" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -992,14 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="136" column="44" selection-start-line="136" selection-start-column="44" selection-end-line="136" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../message/gate/gatemsg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1021,7 +1013,15 @@
     <entry file="file://$PROJECT_DIR$/../message/gate/command.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="18" />
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="136" column="44" selection-start-line="136" selection-start-column="44" selection-end-line="136" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1029,7 +1029,7 @@
     <entry file="file://$PROJECT_DIR$/../client_test/test/runtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48849797">
-          <caret line="19" column="73" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+          <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
           <folding>
             <element signature="e#103#138#0" expanded="true" />
           </folding>
