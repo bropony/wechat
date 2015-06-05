@@ -78,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.7456022">
-              <caret line="108" column="43" selection-start-line="108" selection-start-column="43" selection-end-line="108" selection-end-column="43" />
+              <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -1045,7 +1045,7 @@
     <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7456022">
-          <caret line="108" column="43" selection-start-line="108" selection-start-column="43" selection-end-line="108" selection-end-column="43" />
+          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
           <folding />
         </state>
       </provider>
