@@ -76,6 +76,10 @@ class ITest_Getintlist_Response(RmiResponseBase):
     def onResponse(self, intList):
         pass
 
+    @abc.abstractmethod
+    def onError(what, code):
+        pass
+
 
 class ITest_Getdictintstring_Response(RmiResponseBase):
     def __init__(self):
@@ -89,6 +93,10 @@ class ITest_Getdictintstring_Response(RmiResponseBase):
 
     @abc.abstractmethod
     def onResponse(self, intStrMap):
+        pass
+
+    @abc.abstractmethod
+    def onError(what, code):
         pass
 
 
@@ -106,6 +114,10 @@ class ITest_Getfloatlist_Response(RmiResponseBase):
     def onResponse(self, floatList):
         pass
 
+    @abc.abstractmethod
+    def onError(what, code):
+        pass
+
 
 class ITest_Signup_Response(RmiResponseBase):
     def __init__(self):
@@ -119,6 +131,10 @@ class ITest_Signup_Response(RmiResponseBase):
 
     @abc.abstractmethod
     def onResponse(self, loginReturn):
+        pass
+
+    @abc.abstractmethod
+    def onError(what, code):
         pass
 
 

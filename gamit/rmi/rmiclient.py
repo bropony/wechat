@@ -62,6 +62,8 @@ class RmiClient:
             rmiType = _is.readByte()
             if rmiType == RmiDataType.RmiResponse:
                 self.onResponse(_is)
+            if rmiType == RmiDataType.RmiException:
+                self.onError(_is)
             elif rmiType == RmiDataType.MessageBlock:
                 self.messageManager.onMessage(_is)
             else:
@@ -77,6 +79,13 @@ class RmiClient:
         msgId = _is.readInt()
         if msgId in self.callbackMap:
             self.callbackMap[msgId]._onResponse(_is)
+
+    def onError(self, _is):
+        msgId = _is.readInt()
+        what = _is.readString()
+        code = _is.readInt()
+        if msgId in self.callbackMap:
+            self.callbackMap[msgId].onError(what, code)
 
     def onCall(self, _os, callback):
         self.connector.send(_os.getBuffer(), True)
