@@ -15,12 +15,7 @@ import logging
 
 class _WSClientProtocol(WebSocketClientProtocol):
     def getProxy(self):
-        if not self.factory:
-            Logger.logInfo("_WSClientProtocol: No Factory Found")
-        else:
-            Logger.logInfo("_WSClientProtocol.factory: ", self.factory.__class__.__name__)
-            
-        return self.factory.__connector
+        return self.factory.connector__
 
     def onConnect(self, response):
         Logger.logInfo("Connect to ", response.peer)
@@ -71,7 +66,7 @@ class WsConnector:
 
         Logger.logInfo("Connecting to {}".format(wsUrl))
         factory = MyClientFactory(wsUrl, debug=isDebug)
-        factory.__connector = self
+        factory.connector__ = self
         reactor.connectTCP(self.ip, self.port, factory)
 
         self.factory = factory
