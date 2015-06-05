@@ -20,7 +20,7 @@ class RmiServant:
         self.rmiServer = None
         for func in self.__class__.__dict__:
             obj = self.__class__.__dict__[func]
-            if not inspect.isfunction(obj):
+            if not inspect.ismethod(obj):
                 continue
             if func.endswith("_"):
                 continue
