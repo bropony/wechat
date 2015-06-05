@@ -93,10 +93,10 @@ class WsAcceptor:
 
     def onMessage(self, connId, payload, isBinary):
         if connId not in self.connMap:
+            Logger.logInfo("connId not found")
             return
 
         self.rmiServer.onMessage(connId, payload, isBinary)
-
 
     def onClose(self, connId, code, reason):
         if connId not in self.connMap:
