@@ -10,8 +10,9 @@
 
 from gamit.log.logger import Logger
 from gamit.serialize.serializer import Serializer
+from gamit.rmi.proxymanager import ProxyManager
+from gamit.app import apptype as AppType
 
-from core.enginehelper import EngineHelper
 from message.gate import gatemsg
 from message.gate.command import ETestCommand
 
@@ -23,7 +24,7 @@ def runTest():
     #EngineHelper.client.sendMessage(ETestCommand.FirstMessage, [], data)
 
     Logger.logInfo("calling getIntList")
-    proxy = EngineHelper.client.getProxy("ITest")
+    proxy = ProxyManager.getProxy(AppType.GATE, "ITest")
     if proxy:
         reponse = ITest_Getintlist_Response_Impl()
         proxy.getIntList(reponse, 10)
