@@ -55,5 +55,5 @@ class MessageBlock:
         self.data.write__(self.__os)      # 4 data
 
     def getOsBuffer(self):
-        return self.__os._buffer
+        return self.__os.getBuffer()
 

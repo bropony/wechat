@@ -35,7 +35,7 @@ class Serializer:
         self._offset = 0
 
     def getBuffer(self):
-        return self._buffer
+        return bytes(self._buffer)
 
     #start to read
     def startToRead(self):
