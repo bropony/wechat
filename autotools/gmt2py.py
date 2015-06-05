@@ -386,6 +386,8 @@ class Gmt2Py:
         self.write("def __init__(self, name):")
         self.indent = 2
         self.write("super().__init__(name)")
+        for method in interfaceType.methodList:
+            self.write("self.methodMap['{0}'] = self._{0}".format(method.name))
         self.writeEmptyLine()
 
         self.indent = 1

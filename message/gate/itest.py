@@ -141,6 +141,10 @@ class ITest_Signup_Response(RmiResponseBase):
 class ITestServant(RmiServant):
     def __init__(self, name):
         super().__init__(name)
+        self.methodMap['getIntList'] = self._getIntList
+        self.methodMap['getDictIntString'] = self._getDictIntString
+        self.methodMap['getFloatList'] = self._getFloatList
+        self.methodMap['signup'] = self._signup
 
     def _getIntList(self, _connId, _msgId, _is):
         size = int()

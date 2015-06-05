@@ -19,25 +19,6 @@ class RmiServant:
         self.methodMap = {}
         self.rmiServer = None
 
-        print("oops", self.__class__.__dict__)
-        for func in self.__class__.__dict__:
-            obj = self.__class__.__dict__[func]
-            if not inspect.ismethod(obj):
-                continue
-            else:
-                Logger.logDebug("RmiServant: ", func)
-
-            if func.endswith("_"):
-                continue
-            if not func.startswith("_"):
-                continue
-
-            func = func[1:]
-            if func not in self.__class__.__dict__:
-                continue
-            Logger.logDebug("Adding {}.{}".format(name, func))
-            self.methodMap[func] = obj
-
     def setRmiServer(self, rmiServer):
         self.rmiServer = rmiServer
 
