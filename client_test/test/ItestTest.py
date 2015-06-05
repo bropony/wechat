@@ -7,3 +7,10 @@
 *
 * @desc ItestTest.py
 """
+
+from message.gate.itest import *
+from core.enginehelper import EngineHelper
+
+class ITest_Getintlist_Response_Impl(ITest_Getintlist_Response):
+    def onResponse(self, intList):
+        print(intList)

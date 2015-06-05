@@ -15,7 +15,14 @@ from core.enginehelper import EngineHelper
 from message.gate import gatemsg
 from message.gate.command import ETestCommand
 
+from test.ItestTest import ITest_Getintlist_Response_Impl
+
 def runTest():
     Logger.logInfo("Sending out first message")
     data = gatemsg.SMessage()
     EngineHelper.client.sendMessage(ETestCommand.FirstMessage, [], data)
+
+    proxy = EngineHelper.client.getProxy("ITest")
+    if proxy:
+        reponse = ITest_Getintlist_Response_Impl()
+        proxy.getIntList(reponse, 10)
