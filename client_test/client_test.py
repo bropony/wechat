@@ -12,6 +12,11 @@ import sys
 import os
 import os.path
 
+# add parent dir to searching paths
+main_dir, _ = os.path.split(__file__)
+parent_dir, _ = os.path.split(main_dir)
+sys.path.append(parent_dir)
+
 # imports
 import staticdata.dataloader
 from staticdata.serverconfig import ServerConfigManager
@@ -19,10 +24,6 @@ from gamit.log.logger import Logger
 
 from application import Application
 
-# add parent dir to searching paths
-main_dir, _ = os.path.split(__file__)
-parent_dir, _ = os.path.split(main_dir)
-sys.path.append(parent_dir)
 
 def main():
     ServerConfigManager.loadConfig()
