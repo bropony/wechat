@@ -58,7 +58,7 @@ class ITest_Signup_Request(RmiRequestBase):
     def response(self, loginReturn):
         __os = self.__os
         __os.writeInt(self.msgId)
-        loginReturn.__write(__os)
+        loginReturn.write__(__os)
 
         self.sendout()
 
@@ -113,7 +113,7 @@ class ITest_Signup_Response(RmiResponseBase):
 
     def __onResponse(self, __is):
         loginReturn = message.gate.gatemsg.SLoginReturn()
-        loginReturn.__read(__is)
+        loginReturn.read__(__is)
 
         self.onResponse(loginReturn)
 
@@ -158,7 +158,7 @@ class ITestServant(RmiServant):
 
     def __signup(self, __connId, __msgId, __is):
         signup = message.gate.gatemsg.SSignup()
-        signup.__read(__is)
+        signup.read__(__is)
         __request = ITest_Signup_Request(__connId, __msgId, self)
         self.signup(signup, __request)
 
@@ -207,7 +207,7 @@ class ITestProxy(RmiProxy):
         __msgId = self.getMsgId()
         __os.writeInt(__msgId)
         __response.__setMsgId(__msgId)
-        signup.__write(__os)
+        signup.write__(__os)
         self.invoke(__os, __response)
 
 

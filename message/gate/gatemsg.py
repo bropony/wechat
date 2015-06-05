@@ -20,13 +20,13 @@ class SSignup:
         self.password = str()
         self.sex = int()
 
-    def __read(self, __is):
+    def read__(self, __is):
         self.username = __is.readString()
         self.nickname = __is.readString()
         self.password = __is.readString()
         self.sex = __is.readInt()
 
-    def __write(self, __os):
+    def write__(self, __os):
         __os.writeString(self.username)
         __os.writeString(self.nickname)
         __os.writeString(self.password)
@@ -39,11 +39,11 @@ class SLogin:
         self.username = str()
         self.password = str()
 
-    def __read(self, __is):
+    def read__(self, __is):
         self.username = __is.readString()
         self.password = __is.readString()
 
-    def __write(self, __os):
+    def write__(self, __os):
         __os.writeString(self.username)
         __os.writeString(self.password)
 
@@ -57,14 +57,14 @@ class SLoginReturn:
         self.sessionKey = str()
         self.sex = int()
 
-    def __read(self, __is):
+    def read__(self, __is):
         self.userId = __is.readInt()
         self.username = __is.readString()
         self.nickname = __is.readString()
         self.sessionKey = __is.readString()
         self.sex = __is.readInt()
 
-    def __write(self, __os):
+    def write__(self, __os):
         __os.writeInt(self.userId)
         __os.writeString(self.username)
         __os.writeString(self.nickname)
@@ -83,7 +83,7 @@ class SMessage:
         self.var6 = str()
         self.var7 = datetime.datetime.now()
 
-    def __read(self, __is):
+    def read__(self, __is):
         self.var1 = __is.readShort()
         self.var2 = __is.readInt()
         self.var3 = __is.readLong()
@@ -92,7 +92,7 @@ class SMessage:
         self.var6 = __is.readString()
         self.var7 = __is.readDate()
 
-    def __write(self, __os):
+    def write__(self, __os):
         __os.writeShort(self.var1)
         __os.writeInt(self.var2)
         __os.writeLong(self.var3)
