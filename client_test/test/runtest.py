@@ -9,4 +9,4 @@
 """
 
 def runTest():
-    pass
+    print("Hello Server")
