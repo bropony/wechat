@@ -115,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItestTest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ItestTest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../client_test/test/ItestTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.3856563">
+              <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
               <folding>
                 <element signature="e#107#139#0" expanded="true" />
               </folding>
@@ -139,10 +139,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="itest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="itest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../message/gate/itest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20568335">
+            <state vertical-scroll-proportion="0.0">
               <caret line="143" column="24" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
               <folding />
             </state>
@@ -209,12 +209,12 @@
         <option value="$PROJECT_DIR$/websocket/ws_acceptor.py" />
         <option value="$PROJECT_DIR$/websocket/ws_connector.py" />
         <option value="$PROJECT_DIR$/rmi/rmiclient.py" />
-        <option value="$PROJECT_DIR$/../client_test/test/ItestTest.py" />
         <option value="$PROJECT_DIR$/../client_test/test/runtest.py" />
         <option value="$PROJECT_DIR$/../gate/settings/servant.py" />
         <option value="$PROJECT_DIR$/rmi/rmicore.py" />
         <option value="$PROJECT_DIR$/../autotools/gmt2py.py" />
         <option value="$PROJECT_DIR$/../message/gate/itest.py" />
+        <option value="$PROJECT_DIR$/../client_test/test/ItestTest.py" />
       </list>
     </option>
   </component>
@@ -1043,24 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rmi/rmiserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="70" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client_test/test/ItestTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding>
-            <element signature="e#107#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gate/application.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1109,9 +1091,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../message/gate/itest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20568335">
+        <state vertical-scroll-proportion="0.0">
           <caret line="143" column="24" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rmi/rmiserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="70" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client_test/test/ItestTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3856563">
+          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
+          <folding>
+            <element signature="e#107#139#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
