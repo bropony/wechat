@@ -12,9 +12,9 @@ from gamit.log.logger import Logger
 
 from core.enginehelper import EngineHelper
 from message.gate import gatemsg
-from message.gate import command
+from message.gate.command import ETestCommand
 
 def runTest():
     Logger.logInfo("Sending out first message")
     data = gatemsg.SMessage()
-    EngineHelper.client.sendMessage(command.FirstMessage, [], data)
+    EngineHelper.client.sendMessage(ETestCommand.EFirstMessage, [], data)
