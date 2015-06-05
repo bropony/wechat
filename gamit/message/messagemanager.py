@@ -32,14 +32,14 @@ class MessageManager:
             msg = MessageBlock(command, toIdList, data)
             self.rmiServer.broadcast(msg.getOsBuffer())
         except Exception as ex:
-            Logger.logInfo(ex.__traceback__)
+            Logger.logInfo(ex)
 
     def sendMessage(self, connId, command, toIdList, data):
         try:
             msg = MessageBlock(command, toIdList, data)
             self.rmiServer.send(connId, msg.getOsBuffer())
         except Exception as ex:
-            Logger.logInfo(ex.__traceback__)
+            Logger.logInfo(ex)
 
     def onMessage(self, _is):
         try:
@@ -58,5 +58,5 @@ class MessageManager:
                     Logger.logDebug("MessageManager.onMessage", "Command not found:", command)
 
         except Exception as ex:
-            Logger.logInfo(ex.__traceback__)
+            Logger.logInfo(ex)
 #end of MessageManager

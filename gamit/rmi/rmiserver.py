@@ -52,7 +52,7 @@ class RmiServer:
             else:
                 raise SerializeError("Unknown RmiDataType")
         except Exception as ex:
-            Logger.logInfo(ex.__traceback__)
+            Logger.logInfo(ex)
 
     def close(self, connId, code, reason):
         self.acceptor.close(connId, code, reason)
@@ -78,5 +78,5 @@ class RmiServer:
             else:
                 raise SerializeError("Servant {} not registered".format(interface))
         except Exception as ex:
-            Logger.logInfo(ex.__traceback__)
+            Logger.logInfo(ex)
 #end of RmiServer

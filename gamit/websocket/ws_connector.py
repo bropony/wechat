@@ -111,6 +111,6 @@ class WsConnector:
             self.ws.sendMessage(payload, isBinary)
         except Exception as ex:
             Logger.logDebug(ex)
-            Logger.log("[WsConnector.send]", ex.__traceback__)
+            Logger.log("[WsConnector.send]", ex)
             raise ex
 ####

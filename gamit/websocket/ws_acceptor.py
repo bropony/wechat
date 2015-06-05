@@ -115,7 +115,7 @@ class WsAcceptor:
             del self.connMap[connId]
 
         except Exception as ex:
-            Logger.log("[WsAcceptor.close]", ex.__traceback__)
+            Logger.log("[WsAcceptor.close]", ex)
 
     def send(self, connId, payload, isBinary):
         if connId not in self.connMap:
@@ -125,7 +125,7 @@ class WsAcceptor:
         try:
             conn.sendMessage(payload, isBinary)
         except Exception as ex:
-            Logger.log("[WsAcceptor.send]", ex.__traceback__)
+            Logger.log("[WsAcceptor.send]", ex)
 
 ####
 ####

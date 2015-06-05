@@ -67,7 +67,7 @@ class RmiClient:
             else:
                 raise SerializeError("Unknown RmiDataType")
         except Exception as ex:
-            Logger.logInfo(ex.__traceback__)
+            Logger.logInfo(ex)
 
     def sendMessage(self, command, toIdList, data):
         msg = MessageBlock(command, toIdList, data)
