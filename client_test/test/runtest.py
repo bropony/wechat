@@ -18,7 +18,4 @@ from message.gate.command import ETestCommand
 def runTest():
     Logger.logInfo("Sending out first message")
     data = gatemsg.SMessage()
-    __os = Serializer()
-    data.__write(__os)
-
-    # EngineHelper.client.sendMessage(ETestCommand.FirstMessage, [], data)
+    EngineHelper.client.sendMessage(ETestCommand.FirstMessage, [], data)
