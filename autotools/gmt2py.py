@@ -370,7 +370,7 @@ class Gmt2Py:
         self.writeEmptyLine()
         self.indent = 1
         self.write("@abc.abstractmethod")
-        self.write("def onError(what, code):")
+        self.write("def onError(self, what, code):")
         self.indent = 2
         self.write("pass")
 

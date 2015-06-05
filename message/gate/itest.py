@@ -77,7 +77,7 @@ class ITest_Getintlist_Response(RmiResponseBase):
         pass
 
     @abc.abstractmethod
-    def onError(what, code):
+    def onError(self, what, code):
         pass
 
 
@@ -96,7 +96,7 @@ class ITest_Getdictintstring_Response(RmiResponseBase):
         pass
 
     @abc.abstractmethod
-    def onError(what, code):
+    def onError(self, what, code):
         pass
 
 
@@ -115,7 +115,7 @@ class ITest_Getfloatlist_Response(RmiResponseBase):
         pass
 
     @abc.abstractmethod
-    def onError(what, code):
+    def onError(self, what, code):
         pass
 
 
@@ -134,7 +134,7 @@ class ITest_Signup_Response(RmiResponseBase):
         pass
 
     @abc.abstractmethod
-    def onError(what, code):
+    def onError(self, what, code):
         pass
 
 
