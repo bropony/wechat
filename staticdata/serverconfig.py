@@ -57,7 +57,7 @@ class __ServerConfig:
             channelIp = attrib["ip"]
             if channelIp in self.ipMap:
                 channelIp = self.ipMap[channelIp]
-                
+
             chnanelPort = attrib["port"]
             chnanelPort = int(chnanelPort.replace("var", self.portVar))
 

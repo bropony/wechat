@@ -87,7 +87,7 @@ class Application:
             Logger.logInfo("Gate channel not configured.")
             return False
 
-        acceptor = Acceptor(channel.id, channel.port)
+        acceptor = Acceptor(channel.ip, channel.port)
         rmiServer = RmiServer(acceptor, ServerConfigManager.isDebug)
         self.server = rmiServer
 
@@ -110,7 +110,7 @@ class Application:
             Logger.logInfo("DbCache channel not configured.")
             return False
 
-        connector = Connector(channel.id, channel.port)
+        connector = Connector(channel.ip, channel.port)
         rmiClient = RmiClient(connector, self.messageManager, ServerConfigManager.isDebug)
 
         self.clientMap[AppType.DBCACHE] = rmiClient
