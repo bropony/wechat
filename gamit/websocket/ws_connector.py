@@ -66,7 +66,7 @@ class WsConnector:
 
         factory = MyClientFactory(wsUrl, debug=isDebug)
         factory.__connector = self
-        reactor.connectTCP(self.destIp, self.port, factory)
+        reactor.connectTCP(self.ip, self.port, factory)
 
         self.factory = factory
         self.running = True
