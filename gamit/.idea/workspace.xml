@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c74105f1-3c92-4e22-82fc-7b3a15a99860" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/application.py" afterPath="$PROJECT_DIR$/../client_test/application.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/client_test.py" afterPath="$PROJECT_DIR$/../client_test/client_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/test/runtest.py" afterPath="$PROJECT_DIR$/../client_test/test/runtest.py" />
     </list>
@@ -46,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../client_test/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.40866035">
+              <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
               <folding>
                 <element signature="e#111#147#0" expanded="true" />
               </folding>
@@ -82,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="client_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../client_test/client_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.202977">
+            <state vertical-scroll-proportion="0.0">
               <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
               <folding>
                 <element signature="e#111#121#0" expanded="true" />
@@ -184,9 +185,9 @@
         <option value="$PROJECT_DIR$/../gate/application.py" />
         <option value="$PROJECT_DIR$/../client_test/test/ItestTest.py" />
         <option value="$PROJECT_DIR$/rmi/rmiclient.py" />
-        <option value="$PROJECT_DIR$/../client_test/application.py" />
         <option value="$PROJECT_DIR$/../client_test/test/runtest.py" />
         <option value="$PROJECT_DIR$/../client_test/client_test.py" />
+        <option value="$PROJECT_DIR$/../client_test/application.py" />
       </list>
     </option>
   </component>
@@ -897,22 +898,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client_test/application.py">
+    <entry file="file://$PROJECT_DIR$/../client_test/client_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
           <folding>
-            <element signature="e#111#147#0" expanded="true" />
+            <element signature="e#111#121#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client_test/client_test.py">
+    <entry file="file://$PROJECT_DIR$/../client_test/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.202977">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.40866035">
+          <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
           <folding>
-            <element signature="e#111#121#0" expanded="true" />
+            <element signature="e#111#147#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -45,7 +45,7 @@ class Application:
         return True
 
     def initMessageManager(self):
-        self.messageManager = MessageManager()
+        self.messageManager = MessageManager(None)
         return True
 
     def initClient(self):
