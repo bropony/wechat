@@ -440,6 +440,8 @@ class Gmt2Py:
             self.write("_os = Serializer()")
             self.write("_os.startToWrite()")
             self.write("_os.writeByte(RmiDataType.RmiCall)")
+            self.write("_os.writeString(self.name)")
+            self.write("_os.writeString('{}')".format(method.name))
             self.write("_msgId = self.getMsgId()")
             self.write("_os.writeInt(_msgId)")
             self.write("_response._setMsgId(_msgId)")
