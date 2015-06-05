@@ -21,6 +21,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serialize/serializer.py" afterPath="$PROJECT_DIR$/serialize/serializer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/settings/servant.py" afterPath="$PROJECT_DIR$/../gate/settings/servant.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/serverconfig.py" afterPath="$PROJECT_DIR$/../staticdata/serverconfig.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py" afterPath="$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" afterPath="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websocket/ws_acceptor.py" afterPath="$PROJECT_DIR$/websocket/ws_acceptor.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websocket/ws_connector.py" afterPath="$PROJECT_DIR$/websocket/ws_connector.py" />
@@ -54,24 +55,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rmiclient.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rmi/rmiclient.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../client_test/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4343708">
+            <state vertical-scroll-proportion="0.0">
               <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
               <folding>
                 <element signature="e#111#147#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testmessagehandler.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3856563">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -179,7 +180,6 @@
         <option value="$PROJECT_DIR$/asio/asio_acceptor.py" />
         <option value="$PROJECT_DIR$/asio/asio_connector.py" />
         <option value="$PROJECT_DIR$/../gate/settings/message.py" />
-        <option value="$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py" />
         <option value="$PROJECT_DIR$/../client_test/settings/message.py" />
         <option value="$PROJECT_DIR$/../client_test/settings/proxy.py" />
         <option value="$PROJECT_DIR$/../client_test/test/ItestTest.py" />
@@ -202,6 +202,7 @@
         <option value="$PROJECT_DIR$/../gate/application.py" />
         <option value="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" />
         <option value="$PROJECT_DIR$/../client_test/application.py" />
+        <option value="$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py" />
       </list>
     </option>
   </component>
@@ -378,6 +379,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="settings" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messagehandler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -872,13 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../client_test/settings/message.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1127,11 +1135,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../client_test/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4343708">
+        <state vertical-scroll-proportion="0.0">
           <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
           <folding>
             <element signature="e#111#147#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3856563">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
