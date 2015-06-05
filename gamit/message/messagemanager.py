@@ -17,13 +17,14 @@ class MessageManager:
         if not issubclass(handler.__class__, CommandHandlerBase):
             raise NotACommandHandlerError()
 
+        Logger.logDebug("Registering Command: ", command)
         self.handlerMap[command] = handler
 
-    def addCommandHandlerById(self, id, hadler):
+    def addCommandHandlerById(self, id, handler):
         if not issubclass(id, CommandHandlerBase):
             raise NotACommandHandlerError()
 
-        self.idHandlerMap[id] = hadler
+        self.idHandlerMap[id] = handler
 
     def broadcast(self, command, data):
         try:
@@ -47,14 +48,14 @@ class MessageManager:
             processed = False
             for id in msg.toIdList:
                 if id in self.idHandlerMap:
-                    self.idHandlerMap[id].onMessage(msg.command, msg.toIdList, msg.data)
+                    self.idHandlerMap[id].onMessage(command, msg.toIdList, msg.data)
                     processed = True
 
             if not processed:
                 if command in self.handlerMap:
-                    self.handlerMap[command].onMessage(msg.command, msg.toIdList, msg.data)
+                    self.handlerMap[command].onMessage(command, msg.toIdList, msg.data)
                 else:
-                    Logger.logDebug("MessageManager.onMessage", "Command not found", command)
+                    Logger.logDebug("MessageManager.onMessage", "Command not found:", command)
 
         except Exception as ex:
             Logger.logInfo(ex.__traceback__)
