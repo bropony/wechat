@@ -18,9 +18,9 @@ class _WSServerProtocol(WebSocketServerProtocol):
         return cls.connIdBase
 
 
-    #def __init__(self, proxy):
-    #    super().__init__()
-    #   self.proxy = proxy
+    def __init__(self):
+        super().__init__()
+        self.connId = -1
 
     def onConnect(self, request):
         self.connId = self.getConnId()
