@@ -43,7 +43,12 @@ class RmiServant:
         except Exception as ex:
             what = ex.args[0] if len(ex.args) > 0 else "UnkownError"
             code = ex.args[1] if len(ex.args) > 1 else 0
-            #msgId = ex.args[2] if len(ex.args) > 2 else 0
+
+            if not isinstance(what, str):
+                what = str(what)
+
+            if not isinstance(code, int):
+                code = 0
 
             _os = Serializer()
             _os.startToWrite()
