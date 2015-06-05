@@ -15,16 +15,18 @@ class RmiMethod:
 
 class RmiServant:
     def __init__(self, name):
+        Logger.logDebug(name, ".__init__")
+        
         self.name = name
         self.methodMap = {}
         self.rmiServer = None
-        for func in self.__class__.__dict__:
-            obj = self.__class__.__dict__[func]
+        for func in self.__dict__:
+            obj = self.__dict__[func]
             if not inspect.ismethod(obj):
                 continue
             else:
                 Logger.logDebug("RmiServant: ", func)
-                
+
             if func.endswith("_"):
                 continue
             if not func.startswith("_"):
