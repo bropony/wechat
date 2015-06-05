@@ -54,6 +54,7 @@ class Application:
             Logger.logInfo("Gate channel not configured.")
             return False
 
+        Logger.logInfo("Init Proxy {}:{}".format(channel.ip, channel.port))
         connector = Connector(channel.ip, channel.port)
         self.client = RmiClient(connector, self.messageManager, ServerConfigManager.isDebug)
 

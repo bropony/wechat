@@ -64,6 +64,7 @@ class WsConnector:
     def start(self, isDebug):
         wsUrl = "ws://{}:{}".format(self.ip, self.port)
 
+        Logger.logInfo("Connecting to {}".format(wsUrl))
         factory = MyClientFactory(wsUrl, debug=isDebug)
         factory.__connector = self
         reactor.connectTCP(self.ip, self.port, factory)

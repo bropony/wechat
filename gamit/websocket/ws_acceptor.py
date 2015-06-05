@@ -59,6 +59,7 @@ class WsAcceptor:
     def start(self, isDebug):
         wsUrl = "ws://{}:{}".format(self.ip, self.port)
 
+        Logger.logInfo("Listening on {}".format(wsUrl))
         factory = WebSocketServerFactory(wsUrl, debug=isDebug)
         _WSServerProtocol.proxy = self
         factory.protocol = _WSServerProtocol
