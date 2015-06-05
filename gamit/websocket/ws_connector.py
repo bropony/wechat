@@ -15,6 +15,8 @@ import logging
 
 class _WSClientProtocol(WebSocketClientProtocol):
     def getProxy(self):
+        if not self.factory:
+            print("Oops")
         return self.factory.__connector
 
     def onConnect(self, response):
