@@ -33,6 +33,7 @@ class _WSServerProtocol(WebSocketServerProtocol):
         self.proxy.onOpen(self.connId, self)
 
     def onMessage(self, payload, isBinary):
+        Logger.logDebug("_WSServerProtocol.onMessage")
         self.proxy.onMessage(self.connId, payload, isBinary)
 
     def onClose(self, wasClean, code, reason):
