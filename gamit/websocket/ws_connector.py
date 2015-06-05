@@ -84,7 +84,7 @@ class WsConnector:
 
     def onOpen(self, ws):
         self.ws = ws
-        
+
         self.rmiClient.onOpen(ws)
         self.running = True
 
@@ -112,4 +112,5 @@ class WsConnector:
         except Exception as ex:
             Logger.logDebug(ex)
             Logger.log("[WsConnector.send]", ex.__traceback__)
+            raise ex
 ####
