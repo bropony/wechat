@@ -79,7 +79,6 @@ class WsAcceptor:
 
         self.connMap = {}
 
-
     ####
     def onConnect(self, connId, peer):
         pass
@@ -92,6 +91,7 @@ class WsAcceptor:
             Logger.log("[WsAcceptor.onOpen]", "Critical Error: ", connId, logLevel=logging.ERROR)
 
     def onMessage(self, connId, payload, isBinary):
+        Logger.logDebug("WsAcceptor.onMessage", connId)
         if connId not in self.connMap:
             Logger.logInfo("connId not found")
             return
@@ -105,7 +105,6 @@ class WsAcceptor:
         self.rmiServer.onClose(connId)
         del self.connMap[connId]
 
-
     def close(self, connId, code, reason):
         if connId not in self.connMap:
             return
@@ -117,7 +116,6 @@ class WsAcceptor:
 
         except Exception as ex:
             Logger.log("[WsAcceptor.close]", ex.__traceback__)
-
 
     def send(self, connId, payload, isBinary):
         if connId not in self.connMap:
