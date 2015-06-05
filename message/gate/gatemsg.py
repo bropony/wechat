@@ -1,8 +1,6 @@
 #
 # file: gatemsg.py
 #
-# date: 2015-06-04 16:19:16.876546
-#
 # author: ahda86@gmail.com
 #
 # CAUTION: This file is Auto-Generated.
@@ -83,7 +81,7 @@ class SMessage:
         self.var4 = float()
         self.var5 = float()
         self.var6 = str()
-        self.var7 = datetime.datetime()
+        self.var7 = datetime.datetime.now()
 
     def __read(self, __is):
         self.var1 = __is.readShort()

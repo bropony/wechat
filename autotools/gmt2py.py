@@ -133,6 +133,8 @@ class Gmt2Py:
                 return "{}.{}".format(dataType.name, dataType.pairs[0][0])
             else:
                 return "{}.{}".format(dataType.fullname, dataType.pairs[0][0])
+        elif dataType.name == 'date':
+            return "datetime.datetime.now()"
         elif isinstance(dataType, Struct) or isinstance(dataType, BasicType):
             return cls.getTypePyName(dataType, currentScope) + "()"
         elif isinstance(dataType, List):
