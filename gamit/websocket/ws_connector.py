@@ -16,7 +16,10 @@ import logging
 class _WSClientProtocol(WebSocketClientProtocol):
     def getProxy(self):
         if not self.factory:
-            print("Oops")
+            Logger.logInfo("_WSClientProtocol: No Factory Found")
+        else:
+            Logger.logInfo("_WSClientProtocol.factory: ", self.factory.__class__.__name__)
+            
         return self.factory.__connector
 
     def onConnect(self, response):
