@@ -77,8 +77,8 @@
       <file leaf-file-name="ws_connector.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7456022">
-              <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.202977">
+              <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -1044,8 +1044,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/websocket/ws_connector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7456022">
-          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.202977">
+          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
           <folding />
         </state>
       </provider>

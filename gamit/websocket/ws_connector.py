@@ -83,8 +83,9 @@ class WsConnector:
         pass
 
     def onOpen(self, ws):
-        self.rmiClient.onOpen(ws)
         self.ws = ws
+        
+        self.rmiClient.onOpen(ws)
         self.running = True
 
     def onMessage(self, payload, isBinary):
