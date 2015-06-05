@@ -5,6 +5,7 @@
 #
 
 import inspect
+from gamit.log.logger import Logger
 from gamit.serialize.serializer import SerializeError, Serializer
 from gamit.serialize.datatype import RmiDataType
 import abc
@@ -29,6 +30,7 @@ class RmiServant:
             func = func[1:]
             if func not in self.__class__.__dict__:
                 continue
+            Logger.logDebug("Adding {}.{}".format(name, func))
             self.methodMap[func] = obj
 
     def setRmiServer(self, rmiServer):
