@@ -29,7 +29,7 @@ def main():
     ServerConfigManager.loadConfig()
 
     # start logger
-    loggerDir = os.path.join(os.getcwd(), "log")
+    loggerDir = os.path.join(os.getcwd(), "test/log")
     if not os.path.exists(loggerDir):
         os.mkdir(loggerDir)
     Logger.startLogging(loggerDir, ServerConfigManager.isDebug)
