@@ -7,5 +7,5 @@
     <port_var>01</port_var>
 
     <db_ver></db_ver>
-    <is_debug>True</is_debug>
+    <is_debug>False</is_debug>
 </root>

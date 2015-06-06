@@ -12,6 +12,7 @@ from gamit.log.logger import Logger
 from gamit.serialize.serializer import Serializer
 from gamit.rmi.proxymanager import ProxyManager
 from gamit.app import apptype as AppType
+from gamit.message.messagemanager import MessageManager
 
 from message.gate import gatemsg
 from message.gate.command import ETestCommand
@@ -19,9 +20,9 @@ from message.gate.command import ETestCommand
 from test.ItestTest import ITest_Getintlist_Response_Impl, ITest_Signup_Response_Impl
 
 def runTest():
-    #Logger.logInfo("Sending out first message")
-    #data = gatemsg.SMessage()
-    #EngineHelper.client.sendMessage(ETestCommand.FirstMessage, [], data)
+    Logger.logInfo("Sending out first message")
+    data = gatemsg.SMessage()
+    MessageManager.sendMessageToServant(AppType.GATE, ETestCommand.FirstMessage, [], data)
 
     Logger.logInfo("calling getIntList")
     proxy = ProxyManager.getProxy(AppType.GATE, "ITest")

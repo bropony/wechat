@@ -31,18 +31,22 @@ class __MessageManager:
 
         self.idHandlerMap[id] = handler
 
+    # message to myself
     def sendMessageToOwnChannel(self, command, toIdList, data):
         self._onMessage(command, toIdList, data)
 
-    def broadcastToAllSessions(self, command, toIdList, data):
+    # message to all servant
+    def broadcastToServant(self, command, toIdList, data):
         for _, session in SessionManager.getSessionMap().items():
             session.sendMessage(command, toIdList, data)
 
-    def sendMessageToSession(self, channelType, command, toIdList, data):
+    # message to servant by channel type
+    def sendMessageToServant(self, channelType, command, toIdList, data):
         session = SessionManager.getSession(channelType)
         if session:
             session.sendMessage(command, toIdList, data)
 
+    # message to all clients
     def broadcast(self, command, data):
         if not self.rmiServer:
             return
@@ -54,6 +58,7 @@ class __MessageManager:
         except Exception as ex:
             Logger.logInfo(ex)
 
+    # message to client by connId
     def sendMessage(self, connId, command, toIdList, data):
         if not self.rmiServer:
             return
@@ -64,6 +69,7 @@ class __MessageManager:
         except Exception as ex:
             Logger.logInfo(ex)
 
+    # message from my clients
     def onMessage(self, _is):
         try:
             msg = MessageBlock(_is)
