@@ -35,6 +35,9 @@ class Logger:
         if filename != cls._logfilepath:
             if cls._logfile:
                 cls._logfile.close()
+            if not os.path.exists(cls._logdir):
+                os.makedirs(cls._logdir)
+
             cls._logfile = open(os.path.join(cls._logdir, filename), "a")
             cls._logfilepath = filename
             cls._logger.startLogging(cls._logfile)
