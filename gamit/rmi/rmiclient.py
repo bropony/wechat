@@ -98,4 +98,4 @@ class RmiClient:
         self.callbackMap[callback._msgId] = callback
 
     def heartbeat(self):
-        self.connector.sendPing()
+        self.connector.ws.sendPing()
