@@ -18,6 +18,7 @@ class _WSClientProtocol(WebSocketClientProtocol):
         return self.factory.connector__
 
     def onConnect(self, response):
+        self.pongs = 0
         Logger.logInfo("Connect to ", response.peer)
         self.getProxy().onConnect(self)
 
@@ -31,6 +32,10 @@ class _WSClientProtocol(WebSocketClientProtocol):
     def onClose(self, wasClean, code, reason):
         Logger.logInfo("WS connection closed. ", reason)
         self.getProxy().onClose(code, reason)
+
+    def onPong(self, payload):
+        self.pongs += 1
+        Logger.logInfo("Ping {} from {}".format(self.pings, self.peer))
 
 
 class MyClientFactory(WebSocketClientFactory, ReconnectingClientFactory):
@@ -54,7 +59,6 @@ class WsConnector:
         self.factory = None
         self.ip = ip
         self.port = port
-        self.pongs = 0
 
         self.running = False
 
@@ -96,10 +100,6 @@ class WsConnector:
         self.rmiClient.onClose()
         self.ws = None
         self.running = False
-
-    def onPong(self, payload):
-        self.pongs += 1
-        Logger.logInfo("Ping {} from {}".format(self.pings, self.peer))
 
     def close(self):
         if self.ws:
