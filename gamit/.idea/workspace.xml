@@ -8,6 +8,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/message/messagemanager.py" afterPath="$PROJECT_DIR$/message/messagemanager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client_test/test/runtest.py" afterPath="$PROJECT_DIR$/../client_test/test/runtest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../config/server_config.xml" afterPath="$PROJECT_DIR$/../config/server_config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" afterPath="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" />
     </list>
     <ignored path="gamit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,12 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gate.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gate/gate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46278754">
+            <state vertical-scroll-proportion="0.0">
               <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testmessagehandler.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48849797">
+              <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+              <folding>
+                <element signature="e#119#178#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -78,16 +91,6 @@
               <folding>
                 <element signature="e#26#85#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testmessagehandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -182,7 +185,6 @@
         <option value="$PROJECT_DIR$/rmi/sessionmanager.py" />
         <option value="$PROJECT_DIR$/../gate/application.py" />
         <option value="$PROJECT_DIR$/../gate/settings/message.py" />
-        <option value="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" />
         <option value="$PROJECT_DIR$/../client_test/application.py" />
         <option value="$PROJECT_DIR$/../client_test/settings/message.py" />
         <option value="$PROJECT_DIR$/../client_test/test/ItestTest.py" />
@@ -192,6 +194,7 @@
         <option value="$PROJECT_DIR$/log/logger.py" />
         <option value="$PROJECT_DIR$/../client_test/client_test.py" />
         <option value="$PROJECT_DIR$/../gate/gate.py" />
+        <option value="$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py" />
       </list>
     </option>
   </component>
@@ -244,6 +247,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messagehandler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -811,14 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../client_test/settings/message.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -917,9 +926,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../gate/gate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46278754">
+        <state vertical-scroll-proportion="0.0">
           <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48849797">
+          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+          <folding>
+            <element signature="e#119#178#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

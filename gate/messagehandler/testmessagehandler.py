@@ -17,6 +17,6 @@ class TestMessageHandler(CommandHandlerBase):
         for key, val in data.__dict__.items():
             print("{}: {}".format(key, val))
 
-        # MessageManager.broadcast(command, data)
+        MessageManager.broadcast(command, data)
 
 #
