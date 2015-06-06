@@ -17,6 +17,7 @@ from gamit.message.messagemanager import MessageManager
 from gamit.websocket.ws_connector import WsConnector as Connector
 import gamit.app.apptype as AppType
 from gamit.log.logger import Logger
+from gamit.rmi.sessionmanager import SessionManager
 
 from settings.proxy import ProxySetting
 from settings.message import MessageSetting
@@ -31,6 +32,8 @@ class Application:
     def start(self):
         self.client.start()
         self.scheduler.start()
+        SessionManager.startHeartBeats()
+
         reactor.run()
 
     def stop(self):
