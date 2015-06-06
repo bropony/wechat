@@ -9,9 +9,12 @@
 """
 
 from gamit.singleton.singleton import Singleton
+from twisted.internet import reactor
+
 
 class SessionManager(Singleton):
     _sessionMap = {}
+    _interval = 10
 
     @classmethod
     def addSession(cls, channelType, session):
@@ -25,3 +28,17 @@ class SessionManager(Singleton):
     @classmethod
     def getSessionMap(cls):
         return cls._sessionMap
+
+    @classmethod
+    def startHeartBeats(cls, interval=None):
+        if interval and interval > 0:
+            cls._interval = interval
+
+        reactor.callLater(cls._interval, cls._heartbeats)
+
+    @classmethod
+    def _heartbeats(cls):
+        for _, s in cls._sessionMap.items():
+            s.heartbeat()
+
+        reactor.callLater(cls._interval, cls._heartbeats)

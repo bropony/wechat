@@ -21,6 +21,7 @@ class _WSServerProtocol(WebSocketServerProtocol):
     def __init__(self):
         super().__init__()
         self.connId = -1
+        self.pings = 0
 
     def onConnect(self, request):
         self.connId = self.getConnId()
@@ -40,6 +41,10 @@ class _WSServerProtocol(WebSocketServerProtocol):
         Logger.logInfo("Connection colsed. ", self.connId)
         self.proxy.onClose(self.connId, code, reason)
 
+    def onPing(self, payload):
+        self.pings += 1
+        Logger.logInfo("Ping {} from {}".format(self.pings, self.peer))
+        self.sendPong(payload)
 
 class WsAcceptor:
     """

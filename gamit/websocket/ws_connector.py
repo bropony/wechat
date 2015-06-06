@@ -54,6 +54,7 @@ class WsConnector:
         self.factory = None
         self.ip = ip
         self.port = port
+        self.pongs = 0
 
         self.running = False
 
@@ -95,6 +96,10 @@ class WsConnector:
         self.rmiClient.onClose()
         self.ws = None
         self.running = False
+
+    def onPong(self, payload):
+        self.pongs += 1
+        Logger.logInfo("Ping {} from {}".format(self.pings, self.peer))
 
     def close(self):
         if self.ws:

@@ -27,3 +27,4 @@ class ProxyManager(Singleton):
             return None
 
         return cls._proxyMap[channelType][name]
+####

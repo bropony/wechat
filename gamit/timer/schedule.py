@@ -6,7 +6,10 @@ import datetime
 
 SECS_OF_A_DAY = 24 * 3600
 
-class Scheduler:
+class __Scheduler:
+    def __call__(self):
+        return self
+
     def __init__(self):
         self.timerMap = {}
 
@@ -64,4 +67,5 @@ class Scheduler:
 
         reactor.callLater(0.03, self._loop)
 
+Scheduler = __Scheduler()
 ####
