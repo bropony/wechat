@@ -35,7 +35,7 @@ class _WSClientProtocol(WebSocketClientProtocol):
 
     def onPong(self, payload):
         self.pongs += 1
-        Logger.logInfo("Ping {} from {}".format(self.pongs, self.peer))
+        Logger.logInfo("Pong {} from {}".format(self.pongs, self.peer))
 
 
 class MyClientFactory(WebSocketClientFactory, ReconnectingClientFactory):
