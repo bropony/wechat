@@ -34,4 +34,5 @@ class ItestImpl(itest.ITestServant):
             res.append(i * 1.1)
 
     def signup(self, signup, __request):
-        raise Exception("Deprecated Method", 0)
+        #raise Exception("Deprecated Method", 0)
+        pass
