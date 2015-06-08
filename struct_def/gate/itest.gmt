@@ -1,6 +1,8 @@
 include "common/publicdef.gmt"
 include "gate/gatemsg.gmt"
 
+dict<string, gatemsg.SMessage> DictStrMessage
+
 interface ITest:
     method getIntList(in int size, out common.publicdef.SeqInt intList)
     

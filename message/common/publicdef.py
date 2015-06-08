@@ -25,6 +25,12 @@ def writeSeqInt(_os, valList):
     for val in valList:
         _os.writeInt(val)
 
+def SeqIntFromJson(js):
+    return js
+
+def SeqIntToJson(valList):
+    return valList
+
 def readSeqLong(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -37,6 +43,12 @@ def writeSeqLong(_os, valList):
     _os.writeInt(dataSize)
     for val in valList:
         _os.writeLong(val)
+
+def SeqLongFromJson(js):
+    return js
+
+def SeqLongToJson(valList):
+    return valList
 
 def readSeqString(_is, valList):
     dataSize = _is.readInt()
@@ -51,6 +63,12 @@ def writeSeqString(_os, valList):
     for val in valList:
         _os.writeString(val)
 
+def SeqStringFromJson(js):
+    return js
+
+def SeqStringToJson(valList):
+    return valList
+
 def readSeqFloat(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -63,6 +81,12 @@ def writeSeqFloat(_os, valList):
     _os.writeInt(dataSize)
     for val in valList:
         _os.writeFloat(val)
+
+def SeqFloatFromJson(js):
+    return js
+
+def SeqFloatToJson(valList):
+    return valList
 
 def readDictIntInt(_is, valDict):
     dataSize = _is.readInt()
@@ -80,6 +104,12 @@ def writeDictIntInt(_os, valDict):
         _os.writeInt(item[0])
         _os.writeInt(item[1])
 
+def DictIntIntFromJson(js):
+    return js
+
+def DictIntIntToJson(valDict):
+    return valDict
+
 def readDictIntString(_is, valDict):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -95,6 +125,12 @@ def writeDictIntString(_os, valDict):
     for item in valDict.items():
         _os.writeInt(item[0])
         _os.writeString(item[1])
+
+def DictIntStringFromJson(js):
+    return js
+
+def DictIntStringToJson(valDict):
+    return valDict
 
 def readDictStringInt(_is, valDict):
     dataSize = _is.readInt()
@@ -112,6 +148,12 @@ def writeDictStringInt(_os, valDict):
         _os.writeString(item[0])
         _os.writeInt(item[1])
 
+def DictStringIntFromJson(js):
+    return js
+
+def DictStringIntToJson(valDict):
+    return valDict
+
 def readDictStringString(_is, valDict):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -127,4 +169,10 @@ def writeDictStringString(_os, valDict):
     for item in valDict.items():
         _os.writeString(item[0])
         _os.writeString(item[1])
+
+def DictStringStringFromJson(js):
+    return js
+
+def DictStringStringToJson(valDict):
+    return valDict
 

@@ -20,6 +20,18 @@ from message.gate.command import ETestCommand
 from test.ItestTest import ITest_Getintlist_Response_Impl, ITest_Signup_Response_Impl
 
 def runTest():
+    msgDict = {}
+    msgDict["msg1"] = gatemsg.SMessage()
+    msgDict["msg2"] = gatemsg.SMessage()
+
+    js = gatemsg.DictMessageToJson(msgDict)
+    print(js)
+
+    dictBack = gatemsg.DictMessageFromJson(js)
+    print(dictBack)
+
+    return
+
     Logger.logInfo("Sending out first message")
     data = gatemsg.SMessage()
     MessageManager.sendMessageToServant(AppType.GATE, ETestCommand.FirstMessage, [], data)

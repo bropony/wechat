@@ -374,9 +374,7 @@ class Loader:
         varName = m.group(2)
         self.checkVarName(varName, fin.lno)
 
-        dataType = self.find(dataTypeName)
-        if not dataType:
-            dataType = self.structManager.find(dataTypeName)
+        dataType = self.structManager.find(dataTypeName, self.scope)
         if not dataType:
             self.raiseExp("At line{}: Identifier {} is not found.".format(fin.lno, dataTypeName))
 
@@ -403,11 +401,9 @@ class Loader:
             self.raiseExp("At line{}: {} cannot be used as key type.".format(fin.lno, keyTypeName))
         keyType = self.structManager.find(keyTypeName)
 
-        valType = self.find(valTypeName)
+        valType = self.structManager.find(valTypeName, self.scope)
         if not valType:
-            valType = self.structManager.find(valTypeName)
-        if not valType:
-            self.raiseExp("At line{}: Identifier {} is not found.".format(fin.lno, valType))
+            self.raiseExp("At line{}: Identifier {} is not found.".format(fin.lno, valTypeName))
 
         dictT = Dict(self.scope, varName, keyType, valType)
         if self.structManager.find(dictT.fullname):

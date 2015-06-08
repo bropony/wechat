@@ -4,6 +4,10 @@
 
 include "common/publicdef.gmt"
 
+list<common.publicdef.SeqInt> SeqSeqInt
+list<common.publicdef.DictIntInt> SeqDictIntInt
+dict<int, common.publicdef.DictStringInt> DictDictStringInt
+
 struct SSignup:
     string username
     string nickname
@@ -31,3 +35,7 @@ struct SMessage:
     string var6
     date var7
     common.publicdef.SeqInt intList
+    common.publicdef.DictStringInt dictStrInt
+    
+    
+dict<int, SMessage> DictMessage

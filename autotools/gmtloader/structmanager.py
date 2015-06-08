@@ -52,8 +52,8 @@ class StructManager:
         newName = scope + "." + name
         if newName in self.typeMap:
             return self.typeMap[newName]
-        else:
-            print("type not found:", newName)
+        #else:
+        #    print("type not found:", newName)
 
         parent_scopes = re.split(r'\.', scope)
         child_scopes = re.split(r'\.', name)
@@ -74,8 +74,8 @@ class StructManager:
         newName = ".".join(parent_scopes)
         if newName in self.typeMap:
             return self.typeMap[newName]
-        else:
-            print("Type Not Found:", newName)
+        #else:
+            #print("Type Not Found:", newName)
 
         return None
 

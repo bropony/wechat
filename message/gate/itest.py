@@ -18,6 +18,36 @@ import message.common.publicdef
 import message.gate.gatemsg
 
 
+def readDictStrMessage(_is, valDict):
+    dataSize = _is.readInt()
+    for _ in range(dataSize):
+        key_ = str()
+        val_ = message.gate.gatemsg.SMessage()
+        key_ = _is.readString()
+        val_._read(_is)
+        valDict[key_] = val_
+
+def writeDictStrMessage(_os, valDict):
+    dataSize = len(valDict)
+    _os.writeInt(dataSize)
+    for item in valDict.items():
+        _os.writeString(item[0])
+        item[1]._write(_os)
+
+def DictStrMessageFromJson(js):
+    res = dict()
+    for key_ in js:
+        val = message.gate.gatemsg.SMessage()
+        val._fromJson(js[key_])
+        res[key_] = val
+    return res
+
+def DictStrMessageToJson(valDict):
+    res = dict()
+    for key_ in valDict:
+        res[key_] = valDict[key_]._toJson()
+    return res
+
 class ITest_Getintlist_Request(RmiRequestBase):
     def __init__(self, connId, msgId, servant):
         super().__init__(connId, msgId, servant)
