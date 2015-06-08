@@ -163,7 +163,13 @@ class Gmt2Py:
     def genJsonReadExpr(self, dataType, varExpr, varName, currentScope):
         dataTypeName = self.getTypePyName(dataType, currentScope)
         jsExpr = "js['{}']".format(varName)
-        self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
+        if isinstance(dataType, List):
+            self.write("if '{}' in js and isinstance({}, list):".format(varName, jsExpr))
+        elif isinstance(dataType, Dict):
+            self.write("if '{}' in js and isinstance({}, dict):".format(varName, jsExpr))
+        else:
+            self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
+
         self.indent += 1
         if isinstance(dataType, BasicType):
             self.write("{} = {}".format(varExpr, jsExpr))

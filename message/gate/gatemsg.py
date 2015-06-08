@@ -255,9 +255,9 @@ class SMessage:
             self.var6 = js['var6']
         if 'var7' in js and isinstance(js['var7'], datetime.datetime):
             self.var7 = js['var7']
-        if 'intList' in js and isinstance(js['intList'], message.common.publicdef.SeqInt):
+        if 'intList' in js and isinstance(js['intList'], list):
             self.intList = message.common.publicdef.SeqIntFromJson(js['intList'])
-        if 'dictStrInt' in js and isinstance(js['dictStrInt'], message.common.publicdef.DictStringInt):
+        if 'dictStrInt' in js and isinstance(js['dictStrInt'], dict):
             self.dictStrInt = message.common.publicdef.DictStringIntFromJson(js['dictStrInt'])
 
     def _toJson(self):
