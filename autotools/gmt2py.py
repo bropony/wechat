@@ -375,6 +375,12 @@ class Gmt2Py:
         self.write("pass")
 
         self.writeEmptyLine()
+        self.indent = 1
+        self.write("@abc.abstractmethod")
+        self.write("def onTimeout(self):")
+        self.indent = 2
+        self.write("pass")
+        self.writeEmptyLine()
         self.writeEmptyLine()
 
     def parseServant(self, interfaceType):

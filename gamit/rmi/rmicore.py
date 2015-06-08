@@ -5,10 +5,12 @@
 #
 
 import inspect
+import abc
+import datetime.datetime
+
 from gamit.log.logger import Logger
 from gamit.serialize.serializer import SerializeError, Serializer
 from gamit.serialize.datatype import RmiDataType
-import abc
 
 class RmiMethod:
     pass
@@ -88,6 +90,13 @@ class RmiProxy:
 class RmiResponseBase(metaclass=abc.ABCMeta):
     def __init__(self):
         self._msgId = 0
+        self._createDt = datetime.datetime.now()
+
+    def isExpired(self, now, timeout):
+        passed = now - self._createDt
+        if passed.total_seconds() >= timeout:
+            return True
+        return False
 
     def _setMsgId(self, msgId):
         self._msgId = msgId

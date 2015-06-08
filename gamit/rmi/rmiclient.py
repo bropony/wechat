@@ -8,6 +8,8 @@
 * @desc rmiclient.py
 """
 
+import datetime.datetime
+
 from gamit.log.logger import Logger
 from gamit.message.messagemanager import MessageManager
 from gamit.message.message import MessageBlock
@@ -18,9 +20,11 @@ from gamit.rmi.sessionmanager import SessionManager
 from twisted.internet import reactor
 
 class RmiClient:
-    def __init__(self, channelType, connector, isDebug):
+    def __init__(self, channelType, connector, isDebug, timeout=8):
         self.channelType = channelType
         self.isDebug = isDebug
+        self.timeout = timeout
+
         self.connector = connector
         self.connector.setRmiClient(self)
         self.messageManager = MessageManager
@@ -33,6 +37,7 @@ class RmiClient:
 
     def start(self):
         self.connector.start(self.isDebug)
+        self._startMonitorCallbackTimeout()
 
     def stop(self):
         self.connector.stop()
@@ -92,6 +97,23 @@ class RmiClient:
         code = _is.readInt()
         if msgId in self.callbackMap:
             self.callbackMap[msgId].onError(what, code)
+
+    def _startMonitorCallbackTimeout(self):
+        reactor.callLater(self.timeout, self._onTimeout)
+
+    def _onTimeout(self):
+        if self.timeout <= 0:
+            return
+
+        if self.callbackMap:
+            now = datetime.datetime.now()
+            for msgId in self.callbackMap:
+                cb = self.callbackMap[msgId]
+                if cb.isExpired(now, self.timeout):
+                    cb.onTimeout()
+                    del self.callbackMap[msgId]
+
+        reactor.callLater(self.timeout, self._onTimeout)
 
     def onCall(self, _os, callback):
         self.connector.send(_os.getBuffer(), True)
