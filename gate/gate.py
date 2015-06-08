@@ -29,7 +29,7 @@ def main():
     ServerConfigManager.loadConfig()
 
     # start logger
-    loggerDir = os.path.join(os.getcwd(), "gate/log")
+    loggerDir = os.path.join(os.getcwd(), "log/gate")
     Logger.startLogging(loggerDir, ServerConfigManager.isDebug)
 
     Logger.logInfo("loading configs...")

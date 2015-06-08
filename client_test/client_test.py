@@ -29,7 +29,7 @@ def main():
     ServerConfigManager.loadConfig()
 
     # start logger
-    loggerDir = os.path.join(os.getcwd(), "test/log")
+    loggerDir = os.path.join(os.getcwd(), "log/test")
     Logger.startLogging(loggerDir, ServerConfigManager.isDebug)
 
     Logger.logInfo("loading configs...")
