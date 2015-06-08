@@ -90,6 +90,7 @@ class RmiClient:
         msgId = _is.readInt()
         if msgId in self.callbackMap:
             self.callbackMap[msgId]._onResponse(_is)
+            del self.callbackMap[msgId]
 
     def onError(self, _is):
         msgId = _is.readInt()
@@ -97,6 +98,7 @@ class RmiClient:
         code = _is.readInt()
         if msgId in self.callbackMap:
             self.callbackMap[msgId].onError(what, code)
+            del self.callbackMap[msgId]
 
     def _startMonitorCallbackTimeout(self):
         reactor.callLater(self.timeout, self._onTimeout)
