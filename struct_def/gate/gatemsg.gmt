@@ -30,3 +30,4 @@ struct SMessage:
     double var5
     string var6
     date var7
+    common.publicdef.SeqInt intList

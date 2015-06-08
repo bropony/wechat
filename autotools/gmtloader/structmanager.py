@@ -46,9 +46,37 @@ class StructManager:
         if name in self.typeMap:
             return self.typeMap[name]
 
+        if not scope:
+            return None
+
         newName = scope + "." + name
         if newName in self.typeMap:
             return self.typeMap[newName]
+        else:
+            print("type not found:", newName)
+
+        parent_scopes = re.split(r'\.', scope)
+        child_scopes = re.split(r'\.', name)
+        depth_parent = len(parent_scopes)
+        depth_child = len(child_scopes)
+        if depth_child <= 1:
+            return None
+
+        if depth_parent < depth_child:
+            return None
+
+        for i in range(depth_child - 1):
+            child_idx = -2 - i
+            parent_idx = -1 - i
+            parent_scopes[parent_idx] = child_scopes[child_idx]
+
+        parent_scopes.append(child_scopes[-1])
+        newName = ".".join(parent_scopes)
+        if newName in self.typeMap:
+            return self.typeMap[newName]
+        else:
+            print("Type Not Found:", newName)
+
         return None
 
     def add(self, dataType):

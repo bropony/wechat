@@ -2,13 +2,13 @@ include "common/publicdef.gmt"
 include "gate/gatemsg.gmt"
 
 interface ITest:
-    method getIntList(in int size, out message.common.publicdef.SeqInt intList)
+    method getIntList(in int size, out common.publicdef.SeqInt intList)
     
     method getDictIntString(in int size, 
-                            out message.common.publicdef.DictIntString intStrMap)
+                            out common.publicdef.DictIntString intStrMap)
                             
     method getFloatList(in int size,
-                        out message.common.publicdef.SeqFloat floatList)
+                        out common.publicdef.SeqFloat floatList)
     
-    method signup(in message.gate.gatemsg.SSignup signup,
-                  out message.gate.gatemsg.SLoginReturn loginReturn)
+    method signup(in gatemsg.SSignup signup,
+                  out gatemsg.SLoginReturn loginReturn)

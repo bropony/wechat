@@ -82,6 +82,7 @@ class SMessage:
         self.var5 = float()
         self.var6 = str()
         self.var7 = datetime.datetime.now()
+        self.intList = []
 
     def _read(self, _is):
         self.var1 = _is.readShort()
@@ -91,6 +92,7 @@ class SMessage:
         self.var5 = _is.readDouble()
         self.var6 = _is.readString()
         self.var7 = _is.readDate()
+        message.common.publicdef.readSeqInt(_is, self.intList)
 
     def _write(self, _os):
         _os.writeShort(self.var1)
@@ -100,6 +102,7 @@ class SMessage:
         _os.writeDouble(self.var5)
         _os.writeString(self.var6)
         _os.writeDate(self.var7)
+        message.common.publicdef.writeSeqInt(_os, self.intList)
 
 MessageBlock.register(SMessage)
 
