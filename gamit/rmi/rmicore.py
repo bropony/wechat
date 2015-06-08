@@ -6,7 +6,7 @@
 
 import inspect
 import abc
-import datetime.datetime
+import datetime
 
 from gamit.log.logger import Logger
 from gamit.serialize.serializer import SerializeError, Serializer
