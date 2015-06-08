@@ -8,7 +8,7 @@
 * @desc rmiclient.py
 """
 
-import datetime.datetime
+import datetime
 
 from gamit.log.logger import Logger
 from gamit.message.messagemanager import MessageManager

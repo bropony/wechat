@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/gate/gatemsg.py" afterPath="$PROJECT_DIR$/../message/gate/gatemsg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/gmt2py.py" afterPath="$PROJECT_DIR$/../autotools/gmt2py.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rmi/rmiclient.py" afterPath="$PROJECT_DIR$/rmi/rmiclient.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rmi/rmicore.py" afterPath="$PROJECT_DIR$/rmi/rmicore.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/gmtloader/structmanager.py" afterPath="$PROJECT_DIR$/../autotools/gmtloader/structmanager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -28,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="rmiclient.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rmiclient.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rmi/rmiclient.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.2571042">
+              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -48,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rmicore.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rmicore.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rmi/rmicore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20568335">
+            <state vertical-scroll-proportion="0.0">
               <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
               <folding />
             </state>
@@ -121,11 +120,11 @@
         <option value="$PROJECT_DIR$/timer/schedule.py" />
         <option value="$PROJECT_DIR$/../client_test/application.py" />
         <option value="$PROJECT_DIR$/websocket/ws_connector.py" />
-        <option value="$PROJECT_DIR$/rmi/rmiclient.py" />
         <option value="$PROJECT_DIR$/../autotools/gmt2py.py" />
         <option value="$PROJECT_DIR$/../autotools/gmtloader/structmanager.py" />
         <option value="$PROJECT_DIR$/../message/gate/itest.py" />
         <option value="$PROJECT_DIR$/rmi/rmicore.py" />
+        <option value="$PROJECT_DIR$/rmi/rmiclient.py" />
       </list>
     </option>
   </component>
@@ -779,14 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rmi/rmiclient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -831,8 +822,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rmi/rmicore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20568335">
+        <state vertical-scroll-proportion="0.0">
           <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rmi/rmiclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2571042">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding />
         </state>
       </provider>
