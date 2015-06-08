@@ -107,11 +107,14 @@ class RmiClient:
 
         if self.callbackMap:
             now = datetime.datetime.now()
+            newMap = {}
             for msgId in self.callbackMap:
                 cb = self.callbackMap[msgId]
                 if cb.isExpired(now, self.timeout):
                     cb.onTimeout()
-                    del self.callbackMap[msgId]
+                else:
+                    newMap[msgId] = cb
+            self.callbackMap = newMap
 
         reactor.callLater(self.timeout, self._onTimeout)
 
