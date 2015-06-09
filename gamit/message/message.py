@@ -14,10 +14,13 @@ class MessageBlock:
 
     @classmethod
     def register(cls, messageType):
-        #if messageType.__name__ in cls.__msgMap:
-        #    raise MessageRegisteredError()
-        #
         cls._msgMap[messageType.__name__] = messageType
+
+    @classmethod
+    def findMessageType(cls, name):
+        if name in cls._msgMap:
+            return cls._msgMap[name]
+        return None
 
     def __init__(self, dataType, toIdList=None, data=None):
         if isinstance(dataType, int):
