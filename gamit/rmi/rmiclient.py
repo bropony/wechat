@@ -24,6 +24,7 @@ class RmiClient:
         self.channelType = channelType
         self.isDebug = isDebug
         self.timeout = timeout
+        self.isOpen = False
 
         self.connector = connector
         self.connector.setRmiClient(self)
@@ -32,6 +33,9 @@ class RmiClient:
         self.proxyMap = {}
         self.onOpenCallback = None
         self.openCallArgv = []
+
+        self.onCloseCallback = None
+        self.closeCallArgv = []
 
         SessionManager.addSession(channelType, self)
 
@@ -47,6 +51,10 @@ class RmiClient:
         self.onOpenCallback = cb
         self.openCallArgv = argv
 
+    def setOnCloseCallback(self, cb, *argv):
+        self.onCloseCallback = cb
+        self.closeCallArgv = argv
+
     def addProxy(self, proxy):
         self.proxyMap[proxy.name] = proxy
         proxy.setRmiClient(self)
@@ -59,12 +67,18 @@ class RmiClient:
             return None
 
     def onOpen(self, ws):
+        self.isOpen = True
+
         if self.onOpenCallback:
             cb = self.onOpenCallback
             cb(*self.openCallArgv)
 
     def onClose(self):
-        pass
+        self.isOpen = False
+
+        if self.onCloseCallback:
+            cb = self.onCloseCallback
+            cb(*self.closeCallArgv)
 
     def onMessage(self, payload, isBinary):
         try:

@@ -16,7 +16,7 @@ else:
     # from serverconfig import ServerConfigManager
 
 def loadConfigs():
-    pass
+    return True
     # ServerConfigManager.loadConfig()
 
 if __name__ == "__main__":

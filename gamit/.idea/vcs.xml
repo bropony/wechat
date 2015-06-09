@@ -5,6 +5,7 @@
     <mapping directory="$PROJECT_DIR$/../autotools" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../client_test" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../config" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../dbcache" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../gate" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../message" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../staticdata" vcs="svn" />

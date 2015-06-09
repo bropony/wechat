@@ -18,6 +18,7 @@ class RmiServer:
         self.acceptor.setRmiServer(self)
         self.interval = loopInterval
         self.isDebug = isDebug
+        self.beforeInvoke = None
 
         self.servantMap = {}
         self.connIdSet = set()
@@ -26,6 +27,9 @@ class RmiServer:
     def addServant(self, servant):
         self.servantMap[servant.name] = servant
         servant.setRmiServer(self)
+
+    def setBeforeInvoke(self, beforInvoke):
+        self.beforeInvoke = beforInvoke
 
     def start(self):
         self.acceptor.start(self.isDebug)
@@ -71,6 +75,12 @@ class RmiServer:
 
     def onInvoke(self, connId, _is):
         try:
+            if self.beforeInvoke:
+                bi = self.beforeInvoke
+                what = bi()
+                if what:
+                    raise Exception(what)
+
             interface = _is.readString()
             method = _is.readString()
             if interface in self.servantMap:
