@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-    <!-- database connection config -->
-    <database name="gamit" ip="db_ip1" port="27017" username="" passwd=""></database>
-
     <!-- table configs -->
-    <table name="user" index="account" write_only="false"></table>
+    <table name="user" struct="TUesr" index="account" insert_only="false"></table>
 </root>

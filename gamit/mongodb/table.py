@@ -9,21 +9,29 @@
 """
 from pymongo import ASCENDING
 from gamit.message.message import MessageBlock
+from gamit.log.logger import Logger
 
-class Table:
-    def __init__(self, name, index, insert_only):
-        self.msgType = MessageBlock.findMessageType(name)
+class MongoTable:
+    def __init__(self, name, msgName, index, insert_only):
         self.table = None
         self.name = name
+        self.msgName = msgName
         self.index = index
         self.insertOnly = insert_only
 
+        if not self.msgName:
+            self.msgName = self.name
+
+        self.msgType = MessageBlock.findMessageType(self.msgName)
+
     def initTable(self, db):
         if not self.msgType:
+            Logger.logInfo("struct {} is not defined".format(self.msgName))
             return False
 
         if not self.name in db.collection_names():
-            db[self.name].create_index([(self.index, ASCENDING)])
+            if self.index:
+                db[self.name].create_index([(self.index, ASCENDING)])
 
         self.table = db[self.name]
         return True

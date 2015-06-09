@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" endco?>
 <root>
     <public_ip>127.0.0.1</public_ip>
     <private_ip>127.0.0.1</private_ip>
