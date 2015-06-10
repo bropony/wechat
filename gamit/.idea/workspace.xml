@@ -12,6 +12,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mongodb/database.py" afterPath="$PROJECT_DIR$/mongodb/database.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" afterPath="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" afterPath="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/db/main_db.py" afterPath="$PROJECT_DIR$/../message/db/main_db.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/dbconfig/main_db_config.xml" afterPath="$PROJECT_DIR$/../staticdata/dbconfig/main_db_config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/settings/proxy.py" afterPath="$PROJECT_DIR$/../gate/settings/proxy.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rmi/rmicore.py" afterPath="$PROJECT_DIR$/rmi/rmicore.py" />
@@ -37,24 +38,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dbcache/application.py">
+      <file leaf-file-name="servant.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dbcache/settings/servant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0666666">
-              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
               <folding>
-                <element signature="e#111#147#0" expanded="true" />
+                <element signature="e#103#138#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dbcache.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dbcache/dbcache.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.633333">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -81,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rmicore.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rmicore.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rmi/rmicore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59133965">
-              <caret line="32" column="70" selection-start-line="32" selection-start-column="70" selection-end-line="32" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
               <folding>
                 <element signature="e#31#45#0" expanded="true" />
               </folding>
@@ -125,11 +116,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_db.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main_db.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../message/db/main_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.48849797">
+              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -138,11 +129,21 @@
       <file leaf-file-name="idbtestimpl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.4333334">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state vertical-scroll-proportion="-20.266666">
+              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
               <folding>
                 <element signature="e#112#157#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="table.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mongodb/table.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,7 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../gate/core/MessageHelper.py" />
         <option value="$PROJECT_DIR$/../gate/core/messagehelper.py" />
         <option value="$PROJECT_DIR$/serialize/serializer.py" />
         <option value="$PROJECT_DIR$/../client_test/messagehandler/testmessagehandler.py" />
@@ -210,6 +210,7 @@
         <option value="$PROJECT_DIR$/../gate/application.py" />
         <option value="$PROJECT_DIR$/../dbcache/application.py" />
         <option value="$PROJECT_DIR$/rmi/rmicore.py" />
+        <option value="$PROJECT_DIR$/../message/db/main_db.py" />
       </list>
     </option>
   </component>
@@ -356,6 +357,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rmi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mongodb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -868,14 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mongodb/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="52" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rmi/protocol.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -972,16 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dbcache/settings/servant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-          <folding>
-            <element signature="e#103#138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../dbcache/application.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.0666666">
@@ -1028,32 +1025,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../message/db/idbtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="16" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../message/db/main_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4333334">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="e#112#157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rmi/rmiserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1064,11 +1035,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rmi/rmicore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59133965">
-          <caret line="32" column="70" selection-start-line="32" selection-start-column="70" selection-end-line="32" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
           <folding>
             <element signature="e#31#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dbcache/settings/servant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+          <folding>
+            <element signature="e#103#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.266666">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+          <folding>
+            <element signature="e#112#157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mongodb/table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../message/db/idbtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="16" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../message/db/main_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48849797">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

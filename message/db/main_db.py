@@ -25,6 +25,7 @@ class AnRmiTest:
         self.shortDesc = _is.readString()
 
     def _write(self, _os):
+        print("Write AnRmiTest Out")
         self.message._write(_os)
         _os.writeString(self.ip)
         _os.writeString(self.shortDesc)
