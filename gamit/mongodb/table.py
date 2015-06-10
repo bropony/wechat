@@ -36,83 +36,112 @@ class MongoTable:
         self.table = db[self.name]
         return True
 
+    def raiseError(self, ex):
+        what = "DBError: " + ex.args[0]
+        code = 10000
+        raise Exception(what, code)
+
     def findMany(self, key):
-        res = []
-        for doc in self.table.find({self.index: key}):
-            msg = self.msgType()
-            msg._fromJson(doc)
-            res.append(msg)
-        return res
+        try:
+            res = []
+            for doc in self.table.find({self.index: key}):
+                msg = self.msgType()
+                msg._fromJson(doc)
+                res.append(msg)
+            return res
+        except Exception as ex:
+            self.raiseError(ex)
 
     def findOne(self, key):
-        doc = self.table.find_one({self.index: key})
-        if doc:
-            res = self.msgType()
-            res._fromJson(doc)
-            return res
+        try:
+            doc = self.table.find_one({self.index: key})
+            if doc:
+                res = self.msgType()
+                res._fromJson(doc)
+                return res
 
-        return None
+            return None
+        except Exception as ex:
+            self.raiseError(ex)
 
     def findManyWithQuey(self, query):
-        res = []
-        if not isinstance(query, dict):
-            return res
+        try:
+            res = []
+            if not isinstance(query, dict):
+                return res
 
-        for doc in self.table.find(query):
-            msg = self.msgType()
-            msg._fromJson(doc)
-            res.append(msg)
-        return res
+            for doc in self.table.find(query):
+                msg = self.msgType()
+                msg._fromJson(doc)
+                res.append(msg)
+            return res
+        except Exception as ex:
+            self.raiseError(ex)
 
     def findOneWithQuery(self, query):
         if not isinstance(query, dict):
             return None
 
-        doc = self.table.find_one(query)
-        if doc:
-            msg = self.msgType()
-            msg._fromJson(doc)
-            return msg
+        try:
+            doc = self.table.find_one(query)
+            if doc:
+                msg = self.msgType()
+                msg._fromJson(doc)
+                return msg
 
-        return None
+            return None
+        except Exception as ex:
+            self.raiseError(ex)
 
     def update(self, data):
         if not isinstance(data, list) and not isinstance(data, tuple):
             data = [data]
 
-        docs = []
-        for rec in data:
-            if not isinstance(rec, self.msgType):
-                raise Exception("Not all record passed in a instance of {}".format(self.msgType.name))
-            docs.append(rec._toJson())
+        try:
+            docs = []
+            for rec in data:
+                if not isinstance(rec, self.msgType):
+                    raise Exception("Not all record passed in a instance of {}".format(self.msgType.name))
+                docs.append(rec._toJson())
 
-        if self.insertOnly:
-            self.table.insert_manay(docs)
-        else:
-            for doc in docs:
-                self.table.replace_one({self.index: doc[self.index]}, doc, upsert=True)
+            if self.insertOnly:
+                self.table.insert_manay(docs)
+            else:
+                for doc in docs:
+                    self.table.replace_one({self.index: doc[self.index]}, doc, upsert=True)
+        except Exception as ex:
+            self.raiseError(ex)
 
     def updateWithQuery(self, filter, update, upsert, update_one=False):
-        if update_one:
-            self.table.update_one(filter, update, upsert)
-        else:
-            self.table.update_many(filter, update, upsert)
+        try:
+            if update_one:
+                self.table.update_one(filter, update, upsert)
+            else:
+                self.table.update_many(filter, update, upsert)
+        except Exception as ex:
+            self.raiseError(ex)
 
     def save(self, data):
         if not isinstance(data, list) and not isinstance(data, tuple):
             data = [data]
 
-        docs = []
-        for rec in data:
-            if not isinstance(rec, self.msgType):
-                raise Exception("Not all record passed in a instance of {}".format(self.msgType.name))
-            docs.append(rec._toJson())
+        try:
+            docs = []
+            for rec in data:
+                if not isinstance(rec, self.msgType):
+                    raise Exception("Not all record passed in a instance of {}".format(self.msgType.name))
+                docs.append(rec._toJson())
 
-        self.table.insert_many(docs)
+            self.table.insert_many(docs)
+        except Exception as ex:
+            self.raiseError(ex)
 
     def delete(self, filter, delete_one=False):
-        if delete_one:
-            self.table.delete_one(filter)
-        else:
-            self.table.delete_manay(filter)
-########
+        try:
+            if delete_one:
+                self.table.delete_one(filter)
+            else:
+                self.table.delete_manay(filter)
+        except Exception as ex:
+            self.raiseError(ex)
+# end of class Table
