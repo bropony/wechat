@@ -90,7 +90,7 @@ class MongoTable:
             self.table.insert_manay(docs)
         else:
             for doc in docs:
-                self.table.update_one({self.index: doc[self.index]}, doc, upsert=True)
+                self.table.replace_one({self.index: doc[self.index]}, doc, upsert=True)
 
     def updateWithQuery(self, filter, update, upsert, update_one=False):
         if update_one:
