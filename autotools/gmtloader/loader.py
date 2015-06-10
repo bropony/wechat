@@ -174,7 +174,7 @@ class Loader:
         self.includeAllowed = True
         self.types = []
         self.typeMap = {}
-        self.includes = set()
+        self.includes = []
         self.hasInterface = False
 
         self.parsers = dict()
@@ -259,15 +259,20 @@ class Loader:
         # end of while
         fin.close()
 
+    def __addInclude(self, scope):
+        if scope not in self.includes:
+            self.includes.append(scope)
+
     def parseInclude(self, line, fin):
         m = re.match(r'^include\s*"([^"]+)"$', line)
         if not m:
             self.raiseExp("Syntax error at line %d" % fin.lno)
         file = m.group(1)
         loader = self.structManager.loadFile(file)
-        self.includes.add(loader.scope)
+
         for scope in loader.includes:
-            self.includes.add(scope)
+            self.__addInclude(scope)
+        self.__addInclude(loader.scope)
 
         return self.readline(fin)
 

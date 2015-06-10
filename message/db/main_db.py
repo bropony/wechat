@@ -10,8 +10,8 @@
 
 import datetime
 from gamit.message.message import MessageBlock
-import message.gate.gatemsg
 import message.common.publicdef
+import message.gate.gatemsg
 
 
 class AnRmiTest:
