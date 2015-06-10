@@ -54,6 +54,7 @@ class DbCacheConnectCallback:
         if proxy:
             msg = AnRmiTest()
             msg.ip = self.channel.ip
+            msg.shortDesc = "I wanna say hey..."
             proxy.sayhello(IDbTest_Sayhello_callback(), msg)
 
     def onClose(self):
