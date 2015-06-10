@@ -14,6 +14,9 @@ from gamit.rmi.rmicore import *
 from gamit.serialize.serializer import Serializer
 from gamit.serialize.datatype import RmiDataType
 import abc
+import message.db.main_db
+import message.common.publicdef
+import message.gate.gatemsg
 
 
 class IDbTest_Sayhello_Request(RmiRequestBase):

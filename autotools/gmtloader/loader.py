@@ -174,7 +174,7 @@ class Loader:
         self.includeAllowed = True
         self.types = []
         self.typeMap = {}
-        self.includes = []
+        self.includes = set()
         self.hasInterface = False
 
         self.parsers = dict()
@@ -265,7 +265,9 @@ class Loader:
             self.raiseExp("Syntax error at line %d" % fin.lno)
         file = m.group(1)
         loader = self.structManager.loadFile(file)
-        self.includes.append(loader.scope)
+        self.includes.add(loader.scope)
+        for scope in loader.includes:
+            self.includes.add(scope)
 
         return self.readline(fin)
 
