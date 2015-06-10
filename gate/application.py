@@ -55,7 +55,7 @@ class Application:
         self.scheduler.start()
         SessionManager.startHeartBeats()
 
-        for _, client in self.clientMap:
+        for _, client in self.clientMap.items():
             client.start()
 
         reactor.run()
