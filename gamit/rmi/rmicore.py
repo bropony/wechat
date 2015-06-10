@@ -30,6 +30,7 @@ class RmiServant:
 
         msgId = 0
         try:
+            Logger.logInfo("Incomming", "{}.{}".format(self.name, name))
             msgId = _is.readInt()
             self.methodMap[name](connId, msgId, _is)
         except Exception as ex:
