@@ -115,7 +115,7 @@ class Application:
 
         connector = Connector(channel.ip, channel.port)
         rmiClient = RmiClient(channel.type, connector, ServerConfigManager.isDebug)
-        dbConnCb = DbCacheConnectCallback()
+        dbConnCb = DbCacheConnectCallback(channel)
         rmiClient.setOnOpenCallback(dbConnCb, True)
         rmiClient.setOnCloseCallback(dbConnCb, False)
 
