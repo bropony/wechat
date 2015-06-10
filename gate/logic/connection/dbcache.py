@@ -10,6 +10,11 @@
 """
 
 from gamit.log.logger import Logger
+from gamit.rmi.proxymanager import ProxyManager
+from gamit.app import apptype as AppType
+
+from logic.dbback.idbtestcb import IDbTest_Sayhello_callback
+from message.db.main_db import AnRmiTest
 
 class ConnectionInfo:
     _isDbCacheOpen = False
@@ -34,7 +39,7 @@ class ConnectionInfo:
 class DbCacheConnectCallback:
     def __call__(self, isOpenCallback):
         if isOpenCallback:
-            self.onCallback()
+            self.onOpen()
         else:
             self.onClose()
 
@@ -44,6 +49,12 @@ class DbCacheConnectCallback:
     def onOpen(self):
         Logger.logInfo("ConnectionInfo", "Connected to dbcache")
         ConnectionInfo.setDbCacheOpen(True)
+
+        proxy = ProxyManager.getProxy(AppType.DBCACHE, "IDbTest")
+        if proxy:
+            msg = AnRmiTest()
+            msg.ip = "localhost"
+            proxy.sayhello(IDbTest_Sayhello_callback(), msg)
 
     def onClose(self):
         Logger.logInfo("ConnectionInfo", "dbcache connection closed")

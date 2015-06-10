@@ -39,9 +39,16 @@ class __Database:
         return True
 
     def findTable(self, tableName):
-        if tableName in self.tableMap:
-            return self.tableMap[tableName]
-        return None
+        return self.tableMap.get(tableName)
+
+    def findTableByMessageTypeName(self, msgName):
+        return self.tableMap.get(msgName)
+
+    def findTableByMessageObj(self, msgObj):
+        return self.tableMap.get(msgObj.__class__.__name__)
+
+    def findTableByMessageType(self, msgType):
+        return self.tableMap.get(msgType.__name__)
 
     def start(self):
         self.mongo = MongoClient(self.dbip, self.dbport)
@@ -134,6 +141,7 @@ class __Database:
 
         table = MongoTable(name, struct, index, insertOnly)
         self.tableMap[name] = table
+        self.tableMap[struct] = table
 
         return True
 # end of __Database

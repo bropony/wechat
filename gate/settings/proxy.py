@@ -9,8 +9,10 @@
 """
 
 from gamit.singleton.singleton import Singleton
+from message.db.idbtest import IDbTestProxy
 
 class ProxySetting(Singleton):
     @staticmethod
     def initDbCacheProxy(client):
-        pass
+        client.addProxy(IDbTestProxy("IDbTest"))
+# ###

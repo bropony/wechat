@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
     <!-- table configs -->
-    <table name="user" struct="TUesr" index="account" insert_only="false"></table>
+    <table name="an_rmi_test" struct="AnRmiTest" index="ip" insert_only="false"></table>
 </root>
