@@ -11,12 +11,15 @@
 from message.db.idbtest import IDbTestServant
 from message.db.main_db import AnRmiTest
 from gamit.mongodb.database import MongoDatabase
+from gamit.log.logger import Logger
 
 class IDbTestImpl(IDbTestServant):
     def __init__(self, name):
         super().__init__(name)
 
     def sayhello(self, hello, _request):
+        Logger.logInfo("IDbTestImpl", "sayhello")
+
         table = MongoDatabase.findTableByMessageType(AnRmiTest)
         if not table:
             raise Exception("Table Not Found")
@@ -26,4 +29,5 @@ class IDbTestImpl(IDbTestServant):
         if not res:
             raise Exception("Db Engine Error")
 
+        Logger.logInfo("IDbTestImpl.sayhello", "response")
         _request.response(res)
