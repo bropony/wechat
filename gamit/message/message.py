@@ -1,7 +1,7 @@
 __author__ = 'mahanzhou'
 
 from gamit.serialize.serializer import Serializer
-from  gamit.serialize.datatype import RmiDataType
+from gamit.serialize.datatype import RmiDataType
 
 class MessageRegisteredError(Exception):
     pass
