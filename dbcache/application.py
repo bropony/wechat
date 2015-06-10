@@ -54,7 +54,7 @@ class Application:
 
     def stop(self):
         self.server.stop()
-        for _, client in self.clientMap:
+        for _, client in self.clientMap.items():
             client.stop()
 
         MongoDatabase.stop()
