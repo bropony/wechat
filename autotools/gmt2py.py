@@ -280,6 +280,8 @@ class Gmt2Py:
         #capName = listType.name.capitalize()
         capName = listType.name
 
+        self.write("{} = list".format(capName))
+        self.writeEmptyLine()
         self.write("def read{}(_is, valList):".format(capName))
         self.indent = 1
         self.write("dataSize = _is.readInt()")
@@ -364,6 +366,8 @@ class Gmt2Py:
 
     def parseDict(self, dictType):
         self.indent = 0
+        self.write("{} = dict".format(dictType.name))
+        self.writeEmptyLine()
         self.write("def read{}(_is, valDict):".format(dictType.name))
         self.indent = 1
         self.write("dataSize = _is.readInt()")

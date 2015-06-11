@@ -30,6 +30,9 @@ class Logger:
 
     @classmethod
     def updateLogFile(cls):
+        if not cls._logdir:
+            return
+
         dt = datetime.date.today()
         filename = "{:04d}-{:02d}-{:02d}.log".format(dt.year, dt.month, dt.day)
         if filename != cls._logfilepath:
@@ -48,15 +51,30 @@ class Logger:
             return
 
         cls.updateLogFile()
-        cls._logger.msg(*argv, logLevel=logging.DEBUG)
+
+        if not cls._logfile:
+            sys.stdout.write(*argv)
+            sys.stdout.write("\n")
+        else:
+            cls._logger.msg(*argv, logLevel=logging.DEBUG)
 
     @classmethod
     def logInfo(cls, *argv):
         cls.updateLogFile()
-        cls._logger.msg(*argv, logLevel=logging.INFO)
+
+        if not cls._logfile:
+            sys.stdout.write(*argv)
+            sys.stdout.write("\n")
+        else:
+            cls._logger.msg(*argv, logLevel=logging.INFO)
 
     @classmethod
     def log(cls, *argv, logLevel=logging.INFO):
         cls.updateLogFile()
-        cls._logger.msg(*argv, logLevel=logLevel)
+
+        if not cls._logfile:
+            sys.stdout.write(*argv)
+            sys.stdout.write("\n")
+        else:
+            cls._logger.msg(*argv, logLevel=logLevel)
 

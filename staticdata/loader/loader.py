@@ -17,4 +17,4 @@ def load(jsFile, loader):
 
     res = loader(js)
 
-    return js
+    return res

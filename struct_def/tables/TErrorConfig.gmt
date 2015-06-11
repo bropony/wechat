@@ -1,0 +1,9 @@
+#
+# This File Is Auto-Generated. Please DON'T Modify It.
+#
+struct TErrorConfig:
+    string errorName
+    int errorCode
+    string errorStr
+
+list<TErrorConfig> SeqTErrorConfig
