@@ -1,17 +1,7 @@
 [
     {
-        "errorCode": 10000,
-        "errorStr": "error what",
-        "errorName": "error_what"
-    },
-    {
+        "errorStr": "被禁用的方法",
         "errorCode": 10001,
-        "errorStr": "error code",
-        "errorName": "error_code "
-    },
-    {
-        "errorCode": 10002,
-        "errorStr": "中文哦，亲",
-        "errorName": "error_chinese"
+        "errorName": "ErrorDb_Deprecated"
     }
 ]

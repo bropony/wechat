@@ -13,11 +13,15 @@ from message.db.main_db import AnRmiTest
 from gamit.mongodb.database import MongoDatabase
 from gamit.log.logger import Logger
 
+from staticdata.manager.ErrorCodeManager import ErrorCodeManager
+
 class IDbTestImpl(IDbTestServant):
     def __init__(self, name):
         super().__init__(name)
 
     def sayhello(self, hello, _request):
+        ErrorCodeManager.raiseError("ErrorDb_Deprecated")
+        
         Logger.logInfo("IDbTestImpl", "sayhello")
 
         table = MongoDatabase.findTableByMessageType(AnRmiTest)
