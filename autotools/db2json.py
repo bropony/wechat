@@ -37,7 +37,7 @@ def table2json(name, fields, data, outdir):
         res.append(js)
 
     fout = open(jsFile, "w")
-    json.dump(res, fout, indent="    ")
+    json.dump(res, fout, indent="    ", ensure_ascii=False)
     fout.close()
 
 def main():
@@ -73,7 +73,7 @@ def main():
         print("database is not specified")
         sys.exit()
 
-    conn = MySQLdb.connect(host=host, user=username, passwd=passwd, db=database, port=port)
+    conn = MySQLdb.connect(host=host, user=username, passwd=passwd, db=database, port=port, charset='utf8')
     cursor = conn.cursor()
 
     cursor.execute("show tables")

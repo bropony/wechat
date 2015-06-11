@@ -1,12 +1,17 @@
 [
     {
+        "errorName": "error_chinese",
+        "errorStr": "ÖÐÎÄÅ¶£¬Ç×",
+        "errorCode": 10002
+    },
+    {
         "errorName": "error_code ",
-        "errorCode": 10001,
-        "errorStr": "error code"
+        "errorStr": "error code",
+        "errorCode": 10001
     },
     {
         "errorName": "error_what",
-        "errorCode": 10000,
-        "errorStr": "error what"
+        "errorStr": "error what",
+        "errorCode": 10000
     }
 ]

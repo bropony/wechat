@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c74105f1-3c92-4e22-82fc-7b3a15a99860" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../autotools/db" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../autotools/db/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../autotools/db2gmt.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../autotools/db2json.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../staticdata/loader/manager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py" afterPath="$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/dataloader.py" afterPath="$PROJECT_DIR$/../staticdata/dataloader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/gmt2py.py" afterPath="$PROJECT_DIR$/../autotools/gmt2py.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/db2gmt.py" afterPath="$PROJECT_DIR$/../autotools/db2gmt.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/db2json.py" afterPath="$PROJECT_DIR$/../autotools/db2json.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/loader/loader.py" afterPath="$PROJECT_DIR$/../staticdata/loader/loader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/logger.py" afterPath="$PROJECT_DIR$/log/logger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../staticdata/data/t_error_config.json" afterPath="$PROJECT_DIR$/../staticdata/data/t_error_config.json" />
     </list>
     <ignored path="gamit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,18 +26,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="db2gmt.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../autotools/db2gmt.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-              <folding>
-                <element signature="e#102#135#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TErrorConfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../message/tables/TErrorConfig.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ErrorCodeManager.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ErrorCodeManager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82138026">
+            <state vertical-scroll-proportion="0.0">
               <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
               <folding>
                 <element signature="e#122#150#0" expanded="true" />
@@ -89,21 +70,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="singleton.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/singleton/singleton.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="rmicore.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rmi/rmicore.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="67" column="24" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db2gmt.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../autotools/db2gmt.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="113" column="106" selection-start-line="113" selection-start-column="90" selection-end-line="113" selection-end-column="106" />
+              <folding>
+                <element signature="e#102#135#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db2json.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../autotools/db2json.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gmt2py.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="369" column="29" selection-start-line="369" selection-start-column="29" selection-end-line="369" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -121,21 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loader.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="loader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../staticdata/loader/loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gmt2py.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="369" column="29" selection-start-line="369" selection-start-column="29" selection-end-line="369" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.3856563">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -194,16 +187,16 @@
         <option value="$PROJECT_DIR$/../autotools/gmtloader/loader.py" />
         <option value="$PROJECT_DIR$/../gate/settings/message.py" />
         <option value="$PROJECT_DIR$/message/message.py" />
-        <option value="$PROJECT_DIR$/../autotools/db2json.py" />
         <option value="$PROJECT_DIR$/../message/tables/TErrorConfig.py" />
         <option value="$PROJECT_DIR$/../autotools/gmt2py.py" />
-        <option value="$PROJECT_DIR$/../autotools/db2gmt.py" />
         <option value="$PROJECT_DIR$/../staticdata/loader.py" />
         <option value="$PROJECT_DIR$/../staticdata/dataloader.py" />
         <option value="$PROJECT_DIR$/log/logger.py" />
-        <option value="$PROJECT_DIR$/../staticdata/loader/loader.py" />
         <option value="$PROJECT_DIR$/../staticdata/loader/manager.py" />
         <option value="$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py" />
+        <option value="$PROJECT_DIR$/../autotools/db2gmt.py" />
+        <option value="$PROJECT_DIR$/../autotools/db2json.py" />
+        <option value="$PROJECT_DIR$/../staticdata/loader/loader.py" />
       </list>
     </option>
   </component>
@@ -256,6 +249,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="PyCharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyCharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="staticdata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyCharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="staticdata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="loader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -809,39 +834,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../autotools/db2json.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-          <folding>
-            <element signature="e#104#137#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../staticdata/data/t_error_config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.464286">
           <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="369" column="29" selection-start-line="369" selection-start-column="29" selection-end-line="369" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../autotools/db2gmt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-          <folding>
-            <element signature="e#102#135#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,14 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="24" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../staticdata/dataloader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -887,10 +876,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../staticdata/loader/loader.py">
+    <entry file="file://$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding>
+            <element signature="e#122#150#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../autotools/gmt2py.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="369" column="29" selection-start-line="369" selection-start-column="29" selection-end-line="369" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../autotools/db2gmt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="106" selection-start-line="113" selection-start-column="90" selection-end-line="113" selection-end-column="106" />
+          <folding>
+            <element signature="e#102#135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../autotools/db2json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -905,13 +922,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py">
+    <entry file="file://$PROJECT_DIR$/../staticdata/dataloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82138026">
-          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-          <folding>
-            <element signature="e#122#150#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../staticdata/loader/loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3856563">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
