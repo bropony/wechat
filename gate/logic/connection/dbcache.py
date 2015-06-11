@@ -53,7 +53,7 @@ class DbCacheConnectCallback:
         proxy = ProxyManager.getProxy(AppType.DBCACHE, "IDbTest")
         if proxy:
             msg = AnRmiTest()
-            msg.ip = self.channel.ip
+            msg.ip = "168.168.168.168"
             msg.shortDesc = "I wanna say hey..."
             proxy.sayhello(IDbTest_Sayhello_callback(), msg)
 
