@@ -17,4 +17,9 @@ def loadfile(jsFile, loader):
     fjs.close()
 
     res = loader(js)
+
+    for r in res:
+        for key, val in r.__dict__.items():
+            print("'{}': '{}'".format(key, val))
+
     return res
