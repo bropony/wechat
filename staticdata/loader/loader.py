@@ -13,6 +13,7 @@ import json
 def loadfile(jsFile, loader):
     fjs = open(jsFile, encoding='utf8')
     js = json.load(fjs)
+    print(js)
     fjs.close()
 
     res = loader(js)
