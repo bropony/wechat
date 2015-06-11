@@ -18,7 +18,7 @@ class IDbTest_Sayhello_callback(IDbTest_Sayhello_Response):
             print("{}: {}".format(*item))
 
     def onError(self, what, code):
-        Logger.logInfo("IDbTest_Sayhello_callback.onError", what, ", ", code)
+        Logger.logInfo("IDbTest_Sayhello_callback.onError", "{}, {}".format(what, code))
 
     def onTimeout(self):
         Logger.logInfo("IDbTest_Sayhello_callback", "Timeout")
