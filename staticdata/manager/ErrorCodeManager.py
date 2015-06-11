@@ -32,6 +32,7 @@ class __ErrorCodeManager(ManagerBase):
             raise Exception(errorName, 0)
 
         config = self.data[errorName]
+        print(config.errorStr, ", ", config.errorCode)
         raise Exception(config.errorStr, config.errorCode)
 
 # manager instance
