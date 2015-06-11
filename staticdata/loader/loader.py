@@ -11,7 +11,7 @@
 import json
 
 def loadfile(jsFile, loader):
-    fjs = open(jsFile)
+    fjs = open(jsFile, encoding='utf8')
     js = json.load(fjs)
     fjs.close()
 

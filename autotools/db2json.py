@@ -36,7 +36,7 @@ def table2json(name, fields, data, outdir):
             js[fields[i]] = rec[i]
         res.append(js)
 
-    fout = open(jsFile, "w")
+    fout = open(jsFile, "w", encoding='utf-8')
     json.dump(res, fout, indent="    ", ensure_ascii=False)
     fout.close()
 
