@@ -16,7 +16,7 @@ class __ErrorCodeManager(ManagerBase):
         super().__init__(SeqTErrorConfigFromJson)
 
     def loadConfig(self, filepath):
-        configs = load(filepath, self.loader)
+        configs = loadfile(filepath, self.loader)
         self.data = {}
 
         for config in configs:

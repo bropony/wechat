@@ -8,7 +8,7 @@
 * @desc manager.py
 """
 
-from staticdata.loader.loader import load
+from staticdata.loader.loader import loadfile
 import abc
 
 class ManagerBase(metaclass=abc.ABCMeta):
@@ -20,5 +20,5 @@ class ManagerBase(metaclass=abc.ABCMeta):
         self.loader = loader
 
     def loadConfig(self, filepath):
-        self.data = load(filepath, self.loader)
+        self.data = loadfile(filepath, self.loader)
 # end of ManagerBase

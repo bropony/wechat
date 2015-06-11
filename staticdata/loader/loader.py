@@ -10,7 +10,7 @@
 
 import json
 
-def load(jsFile, loader):
+def loadfile(jsFile, loader):
     fjs = open(jsFile)
     js = json.load(fjs)
     print(js)
