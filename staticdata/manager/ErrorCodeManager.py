@@ -8,7 +8,7 @@
 * @desc ErrorCodeManager.py
 """
 
-from loader.manager import *
+from staticdata.loader.manager import *
 from message.tables.TErrorConfig import SeqTErrorConfigFromJson
 
 class __ErrorCodeManager(ManagerBase):
