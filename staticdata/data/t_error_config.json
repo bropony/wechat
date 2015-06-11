@@ -1,0 +1,12 @@
+[
+    {
+        "errorName": "error_code ",
+        "errorCode": 10001,
+        "errorStr": "error code"
+    },
+    {
+        "errorName": "error_what",
+        "errorCode": 10000,
+        "errorStr": "error what"
+    }
+]
