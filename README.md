@@ -25,7 +25,7 @@ This engine depends on Twisted and AutobahnPython.
              This is an advanced version of twisted.internet.reactor.callLater
              which can deal with FUTURE time long than a day
              
-     -websocket: A network implementation based on WebSocket(AutobahnPython)
+     *websocket: A network implementation based on WebSocket(AutobahnPython)
      
 * ##autotools
     Some automation tools.
