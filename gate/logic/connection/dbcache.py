@@ -8,10 +8,10 @@
 * @desc dbcache.py
 
 """
-from twisted.internet import reactor
 from gamit.log.logger import Logger
 from gamit.rmi.proxymanager import ProxyManager
 from gamit.app import apptype as AppType
+from settings.servant import ServantSetting
 
 from logic.dbback.idbtestcb import IDbTest_Sayhello_callback
 from message.db.main_db import AnRmiTest
@@ -52,11 +52,11 @@ class DbCacheConnectCallback:
 
         proxy = ProxyManager.getProxy(AppType.DBCACHE, "IDbTest")
         if proxy:
-            for i in range(1, 100):
+            for i in range(100):
                 msg = AnRmiTest()
                 msg.ip = "168.168.168.168"
                 msg.shortDesc = "I wanna say hey..."
-                msg.passedTimes = i
+                msg.passedTimes = i + ServantSetting.getChannelId() * 100
                 proxy.sayhello(IDbTest_Sayhello_callback(), msg)
 
     def onClose(self):
