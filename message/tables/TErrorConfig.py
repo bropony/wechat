@@ -14,32 +14,32 @@ from gamit.message.message import MessageBlock
 
 class TErrorConfig:
     def __init__(self):
-        self.errorName = str()
         self.errorCode = int()
+        self.errorName = str()
         self.errorStr = str()
 
     def _read(self, _is):
-        self.errorName = _is.readString()
         self.errorCode = _is.readInt()
+        self.errorName = _is.readString()
         self.errorStr = _is.readString()
 
     def _write(self, _os):
-        _os.writeString(self.errorName)
         _os.writeInt(self.errorCode)
+        _os.writeString(self.errorName)
         _os.writeString(self.errorStr)
 
     def _fromJson(self, js):
-        if 'errorName' in js and isinstance(js['errorName'], str):
-            self.errorName = js['errorName']
         if 'errorCode' in js and isinstance(js['errorCode'], int):
             self.errorCode = js['errorCode']
+        if 'errorName' in js and isinstance(js['errorName'], str):
+            self.errorName = js['errorName']
         if 'errorStr' in js and isinstance(js['errorStr'], str):
             self.errorStr = js['errorStr']
 
     def _toJson(self):
         js = dict()
-        js['errorName'] = self.errorName
         js['errorCode'] = self.errorCode
+        js['errorName'] = self.errorName
         js['errorStr'] = self.errorStr
         return js
 

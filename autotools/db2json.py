@@ -12,6 +12,7 @@ from optparse import OptionParser
 import sys
 import os
 import re
+import datetime
 import MySQLdb
 import json
 
@@ -33,7 +34,10 @@ def table2json(name, fields, data, outdir):
     for rec in data:
         js = {}
         for i in range(fieldSize):
-            js[fields[i]] = rec[i]
+            if isinstance(rec[i], datetime.datetime) or isinstance(rec[i], datetime.date):
+                js[fields[i]] = rec[i].strftime("%Y-%m-%d %H:%M:%S")
+            else:
+                js[fields[i]] = rec[i]
         res.append(js)
 
     fout = open(jsFile, "w", encoding='utf-8')

@@ -163,16 +163,22 @@ class Gmt2Py:
     def genJsonReadExpr(self, dataType, varExpr, varName, currentScope):
         dataTypeName = self.getTypePyName(dataType, currentScope)
         jsExpr = "js['{}']".format(varName)
-        if isinstance(dataType, List):
-            self.write("if '{}' in js and isinstance({}, list):".format(varName, jsExpr))
-        elif isinstance(dataType, Dict):
-            self.write("if '{}' in js and isinstance({}, dict):".format(varName, jsExpr))
-        else:
-            self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
+        #if isinstance(dataType, List):
+        #    self.write("if '{}' in js and isinstance({}, list):".format(varName, jsExpr))
+        #elif isinstance(dataType, Dict):
+        #    self.write("if '{}' in js and isinstance({}, dict):".format(varName, jsExpr))
+        #else:
+        #    self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
+        self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
 
         self.indent += 1
         if isinstance(dataType, BasicType):
             self.write("{} = {}".format(varExpr, jsExpr))
+            if dataType.name == "date":
+                self.indent -= 1
+                self.write("elif '{}' in js and isinstance({}, datetime.datetime):".format(varName, varExpr))
+                self.indent += 1
+                self.write("{} = datetime.datetime.strptime({}, '%Y-%m-%d %H:%M:%S')".format(varExpr, jsExpr))
         elif isinstance(dataType, Struct):
             self.write("{}._fromJson({})".format(varExpr, jsExpr))
         elif isinstance(dataType, List) or isinstance(dataType, Dict):
