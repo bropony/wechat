@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c74105f1-3c92-4e22-82fc-7b3a15a99860" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" afterPath="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/gate.py" afterPath="$PROJECT_DIR$/../gate/gate.py" />
     </list>
     <ignored path="gamit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbcache.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dbcache.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gate/logic/connection/dbcache.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6657646">
+            <state vertical-scroll-proportion="0.0">
               <caret line="56" column="67" selection-start-line="56" selection-start-column="67" selection-end-line="56" selection-end-column="67" />
               <folding>
                 <element signature="e#103#138#0" expanded="true" />
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gate.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gate.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gate/gate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.4600812">
+              <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -185,11 +185,11 @@
         <option value="$PROJECT_DIR$/../message/tables/TErrorConfig.py" />
         <option value="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" />
         <option value="$PROJECT_DIR$/../config/channel.xml" />
-        <option value="$PROJECT_DIR$/../gate/gate.py" />
         <option value="$PROJECT_DIR$/../gate/settings/servant.py" />
         <option value="$PROJECT_DIR$/../gate/application.py" />
         <option value="$PROJECT_DIR$/../gate/logic/dbback/idbtestcb.py" />
         <option value="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" />
+        <option value="$PROJECT_DIR$/../gate/gate.py" />
       </list>
     </option>
   </component>
@@ -287,6 +287,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyCharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -924,14 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gate/gate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gate/settings/servant.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -968,11 +974,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../gate/logic/connection/dbcache.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6657646">
+        <state vertical-scroll-proportion="0.0">
           <caret line="56" column="67" selection-start-line="56" selection-start-column="67" selection-end-line="56" selection-end-column="67" />
           <folding>
             <element signature="e#103#138#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gate/gate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4600812">
+          <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>

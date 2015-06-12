@@ -36,7 +36,11 @@ def main():
     ServerConfigManager.loadConfig()
 
     # start logger
-    loggerDir = os.path.join(os.getcwd(), "log/gate")
+    logDirName = "log/gate"
+    if channelId > 0:
+        logDirName = "{}-{}".format(logDirName, channelId)
+
+    loggerDir = os.path.join(os.getcwd(), logDirName)
     Logger.startLogging(loggerDir, ServerConfigManager.isDebug)
 
     Logger.logInfo("loading configs...")
