@@ -8,14 +8,11 @@
 * @desc idbtestcb.py
 """
 from gamit.log.logger import Logger
-
 from message.db.idbtest import IDbTest_Sayhello_Response
 
 class IDbTest_Sayhello_callback(IDbTest_Sayhello_Response):
     def onResponse(self, world):
-        Logger.logInfo("IDbTest_Sayhello_callback.onResponse", "Success")
-        for item in world.__dict__.items():
-            print("{}: {}".format(*item))
+        Logger.logInfo("IDbTest_Sayhello_callback.onResponse", "Success: ", world.passedTimes)
 
     def onError(self, what, code):
         Logger.logInfo("IDbTest_Sayhello_callback.onError", "{}, {}".format(what, code))
