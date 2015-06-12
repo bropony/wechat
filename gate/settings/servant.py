@@ -13,6 +13,16 @@ from gamit.singleton.singleton import Singleton
 from logic.itestimpl import ItestImpl
 
 class ServantSetting(Singleton):
+    _channelId = 0
+
+    @classmethod
+    def setChannelId(cls, cid):
+        cls._channelId = cid
+
+    @classmethod
+    def getChannelId(cls):
+        return cls._channelId
+
     @staticmethod
     def initServant(server):
         Logger.logInfo("adding servant ITest")

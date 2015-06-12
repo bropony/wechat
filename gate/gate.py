@@ -24,7 +24,14 @@ from gamit.log.logger import Logger
 
 from application import Application
 
+from optparse import OptionParser
+
 def main():
+    optParser = OptionParser()
+    optParser.add_option("-c", "--channel-id", type="int", dest="channelId")
+    options, args = optParser.parse_args()
+    channelId = options.channelId or 0
+
     #load server configs
     ServerConfigManager.loadConfig()
 
@@ -35,7 +42,7 @@ def main():
     Logger.logInfo("loading configs...")
     staticdata.dataloader.loadConfigs()
 
-    app = Application()
+    app = Application(channelId)
 
     Logger.logInfo("initiating app...")
     if app.init():

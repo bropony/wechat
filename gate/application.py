@@ -44,8 +44,9 @@ from logic.connection.preinvoke import Preinvoke
 from logic.connection.dbcache import DbCacheConnectCallback
 
 class Application:
-    def __init__(self):
+    def __init__(self, channelId=0):
         self.server = None
+        self.channelId = channelId
         self.clientMap = {}
         self.messageManager = None
         self.scheduler = Scheduler()
@@ -85,9 +86,13 @@ class Application:
 
     # serve as a servant (server side logic)
     def _initRmiServer(self):
-        channel = ServerConfigManager.getChannelByType(AppType.GATE)
+        if self.channelId:
+            channel = ServerConfigManager.getChannelById(self.channelId)
+        else:
+            channel = ServerConfigManager.getChannelByType(AppType.GATE)
+
         if not channel:
-            Logger.logInfo("Gate channel not configured.")
+            Logger.logInfo("Gate Channel not configured:", self.channelId)
             return False
 
         acceptor = Acceptor(channel.ip, channel.port)
@@ -97,6 +102,8 @@ class Application:
         self.messageManager = rmiServer.messageManager
 
         ServantSetting.initServant(self.server)
+        ServantSetting.setChannelId(self.channelId)
+
         return True
 
     def _initMessageManager(self):
