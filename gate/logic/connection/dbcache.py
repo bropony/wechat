@@ -55,7 +55,7 @@ class DbCacheConnectCallback:
             for i in range(100):
                 msg = AnRmiTest()
                 msg.ip = "{}".format(ServantSetting.getChannelId())
-                msg.shortDesc = "I wanna say hey..."
+                msg.shortDesc = "Run, Chicken..."
                 msg.passedTimes = i + ServantSetting.getChannelId() * 100
                 proxy.sayhello(IDbTest_Sayhello_callback(), msg)
 
