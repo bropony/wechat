@@ -20,10 +20,6 @@ class IDbTestImpl(IDbTestServant):
         super().__init__(name)
 
     def sayhello(self, hello, _request):
-        ErrorCodeManager.raiseError("ErrorDb_Deprecated")
-        
-        Logger.logInfo("IDbTestImpl", "sayhello")
-
         table = MongoDatabase.findTableByMessageType(AnRmiTest)
         if not table:
             raise Exception("Table Not Found")

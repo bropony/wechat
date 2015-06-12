@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c74105f1-3c92-4e22-82fc-7b3a15a99860" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" afterPath="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../gate/logic/dbback/idbtestcb.py" afterPath="$PROJECT_DIR$/../gate/logic/dbback/idbtestcb.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../struct_def/db/main_db.gmt" afterPath="$PROJECT_DIR$/../struct_def/db/main_db.gmt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../message/db/main_db.py" afterPath="$PROJECT_DIR$/../message/db/main_db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" afterPath="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" />
     </list>
     <ignored path="gamit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,13 +82,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="idbtestimpl.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dbcache.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../gate/logic/connection/dbcache.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76860625">
+            <state vertical-scroll-proportion="0.7171854">
               <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
               <folding>
-                <element signature="e#104#139#0" expanded="true" />
+                <element signature="e#103#139#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -181,13 +189,13 @@
         <option value="$PROJECT_DIR$/../autotools/db2gmt.py" />
         <option value="$PROJECT_DIR$/../staticdata/loader/manager.py" />
         <option value="$PROJECT_DIR$/../README.md" />
-        <option value="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" />
         <option value="$PROJECT_DIR$/../staticdata/manager/ErrorCodeManager.py" />
         <option value="$PROJECT_DIR$/../staticdata/loader/loader.py" />
         <option value="$PROJECT_DIR$/../autotools/db2json.py" />
         <option value="$PROJECT_DIR$/../autotools/gmt2py.py" />
         <option value="$PROJECT_DIR$/../message/tables/TErrorConfig.py" />
         <option value="$PROJECT_DIR$/../gate/logic/dbback/idbtestcb.py" />
+        <option value="$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py" />
         <option value="$PROJECT_DIR$/../gate/logic/connection/dbcache.py" />
       </list>
     </option>
@@ -362,6 +370,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="connection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyCharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dbcache" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyCharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dbcache" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -882,16 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding>
-            <element signature="e#112#157#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../staticdata/loader/manager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -915,7 +945,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
           <folding>
-            <element signature="e#122#161#0" expanded="true" />
+            <element signature="e#122#161#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1000,6 +1030,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../gate/logic/dbback/idbtestcb.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1012,10 +1050,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../gate/logic/connection/dbcache.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76860625">
+        <state vertical-scroll-proportion="0.7171854">
           <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
           <folding>
-            <element signature="e#104#139#0" expanded="true" />
+            <element signature="e#103#139#0" expanded="true" />
           </folding>
         </state>
       </provider>
