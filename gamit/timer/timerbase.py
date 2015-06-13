@@ -26,7 +26,6 @@ class TimerProxy:
         self.interval = interval
 
     def handleTimeout(self):
-        print("handleTimeout")
         now = datetime.datetime.now()
         if now >= self.future:
             self.timer.onTimeout(self.data)
