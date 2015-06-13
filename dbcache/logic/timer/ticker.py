@@ -8,6 +8,7 @@
 * @desc ticker
 """
 
+from gamit.log.logger import Logger
 from gamit.timer.timerbase import TimerBase
 
 class Ticker(TimerBase):
@@ -17,5 +18,5 @@ class Ticker(TimerBase):
 
     def onTimeout(self, data):
         self.ticks += 1
-        print("Ticks: ", self.ticks)
+        Logger.logInfo("Ticks:", self.ticks)
 #####
