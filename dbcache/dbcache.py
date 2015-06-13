@@ -20,8 +20,10 @@ import staticdata.dataloader
 from staticdata.serverconfig import ServerConfigManager
 from gamit.log.logger import Logger
 from gamit.mongodb.database import MongoDatabase
+from gamit.timer.schedule import Scheduler
 
 from application import Application
+from logic.timer.ticker import Ticker
 
 def main():
     #load server configs
@@ -47,6 +49,7 @@ def main():
     if app.init():
         Logger.logInfo("starting app...")
         app.start()
+        Scheduler.schedule(Ticker(), None, 0.3, 0.3)
     else:
         raise Exception("Initiating Application Failed.")
 

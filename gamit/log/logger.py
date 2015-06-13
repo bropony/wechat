@@ -24,7 +24,7 @@ class Logger:
         if not isDebug:
             cls._logLevel = logging.INFO
 
-        cls._logger.FileLogObserver(sys.stdout).start()
+        #cls._logger.FileLogObserver(sys.stdout).start()
         cls._logdir = logDir
         cls.updateLogFile()
 
@@ -43,6 +43,7 @@ class Logger:
 
             cls._logfile = open(os.path.join(cls._logdir, filename), "a")
             cls._logfilepath = filename
+            cls._logger.FileLogObserver(sys.stdout).start()
             cls._logger.startLogging(cls._logfile)
 
     @classmethod
