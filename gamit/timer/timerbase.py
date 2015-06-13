@@ -26,10 +26,13 @@ class TimerProxy:
         self.interval = interval
 
     def handleTimeout(self):
+        print("handleTimeout")
         now = datetime.datetime.now()
         if now >= self.future:
             self.timer.onTimeout(self.data)
             self.scheduledTimes += 1
+        else:
+            return True
 
         if self.interval.total_seconds() >= 0:
             while self.future <= now:
