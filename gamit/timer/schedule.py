@@ -47,7 +47,7 @@ class __Scheduler:
 
         timerPrx = TimerProxy(timer, data, future, interval)
         self.timerMap[timer.getId()] = timerPrx
-        print(self, self.timerMap)
+        print("schedule", self, self.timerMap)
 
         return True, ""
 
