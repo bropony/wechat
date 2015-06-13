@@ -50,8 +50,7 @@ def main():
         Logger.logInfo("starting app...")
         app.start()
         what, why = Scheduler.schedule(Ticker(), None, 0.3, 0.3)
-        if not what:
-            print(why)
+        print("what", what, "why:", why)
     else:
         raise Exception("Initiating Application Failed.")
 
