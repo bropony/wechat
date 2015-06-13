@@ -64,7 +64,6 @@ class __Scheduler:
                 newMap[timerId] = timerPrx
 
         self.timerMap = newMap
-        print("Looping")
 
         reactor.callLater(0.03, self._loop)
 
