@@ -43,7 +43,9 @@ class _WSServerProtocol(WebSocketServerProtocol):
 
     def onPing(self, payload):
         self.pings += 1
-        Logger.logInfo("Ping {} from {}".format(self.pings, self.peer))
+        if self.pings % 10 == 0:
+            Logger.logInfo("Ping {} from {}".format(self.pings, self.peer))
+
         self.sendPong(payload)
 
 class WsAcceptor:
