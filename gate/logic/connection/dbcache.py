@@ -52,12 +52,13 @@ class DbCacheConnectCallback:
 
         proxy = ProxyManager.getProxy(AppType.DBCACHE, "IDbTest")
         if proxy:
-            for i in range(10):
+            for i in range(20):
                 msg = AnRmiTest()
                 msg.ip = "{}".format(ServantSetting.getChannelId())
                 msg.shortDesc = "Run, Chicken..." * 102400
                 msg.passedTimes = i + ServantSetting.getChannelId() * 100
                 proxy.sayhello(IDbTest_Sayhello_callback(), msg)
+                print("Run, Chiken", i)
 
     def onClose(self):
         Logger.logInfo("ConnectionInfo", "dbcache connection closed")
