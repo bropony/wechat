@@ -130,7 +130,7 @@ class ApplicationBase(metaclass=abc.ABCMeta):
         rmiClient.setOnOpenCallback(connOpenCallback, *openArgv)
         rmiClient.setOnCloseCallback(connCloseCallback, *closeArgv)
 
-        self.clientMap[channel.type] = rmiClient
+        self.proxyMap[channel.type] = rmiClient
         SessionManager.addSession(channel.type, rmiClient)
 
         return rmiClient
