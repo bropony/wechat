@@ -46,7 +46,7 @@ def main():
     Logger.logInfo("loading configs...")
     staticdata.dataloader.loadConfigs()
 
-    app = Application(channelId)
+    app = Application("Gate", channelId)
 
     Logger.logInfo("initiating app...")
     if app.init():
