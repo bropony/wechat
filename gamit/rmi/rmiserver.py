@@ -18,6 +18,10 @@ class RmiServer:
         self.acceptor.setRmiServer(self)
         self.interval = loopInterval
         self.isDebug = isDebug
+
+        # do some checks before any rmi call.
+        # see setBeforeInvoke() and onInvoke()
+        # self.beforeInvoke must be a callable obj
         self.beforeInvoke = None
 
         self.servantMap = {}
