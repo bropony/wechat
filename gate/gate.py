@@ -36,7 +36,7 @@ def main():
     ServerConfigManager.loadConfig()
 
     # start logger
-    logDirName = "log/gate"
+    logDirName = "log/Gate"
     if channelId > 0:
         logDirName = "{}-{}".format(logDirName, channelId)
 
