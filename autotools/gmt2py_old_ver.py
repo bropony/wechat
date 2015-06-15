@@ -103,7 +103,6 @@ class Gmt2Py:
     def parseImports(self):
         self.write("import datetime")
         self.write("from gamit.message.message import MessageBlock")
-        self.write("from gamit.serialize.util import *")
         if self.loader.hasInterface:
             self.write("from gamit.rmi.rmicore import *")
             self.write("from gamit.serialize.serializer import Serializer")
@@ -138,23 +137,38 @@ class Gmt2Py:
                 return "{}.{}".format(dataType.fullname, dataType.pairs[0][0])
         elif dataType.name == 'date':
             return "datetime.datetime.now()"
-        else:
+        elif isinstance(dataType, Struct) or isinstance(dataType, BasicType):
             return cls.getTypePyName(dataType, currentScope) + "()"
+        elif isinstance(dataType, List):
+            return "[]"
+        elif isinstance(dataType, Dict):
+            return "{}"
 
     def getPyReadExpression(self, dataType, name, currentScope):
         res = "Oops"
         if isinstance(dataType, BasicType):
             res = "{} = _is.read{}()".format(name, dataType.name.capitalize())
+        elif isinstance(dataType, Struct):
+            res = "{}._read(_is)".format(name)
+        elif isinstance(dataType, List) or isinstance(dataType, Dict):
+            if dataType.scope == currentScope:
+                res = "read{}(_is, {})".format(dataType.name, name)
+            else:
+                res = "{}.read{}(_is, {})".format(dataType.scope, dataType.name, name)
         elif isinstance(dataType, Enum):
             res = "{} = _is.readInt()".format(name)
-        else:
-            res = "{}._read(_is)".format(name)
 
         return res
 
     def genJsonReadExpr(self, dataType, varExpr, varName, currentScope):
         dataTypeName = self.getTypePyName(dataType, currentScope)
         jsExpr = "js['{}']".format(varName)
+        #if isinstance(dataType, List):
+        #    self.write("if '{}' in js and isinstance({}, list):".format(varName, jsExpr))
+        #elif isinstance(dataType, Dict):
+        #    self.write("if '{}' in js and isinstance({}, dict):".format(varName, jsExpr))
+        #else:
+        #    self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
         self.write("if '{}' in js and isinstance({}, {}):".format(varName, jsExpr, dataTypeName))
 
         self.indent += 1
@@ -165,31 +179,32 @@ class Gmt2Py:
                 self.write("elif '{}' in js and isinstance({}, datetime.datetime):".format(varName, varExpr))
                 self.indent += 1
                 self.write("{} = datetime.datetime.strptime({}, '%Y-%m-%d %H:%M:%S')".format(varExpr, jsExpr))
+        elif isinstance(dataType, Struct):
+            self.write("{}._fromJson({})".format(varExpr, jsExpr))
+        elif isinstance(dataType, List) or isinstance(dataType, Dict):
+            if dataType.scope == currentScope:
+                self.write("{}FromJson({}, {})".format(dataType.name, jsExpr, varExpr))
+            else:
+                self.write("{} = {}.{}FromJson({})".format(varExpr, dataType.scope, dataType.name, jsExpr))
         elif isinstance(dataType, Enum):
             self.write("{} = {}".format(varExpr, jsExpr))
         else:
-            self.write("{}._fromJson({})".format(varExpr, jsExpr))
-            if isinstance(dataType, List):
-                self.indent -= 1
-                self.write("elif '{}' in js and isinstance({}, list):".format(varName, jsExpr))
-                self.indent += 1
-                self.write("{}._fromJson({})".format(varExpr, jsExpr))
-            elif isinstance(dataType, Dict):
-                self.indent -= 1
-                self.write("elif '{}' in js and isinstance({}, dict):".format(varName, jsExpr))
-                self.indent += 1
-                self.write("{}._fromJson({})".format(varExpr, jsExpr))
-
+            self.write("pass")
         self.indent -= 1
 
     def getPyWriteExpression(self, dataTye, name, currentScope):
         res = "Oops"
         if isinstance(dataTye, BasicType):
             res = "_os.write{}({})".format(dataTye.name.capitalize(), name)
+        elif isinstance(dataTye, Struct):
+            res = "{}._write(_os)".format(name)
+        elif isinstance(dataTye, List) or isinstance(dataTye, Dict):
+            if dataTye.scope == currentScope:
+                res = "write{}(_os, {})".format(dataTye.name, name)
+            else:
+                res = "{}.write{}(_os, {})".format(dataTye.scope, dataTye.name, name)
         elif isinstance(dataTye, Enum):
             res = "_os.writeInt({})".format(name)
-        else:
-            res = "{}._write(_os)".format(name)
 
         return res
 
@@ -197,8 +212,13 @@ class Gmt2Py:
         jsExpr = "js['{}']".format(varName)
         if isinstance(dataType, BasicType) or isinstance(dataType, Enum):
             self.write("{} = {}".format(jsExpr, varExpr))
-        else:
+        elif isinstance(dataType, Struct):
             self.write("{} = {}._toJson()".format(jsExpr, varExpr))
+        elif isinstance(dataType, List) or isinstance(dataType, Dict):
+            if dataType.scope == currentScope:
+                self.write("{} = {}ToJson({})".format(jsExpr, dataType.name, varExpr))
+            else:
+                self.write("{} = {}.{}ToJson({})".format(jsExpr, dataType.scope, dataType.name, varExpr))
 
     def parseStruct(self, structType):
         self.indent = 0
@@ -223,12 +243,6 @@ class Gmt2Py:
         self.indent = 2
         self.writeEmptyLine()
         self.write("object.__setattr__(self, name, val)")
-        self.writeEmptyLine()
-
-        self.indent = 1
-        self.write("def __getitem__(self, key):")
-        self.indent = 2
-        self.write("return object.__getattribute__(self, key)")
         self.writeEmptyLine()
 
         self.indent = 1
@@ -290,94 +304,102 @@ class Gmt2Py:
 
     def parseList(self, listType):
         self.indent = 0
+        #capName = listType.name.capitalize()
         capName = listType.name
 
-        self.write("class {}(ListBase):".format(capName))
-        self.indent = 1
-        self.write("def __init__(self):")
-        self.indent = 2
-        valTypeName = self.getTypePyName(listType.type, self.loader.scope)
-        self.write("super().__init__({}, '{}')".format(valTypeName, capName))
-
+        self.write("{} = list".format(capName))
         self.writeEmptyLine()
+        self.write("def read{}(_is, valList):".format(capName))
         self.indent = 1
-        self.write("def _read(self, _is):")
-        self.indent = 2
         self.write("dataSize = _is.readInt()")
         self.write("for _ in range(dataSize):")
-        self.indent = 3
+        self.indent = 2
         initExpr = self.getTypePyInitExpression(listType.type, self.loader.scope)
         self.write("val = {}".format(initExpr))
         readExp = self.getPyReadExpression(listType.type, "val", self.loader.scope)
         self.write(readExp)
-        self.write("self.append(val)")
+        self.write("valList.append(val)")
 
-        self.indent = 1
+        self.indent = 0
         self.writeEmptyLine()
 
-        self.write("def _write(self, _os):")
-        self.indent = 2
-        self.write("dataSize = len(self)")
+        self.write("def write{}(_os, valList):".format(capName))
+        self.indent = 1
+        self.write("dataSize = len(valList)")
         self.write("_os.writeInt(dataSize)")
-        self.write("for val in self:")
-        self.indent = 3
+        self.write("for val in valList:")
+        self.indent = 2
         writeExp = self.getPyWriteExpression(listType.type, "val", self.loader.scope)
         self.write(writeExp)
 
         self.writeEmptyLine()
+        self.indent = 0
+        self.write("def {}FromJson(js):".format(capName))
         self.indent = 1
-        self.write("def _fromJson(self, js):")
-        self.indent = 2
-        if isinstance(listType.type, BasicType) or isinstance(listType.type, Enum):
+        if isinstance(listType.type, Struct):
+            self.write("res = []")
             self.write("for js_c in js:")
-            self.indent = 3
-            self.write("self.append(js_c)")
             self.indent = 2
-        else:
-            self.write("for js_c in js:")
-            self.indent = 3
             initExpr = self.getTypePyInitExpression(listType.type, self.loader.scope)
             initExpr = "{} = {}".format("val", initExpr)
             self.write(initExpr)
             self.write("val._fromJson(js_c)")
-            self.write("self.append(val)")
+            self.write("res.append(val)")
+            self.indent = 1
+            self.write("return res")
+        elif isinstance(listType.type, List) or isinstance(listType.type, Dict):
+            self.write("res = []")
+            self.write("for js_c in js:")
             self.indent = 2
+            if listType.type.scope == self.loader.scope:
+                self.write("val = {}FromJson(js_c)".format(listType.type.name))
+            else:
+                self.write("val = {}.{}FromJson(js_c)".format(listType.type.scope, listType.type.name))
+            self.write("res.append(val)")
+            self.indent = 1
+            self.write("return res")
+        else:
+            self.write("return js")
         self.writeEmptyLine()
 
+        self.indent = 0
+        self.write("def {}ToJson(valList):".format(capName))
         self.indent = 1
-        self.write("def _toJson(self):")
-        self.indent = 2
-        self.write("res = []")
-        self.write("for val in self:")
-        self.indent = 3
-        if isinstance(listType.type, BasicType) or isinstance(listType.type, Enum):
-            self.write("res.append(val)")
-        else:
+        if isinstance(listType.type, Struct):
+            self.write("res = []")
+            self.write("for val in valList:")
+            self.indent = 2
             self.write("res.append(val._toJson())")
-
-        self.indent = 2
-        self.write("return res")
+            self.indent = 1
+            self.write("return res")
+        elif isinstance(listType.type, List) or isinstance(listType.type, Dict):
+            self.write("res = []")
+            self.write("for val in valList:")
+            self.indent = 2
+            toExpr = ""
+            if listType.type.scope == self.loader.scope:
+                toExpr = "tmp = {}ToJson(val)".format(listType.type.name)
+            else:
+                toExpr = "tmp = {}.{}ToJson(val)".format(listType.type.scope, listType.type.name)
+            self.write(toExpr)
+            self.write("res.append(tmp)")
+            self.indent = 1
+            self.write("return res")
+        else:
+            self.write("return valList")
 
         self.indent = 0
         self.writeEmptyLine()
 
     def parseDict(self, dictType):
         self.indent = 0
-        self.write("class {}(DictBase):".format(dictType.name))
-        self.indent = 1
-        self.write("def __init__(self):")
-        self.indent = 2
-        keyTypeName = self.getTypePyName(dictType.keyType, self.loader.scope)
-        valTypeName = self.getTypePyName(dictType.valType, self.loader.scope)
-        self.write("super().__init__({}, {}, '{}')".format(keyTypeName, valTypeName, dictType.name))
-
+        self.write("{} = dict".format(dictType.name))
         self.writeEmptyLine()
+        self.write("def read{}(_is, valDict):".format(dictType.name))
         self.indent = 1
-        self.write("def _read(self, _is):".format(dictType.name))
-        self.indent = 2
         self.write("dataSize = _is.readInt()")
         self.write("for _ in range(dataSize):")
-        self.indent = 3
+        self.indent = 2
         keyInitExpr = self.getTypePyInitExpression(dictType.keyType, self.loader.scope)
         keyInitExpr = "key_ = {}".format(keyInitExpr)
         valInitExpr = self.getTypePyInitExpression(dictType.valType, self.loader.scope)
@@ -388,50 +410,73 @@ class Gmt2Py:
         valReadExpr = self.getPyReadExpression(dictType.valType, "val_", self.loader.scope)
         self.write(keyReadExpr)
         self.write(valReadExpr)
-        self.write("self[key_] = val_")
+        self.write("valDict[key_] = val_")
 
-        self.indent = 1
+        self.indent = 0
         self.writeEmptyLine()
 
-        self.write("def _write(self, _os):".format(dictType.name))
-        self.indent = 2
-        self.write("dataSize = len(self)")
+        self.write("def write{}(_os, valDict):".format(dictType.name))
+        self.indent = 1
+        self.write("dataSize = len(valDict)")
         self.write("_os.writeInt(dataSize)")
-        self.write("for item in self.items():")
-        self.indent = 3
+        self.write("for item in valDict.items():")
+        self.indent = 2
         keyWriteExpr = self.getPyWriteExpression(dictType.keyType, "item[0]", self.loader.scope)
         valWriteExpr = self.getPyWriteExpression(dictType.valType, "item[1]", self.loader.scope)
         self.write(keyWriteExpr)
         self.write(valWriteExpr)
 
         self.writeEmptyLine()
+        self.indent = 0
+        self.write("def {}FromJson(js):".format(dictType.name))
         self.indent = 1
-        self.write("def _fromJson(self, js):")
-        self.indent = 2
-        self.write("for key_ in js:")
-        self.indent = 3
-        if isinstance(dictType.valType, BasicType) or isinstance(dictType.valType, Enum):
-            self.write("self[key_] = js[key_] ")
-        else:
+        if isinstance(dictType.valType, Struct):
+            self.write("res = dict()")
+            self.write("for key_ in js:")
+            self.indent = 2
             initExpr = self.getTypePyInitExpression(dictType.valType, self.loader.scope)
             initExpr = "val = {}".format(initExpr)
             self.write(initExpr)
             self.write("val._fromJson(js[key_])")
-            self.write("self[key_] = val")
+            self.write("res[key_] = val")
+            self.indent = 1
+            self.write("return res")
+        elif isinstance(dictType.valType, List) or isinstance(dictType.valType, Dict):
+            self.write("res = dict()")
+            self.write("for key_ in js:")
+            self.indent = 2
+            if dictType.valType.scope == self.loader.scope:
+                self.write("res[key_] = {}FromJson(js[key_])".format(dictType.valType.name))
+            else:
+                self.write("res[key_] = {}.{}FromJson(js[key_])".format(dictType.valType.scope, dictType.valType.name))
+            self.indent = 1
+            self.write("return res")
+        else:
+            self.write("return js")
 
         self.writeEmptyLine()
+        self.indent = 0
+        self.write("def {}ToJson(valDict):".format(dictType.name))
         self.indent = 1
-        self.write("def _toJson(self):")
-        self.indent = 2
-        self.write("res = dict()")
-        self.write("for key_ in self:")
-        self.indent = 3
-        if isinstance(dictType.valType, BasicType) or isinstance(dictType.valType, Enum):
-            self.write("res[key_] = self[key_]")
+        if isinstance(dictType.valType, Struct):
+            self.write("res = dict()")
+            self.write("for key_ in valDict:")
+            self.indent = 2
+            self.write("res[key_] = valDict[key_]._toJson()")
+            self.indent = 1
+            self.write("return res")
+        elif isinstance(dictType.valType, List) or isinstance(dictType.valType, Dict):
+            self.write("res = dict()")
+            self.write("for key_ in valDict:")
+            self.indent = 2
+            if dictType.valType.scope == self.loader.scope:
+                self.write("res[key_] = {}ToJson(valDict[key_])".format(dictType.valType.name))
+            else:
+                self.write("res[key_] = {}.{}ToJson(valDict[key_])".format(dictType.valType.scope, dictType.valType.name))
+            self.indent = 1
+            self.write("return res")
         else:
-            self.write("res[key_] = self[key_]._toJson()")
-        self.indent = 2
-        self.write("return res")
+            self.write("return valDict")
 
         self.indent = 0
         self.writeEmptyLine()

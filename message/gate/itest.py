@@ -10,6 +10,7 @@
 
 import datetime
 from gamit.message.message import MessageBlock
+from gamit.serialize.util import *
 from gamit.rmi.rmicore import *
 from gamit.serialize.serializer import Serializer
 from gamit.serialize.datatype import RmiDataType
@@ -18,37 +19,37 @@ import message.common.publicdef
 import message.gate.gatemsg
 
 
-DictStrMessage = dict
+class DictStrMessage(DictBase):
+    def __init__(self):
+        super().__init__(str, message.gate.gatemsg.SMessage, 'DictStrMessage')
 
-def readDictStrMessage(_is, valDict):
-    dataSize = _is.readInt()
-    for _ in range(dataSize):
-        key_ = str()
-        val_ = message.gate.gatemsg.SMessage()
-        key_ = _is.readString()
-        val_._read(_is)
-        valDict[key_] = val_
+    def _read(self, _is):
+        dataSize = _is.readInt()
+        for _ in range(dataSize):
+            key_ = str()
+            val_ = message.gate.gatemsg.SMessage()
+            key_ = _is.readString()
+            val_._read(_is)
+            self[key_] = val_
 
-def writeDictStrMessage(_os, valDict):
-    dataSize = len(valDict)
-    _os.writeInt(dataSize)
-    for item in valDict.items():
-        _os.writeString(item[0])
-        item[1]._write(_os)
+    def _write(self, _os):
+        dataSize = len(self)
+        _os.writeInt(dataSize)
+        for item in self.items():
+            _os.writeString(item[0])
+            item[1]._write(_os)
 
-def DictStrMessageFromJson(js):
-    res = dict()
-    for key_ in js:
-        val = message.gate.gatemsg.SMessage()
-        val._fromJson(js[key_])
-        res[key_] = val
-    return res
+    def _fromJson(self, js):
+        for key_ in js:
+            val = message.gate.gatemsg.SMessage()
+            val._fromJson(js[key_])
+            self[key_] = val
 
-def DictStrMessageToJson(valDict):
-    res = dict()
-    for key_ in valDict:
-        res[key_] = valDict[key_]._toJson()
-    return res
+    def _toJson(self):
+        res = dict()
+        for key_ in self:
+            res[key_] = self[key_]._toJson()
+        return res
 
 class ITest_Getintlist_Request(RmiRequestBase):
     def __init__(self, connId, msgId, servant):
@@ -57,7 +58,7 @@ class ITest_Getintlist_Request(RmiRequestBase):
     def response(self, intList):
         _os = self._os
         _os.writeInt(self.msgId)
-        message.common.publicdef.writeSeqInt(_os, intList)
+        intList._write(_os)
 
         self.sendout()
 
@@ -68,7 +69,7 @@ class ITest_Getdictintstring_Request(RmiRequestBase):
     def response(self, intStrMap):
         _os = self._os
         _os.writeInt(self.msgId)
-        message.common.publicdef.writeDictIntString(_os, intStrMap)
+        intStrMap._write(_os)
 
         self.sendout()
 
@@ -79,7 +80,7 @@ class ITest_Getfloatlist_Request(RmiRequestBase):
     def response(self, floatList):
         _os = self._os
         _os.writeInt(self.msgId)
-        message.common.publicdef.writeSeqFloat(_os, floatList)
+        floatList._write(_os)
 
         self.sendout()
 
@@ -99,8 +100,8 @@ class ITest_Getintlist_Response(RmiResponseBase):
         super().__init__()
 
     def _onResponse(self, _is):
-        intList = []
-        message.common.publicdef.readSeqInt(_is, intList)
+        intList = message.common.publicdef.SeqInt()
+        intList._read(_is)
 
         self.onResponse(intList)
 
@@ -122,8 +123,8 @@ class ITest_Getdictintstring_Response(RmiResponseBase):
         super().__init__()
 
     def _onResponse(self, _is):
-        intStrMap = {}
-        message.common.publicdef.readDictIntString(_is, intStrMap)
+        intStrMap = message.common.publicdef.DictIntString()
+        intStrMap._read(_is)
 
         self.onResponse(intStrMap)
 
@@ -145,8 +146,8 @@ class ITest_Getfloatlist_Response(RmiResponseBase):
         super().__init__()
 
     def _onResponse(self, _is):
-        floatList = []
-        message.common.publicdef.readSeqFloat(_is, floatList)
+        floatList = message.common.publicdef.SeqFloat()
+        floatList._read(_is)
 
         self.onResponse(floatList)
 

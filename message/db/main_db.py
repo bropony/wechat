@@ -10,6 +10,7 @@
 
 import datetime
 from gamit.message.message import MessageBlock
+from gamit.serialize.util import *
 import message.common.publicdef
 import message.gate.gatemsg
 
@@ -27,6 +28,9 @@ class AnRmiTest:
             raise Exception('Value of AnRmiTest.' + name + ' must be ' + clsName + ' object')
 
         object.__setattr__(self, name, val)
+
+    def __getitem__(self, key):
+        return object.__getattribute__(self, key)
 
     def __init__(self):
         self.message = message.gate.gatemsg.SMessage()

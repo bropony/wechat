@@ -24,7 +24,6 @@ from gamit.log.logger import Logger
 
 from application import Application
 
-
 def main():
     ServerConfigManager.loadConfig()
 

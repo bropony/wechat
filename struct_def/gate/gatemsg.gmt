@@ -37,5 +37,5 @@ struct SMessage:
     common.publicdef.SeqInt intList
     common.publicdef.DictStringInt dictStrInt
     
-    
+list<SMessage> SeqMessage
 dict<int, SMessage> DictMessage

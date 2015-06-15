@@ -10,6 +10,7 @@
 
 import datetime
 from gamit.message.message import MessageBlock
+from gamit.serialize.util import *
 from gamit.rmi.rmicore import *
 from gamit.serialize.serializer import Serializer
 from gamit.serialize.datatype import RmiDataType

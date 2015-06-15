@@ -10,96 +10,99 @@
 
 import datetime
 from gamit.message.message import MessageBlock
+from gamit.serialize.util import *
 import message.common.publicdef
 
 
-SeqSeqInt = list
+class SeqSeqInt(ListBase):
+    def __init__(self):
+        super().__init__(message.common.publicdef.SeqInt, 'SeqSeqInt')
 
-def readSeqSeqInt(_is, valList):
-    dataSize = _is.readInt()
-    for _ in range(dataSize):
-        val = []
-        message.common.publicdef.readSeqInt(_is, val)
-        valList.append(val)
+    def _read(self, _is):
+        dataSize = _is.readInt()
+        for _ in range(dataSize):
+            val = message.common.publicdef.SeqInt()
+            val._read(_is)
+            self.append(val)
 
-def writeSeqSeqInt(_os, valList):
-    dataSize = len(valList)
-    _os.writeInt(dataSize)
-    for val in valList:
-        message.common.publicdef.writeSeqInt(_os, val)
+    def _write(self, _os):
+        dataSize = len(self)
+        _os.writeInt(dataSize)
+        for val in self:
+            val._write(_os)
 
-def SeqSeqIntFromJson(js):
-    res = []
-    for js_c in js:
-        val = message.common.publicdef.SeqIntFromJson(js_c)
-        res.append(val)
-    return res
+    def _fromJson(self, js):
+        for js_c in js:
+            val = message.common.publicdef.SeqInt()
+            val._fromJson(js_c)
+            self.append(val)
 
-def SeqSeqIntToJson(valList):
-    res = []
-    for val in valList:
-        tmp = message.common.publicdef.SeqIntToJson(val)
-        res.append(tmp)
-    return res
+    def _toJson(self):
+        res = []
+        for val in self:
+            res.append(val._toJson())
+        return res
 
-SeqDictIntInt = list
+class SeqDictIntInt(ListBase):
+    def __init__(self):
+        super().__init__(message.common.publicdef.DictIntInt, 'SeqDictIntInt')
 
-def readSeqDictIntInt(_is, valList):
-    dataSize = _is.readInt()
-    for _ in range(dataSize):
-        val = {}
-        message.common.publicdef.readDictIntInt(_is, val)
-        valList.append(val)
+    def _read(self, _is):
+        dataSize = _is.readInt()
+        for _ in range(dataSize):
+            val = message.common.publicdef.DictIntInt()
+            val._read(_is)
+            self.append(val)
 
-def writeSeqDictIntInt(_os, valList):
-    dataSize = len(valList)
-    _os.writeInt(dataSize)
-    for val in valList:
-        message.common.publicdef.writeDictIntInt(_os, val)
+    def _write(self, _os):
+        dataSize = len(self)
+        _os.writeInt(dataSize)
+        for val in self:
+            val._write(_os)
 
-def SeqDictIntIntFromJson(js):
-    res = []
-    for js_c in js:
-        val = message.common.publicdef.DictIntIntFromJson(js_c)
-        res.append(val)
-    return res
+    def _fromJson(self, js):
+        for js_c in js:
+            val = message.common.publicdef.DictIntInt()
+            val._fromJson(js_c)
+            self.append(val)
 
-def SeqDictIntIntToJson(valList):
-    res = []
-    for val in valList:
-        tmp = message.common.publicdef.DictIntIntToJson(val)
-        res.append(tmp)
-    return res
+    def _toJson(self):
+        res = []
+        for val in self:
+            res.append(val._toJson())
+        return res
 
-DictDictStringInt = dict
+class DictDictStringInt(DictBase):
+    def __init__(self):
+        super().__init__(int, message.common.publicdef.DictStringInt, 'DictDictStringInt')
 
-def readDictDictStringInt(_is, valDict):
-    dataSize = _is.readInt()
-    for _ in range(dataSize):
-        key_ = int()
-        val_ = {}
-        key_ = _is.readInt()
-        message.common.publicdef.readDictStringInt(_is, val_)
-        valDict[key_] = val_
+    def _read(self, _is):
+        dataSize = _is.readInt()
+        for _ in range(dataSize):
+            key_ = int()
+            val_ = message.common.publicdef.DictStringInt()
+            key_ = _is.readInt()
+            val_._read(_is)
+            self[key_] = val_
 
-def writeDictDictStringInt(_os, valDict):
-    dataSize = len(valDict)
-    _os.writeInt(dataSize)
-    for item in valDict.items():
-        _os.writeInt(item[0])
-        message.common.publicdef.writeDictStringInt(_os, item[1])
+    def _write(self, _os):
+        dataSize = len(self)
+        _os.writeInt(dataSize)
+        for item in self.items():
+            _os.writeInt(item[0])
+            item[1]._write(_os)
 
-def DictDictStringIntFromJson(js):
-    res = dict()
-    for key_ in js:
-        res[key_] = message.common.publicdef.DictStringIntFromJson(js[key_])
-    return res
+    def _fromJson(self, js):
+        for key_ in js:
+            val = message.common.publicdef.DictStringInt()
+            val._fromJson(js[key_])
+            self[key_] = val
 
-def DictDictStringIntToJson(valDict):
-    res = dict()
-    for key_ in valDict:
-        res[key_] = message.common.publicdef.DictStringIntToJson(valDict[key_])
-    return res
+    def _toJson(self):
+        res = dict()
+        for key_ in self:
+            res[key_] = self[key_]._toJson()
+        return res
 
 class SSignup:
     __slots__ = dict()
@@ -114,6 +117,9 @@ class SSignup:
             raise Exception('Value of SSignup.' + name + ' must be ' + clsName + ' object')
 
         object.__setattr__(self, name, val)
+
+    def __getitem__(self, key):
+        return object.__getattribute__(self, key)
 
     def __init__(self):
         self.username = str()
@@ -165,6 +171,9 @@ class SLogin:
 
         object.__setattr__(self, name, val)
 
+    def __getitem__(self, key):
+        return object.__getattribute__(self, key)
+
     def __init__(self):
         self.username = str()
         self.password = str()
@@ -205,6 +214,9 @@ class SLoginReturn:
             raise Exception('Value of SLoginReturn.' + name + ' must be ' + clsName + ' object')
 
         object.__setattr__(self, name, val)
+
+    def __getitem__(self, key):
+        return object.__getattribute__(self, key)
 
     def __init__(self):
         self.userId = int()
@@ -269,6 +281,9 @@ class SMessage:
 
         object.__setattr__(self, name, val)
 
+    def __getitem__(self, key):
+        return object.__getattribute__(self, key)
+
     def __init__(self):
         self.var1 = int()
         self.var2 = int()
@@ -277,8 +292,8 @@ class SMessage:
         self.var5 = float()
         self.var6 = str()
         self.var7 = datetime.datetime.now()
-        self.intList = []
-        self.dictStrInt = {}
+        self.intList = message.common.publicdef.SeqInt()
+        self.dictStrInt = message.common.publicdef.DictStringInt()
 
     def _read(self, _is):
         self.var1 = _is.readShort()
@@ -288,8 +303,8 @@ class SMessage:
         self.var5 = _is.readDouble()
         self.var6 = _is.readString()
         self.var7 = _is.readDate()
-        message.common.publicdef.readSeqInt(_is, self.intList)
-        message.common.publicdef.readDictStringInt(_is, self.dictStrInt)
+        self.intList._read(_is)
+        self.dictStrInt._read(_is)
 
     def _write(self, _os):
         _os.writeShort(self.var1)
@@ -299,8 +314,8 @@ class SMessage:
         _os.writeDouble(self.var5)
         _os.writeString(self.var6)
         _os.writeDate(self.var7)
-        message.common.publicdef.writeSeqInt(_os, self.intList)
-        message.common.publicdef.writeDictStringInt(_os, self.dictStrInt)
+        self.intList._write(_os)
+        self.dictStrInt._write(_os)
 
     def _fromJson(self, js):
         if 'var1' in js and isinstance(js['var1'], int):
@@ -320,9 +335,13 @@ class SMessage:
         elif 'var7' in js and isinstance(self.var7, datetime.datetime):
             self.var7 = datetime.datetime.strptime(js['var7'], '%Y-%m-%d %H:%M:%S')
         if 'intList' in js and isinstance(js['intList'], message.common.publicdef.SeqInt):
-            self.intList = message.common.publicdef.SeqIntFromJson(js['intList'])
+            self.intList._fromJson(js['intList'])
+        elif 'intList' in js and isinstance(js['intList'], list):
+            self.intList._fromJson(js['intList'])
         if 'dictStrInt' in js and isinstance(js['dictStrInt'], message.common.publicdef.DictStringInt):
-            self.dictStrInt = message.common.publicdef.DictStringIntFromJson(js['dictStrInt'])
+            self.dictStrInt._fromJson(js['dictStrInt'])
+        elif 'dictStrInt' in js and isinstance(js['dictStrInt'], dict):
+            self.dictStrInt._fromJson(js['dictStrInt'])
 
     def _toJson(self):
         js = dict()
@@ -333,41 +352,70 @@ class SMessage:
         js['var5'] = self.var5
         js['var6'] = self.var6
         js['var7'] = self.var7
-        js['intList'] = message.common.publicdef.SeqIntToJson(self.intList)
-        js['dictStrInt'] = message.common.publicdef.DictStringIntToJson(self.dictStrInt)
+        js['intList'] = self.intList._toJson()
+        js['dictStrInt'] = self.dictStrInt._toJson()
         return js
 
 MessageBlock.register(SMessage)
 
-DictMessage = dict
+class SeqMessage(ListBase):
+    def __init__(self):
+        super().__init__(SMessage, 'SeqMessage')
 
-def readDictMessage(_is, valDict):
-    dataSize = _is.readInt()
-    for _ in range(dataSize):
-        key_ = int()
-        val_ = SMessage()
-        key_ = _is.readInt()
-        val_._read(_is)
-        valDict[key_] = val_
+    def _read(self, _is):
+        dataSize = _is.readInt()
+        for _ in range(dataSize):
+            val = SMessage()
+            val._read(_is)
+            self.append(val)
 
-def writeDictMessage(_os, valDict):
-    dataSize = len(valDict)
-    _os.writeInt(dataSize)
-    for item in valDict.items():
-        _os.writeInt(item[0])
-        item[1]._write(_os)
+    def _write(self, _os):
+        dataSize = len(self)
+        _os.writeInt(dataSize)
+        for val in self:
+            val._write(_os)
 
-def DictMessageFromJson(js):
-    res = dict()
-    for key_ in js:
-        val = SMessage()
-        val._fromJson(js[key_])
-        res[key_] = val
-    return res
+    def _fromJson(self, js):
+        for js_c in js:
+            val = SMessage()
+            val._fromJson(js_c)
+            self.append(val)
 
-def DictMessageToJson(valDict):
-    res = dict()
-    for key_ in valDict:
-        res[key_] = valDict[key_]._toJson()
-    return res
+    def _toJson(self):
+        res = []
+        for val in self:
+            res.append(val._toJson())
+        return res
+
+class DictMessage(DictBase):
+    def __init__(self):
+        super().__init__(int, SMessage, 'DictMessage')
+
+    def _read(self, _is):
+        dataSize = _is.readInt()
+        for _ in range(dataSize):
+            key_ = int()
+            val_ = SMessage()
+            key_ = _is.readInt()
+            val_._read(_is)
+            self[key_] = val_
+
+    def _write(self, _os):
+        dataSize = len(self)
+        _os.writeInt(dataSize)
+        for item in self.items():
+            _os.writeInt(item[0])
+            item[1]._write(_os)
+
+    def _fromJson(self, js):
+        for key_ in js:
+            val = SMessage()
+            val._fromJson(js[key_])
+            self[key_] = val
+
+    def _toJson(self):
+        res = dict()
+        for key_ in self:
+            res[key_] = self[key_]._toJson()
+        return res
 
