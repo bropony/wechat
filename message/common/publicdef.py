@@ -12,6 +12,8 @@ import datetime
 from gamit.message.message import MessageBlock
 
 
+SeqInt = list
+
 def readSeqInt(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -30,6 +32,8 @@ def SeqIntFromJson(js):
 
 def SeqIntToJson(valList):
     return valList
+
+SeqLong = list
 
 def readSeqLong(_is, valList):
     dataSize = _is.readInt()
@@ -50,6 +54,8 @@ def SeqLongFromJson(js):
 def SeqLongToJson(valList):
     return valList
 
+SeqString = list
+
 def readSeqString(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -69,6 +75,8 @@ def SeqStringFromJson(js):
 def SeqStringToJson(valList):
     return valList
 
+SeqFloat = list
+
 def readSeqFloat(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -87,6 +95,8 @@ def SeqFloatFromJson(js):
 
 def SeqFloatToJson(valList):
     return valList
+
+DictIntInt = dict
 
 def readDictIntInt(_is, valDict):
     dataSize = _is.readInt()
@@ -110,6 +120,8 @@ def DictIntIntFromJson(js):
 def DictIntIntToJson(valDict):
     return valDict
 
+DictIntString = dict
+
 def readDictIntString(_is, valDict):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -132,6 +144,8 @@ def DictIntStringFromJson(js):
 def DictIntStringToJson(valDict):
     return valDict
 
+DictStringInt = dict
+
 def readDictStringInt(_is, valDict):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -153,6 +167,8 @@ def DictStringIntFromJson(js):
 
 def DictStringIntToJson(valDict):
     return valDict
+
+DictStringString = dict
 
 def readDictStringString(_is, valDict):
     dataSize = _is.readInt()
