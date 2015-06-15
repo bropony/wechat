@@ -48,10 +48,6 @@ def main():
 
     Logger.logInfo("initiating app...")
     if app.init():
-        what, why = Scheduler.schedule(Ticker(), None, 0.3, 0.3)
-        if not what:
-            print(why)
-
         Logger.logInfo("starting mongodb")
         if not MongoDatabase.start():
             Logger.logInfo("Starting mongoDb Failed")
