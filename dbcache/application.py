@@ -39,7 +39,7 @@ class Application(ApplicationBase):
 
     def initMessageManager(self):
         if not self.messageManager:
-            self.messageManager = MessageManager(self.server)
+            self.messageManager = MessageManager(self.rmiServer)
 
         MessageSetting.initMessangeHandler()
         return True

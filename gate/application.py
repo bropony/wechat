@@ -41,16 +41,16 @@ class Application(ApplicationBase):
             return False
 
         self.createRmiServer(channel, ServerConfigManager.isDebug)
-        self.server.setBeforeInvoke(Preinvoke())
+        self.rmiServer.setBeforeInvoke(Preinvoke())
 
-        ServantSetting.initServant(self.server)
+        ServantSetting.initServant(self.rmiServer)
         ServantSetting.setChannelId(self.channelId)
 
         return True
 
     def initMessageManager(self):
         if not self.messageManager:
-            self.messageManager = MessageManager(self.server)
+            self.messageManager = MessageManager(self.rmiServer)
 
         MessageSetting.initMessangeHandler()
         return True

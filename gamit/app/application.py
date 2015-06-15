@@ -117,7 +117,7 @@ class ApplicationBase(metaclass=abc.ABCMeta):
     def createRmiServer(self, channel, isDebug):
         acceptor = Acceptor(channel.ip, channel.port)
         rmiServer = RmiServer(acceptor, isDebug)
-        self.server = rmiServer
+        self.rmiServer = rmiServer
         self.messageManager = rmiServer.messageManager
         self.channelId = channel.id
 
