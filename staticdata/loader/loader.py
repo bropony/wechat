@@ -16,6 +16,6 @@ def loadfile(jsFile, loader):
     fjs.close()
 
     res = loader()
-    res._fromJs(js)
-    
+    res._fromJson(js)
+
     return res
