@@ -69,7 +69,7 @@ class ApplicationBase(metaclass=abc.ABCMeta):
         if not self.prepare():
             return False
 
-        if not self.initServer():
+        if not self.initServant():
             return False
 
         if not self.initMessageManager():
