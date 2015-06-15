@@ -224,6 +224,27 @@ class Gmt2Py:
         self.indent = 0
         self.write("class {}:".format(structType.name))
 
+        # slots
+        self.indent = 1
+        self.write("__slots__ = dict()")
+        for field in structType.fields:
+            fieldName= field.name
+            fieldType = self.getTypePyName(field.type, self.loader.scope)
+            self.write("__slots__['{}'] = {}".format(fieldName, fieldType))
+        self.writeEmptyLine()
+
+        self.indent = 1
+        self.write("def __setattr__(self, name, val):")
+        self.indent = 2
+        self.write("if name in self.__slots__ and not isinstance(val, self.__slots__[name]):")
+        self.indent = 3
+        self.write("clsName = self.__slots__[name].__name__")
+        self.write("raise Exception('Value of {}.' + name + ' must be ' + clsName + ' object')".format(structType.name))
+        self.indent = 2
+        self.writeEmptyLine()
+        self.write("object.__setattr__(self, name, val)")
+        self.writeEmptyLine()
+
         self.indent = 1
         self.write("def __init__(self):")
         self.indent = 2

@@ -18,6 +18,8 @@ import message.common.publicdef
 import message.gate.gatemsg
 
 
+DictStrMessage = dict
+
 def readDictStrMessage(_is, valDict):
     dataSize = _is.readInt()
     for _ in range(dataSize):

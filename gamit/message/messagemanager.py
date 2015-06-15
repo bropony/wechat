@@ -11,6 +11,7 @@ class NotACommandHandlerError(Exception):
 class __MessageManager:
     def __call__(self, server):
         self.rmiServer = server
+        self.clientChannelMap = {}
         return self
 
     def __init__(self):
@@ -30,6 +31,9 @@ class __MessageManager:
             raise NotACommandHandlerError()
 
         self.idHandlerMap[id] = handler
+
+    def addConnChannel(self, connId, channelType):
+        self.clientChannelMap[channelType] = connId
 
     # message to myself
     def sendMessageToOwnChannel(self, command, toIdList, data):
@@ -68,6 +72,11 @@ class __MessageManager:
             self.rmiServer.send(connId, msg.getOsBuffer())
         except Exception as ex:
             Logger.logInfo(ex)
+
+    # message to client by channelType
+    def sendMessageToChannel(self, channelType, command, toIdList, data):
+        if channelType in self.clientChannelMap:
+            self.sendMessage(self.clientChannelMap[channelType], command, toIdList, data)
 
     # message from my clients
     def onMessage(self, _is):

@@ -13,6 +13,8 @@ from gamit.message.message import MessageBlock
 import message.common.publicdef
 
 
+SeqSeqInt = list
+
 def readSeqSeqInt(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -40,6 +42,8 @@ def SeqSeqIntToJson(valList):
         res.append(tmp)
     return res
 
+SeqDictIntInt = list
+
 def readSeqDictIntInt(_is, valList):
     dataSize = _is.readInt()
     for _ in range(dataSize):
@@ -66,6 +70,8 @@ def SeqDictIntIntToJson(valList):
         tmp = message.common.publicdef.DictIntIntToJson(val)
         res.append(tmp)
     return res
+
+DictDictStringInt = dict
 
 def readDictDictStringInt(_is, valDict):
     dataSize = _is.readInt()
@@ -96,6 +102,19 @@ def DictDictStringIntToJson(valDict):
     return res
 
 class SSignup:
+    __slots__ = dict()
+    __slots__['username'] = str
+    __slots__['nickname'] = str
+    __slots__['password'] = str
+    __slots__['sex'] = int
+
+    def __setattr__(self, name, val):
+        if name in self.__slots__ and not isinstance(val, self.__slots__[name]):
+            clsName = self.__slots__[name].__name__
+            raise Exception('Value of SSignup.' + name + ' must be ' + clsName + ' object')
+
+        object.__setattr__(self, name, val)
+
     def __init__(self):
         self.username = str()
         self.nickname = str()
@@ -135,6 +154,17 @@ class SSignup:
 MessageBlock.register(SSignup)
 
 class SLogin:
+    __slots__ = dict()
+    __slots__['username'] = str
+    __slots__['password'] = str
+
+    def __setattr__(self, name, val):
+        if name in self.__slots__ and not isinstance(val, self.__slots__[name]):
+            clsName = self.__slots__[name].__name__
+            raise Exception('Value of SLogin.' + name + ' must be ' + clsName + ' object')
+
+        object.__setattr__(self, name, val)
+
     def __init__(self):
         self.username = str()
         self.password = str()
@@ -162,6 +192,20 @@ class SLogin:
 MessageBlock.register(SLogin)
 
 class SLoginReturn:
+    __slots__ = dict()
+    __slots__['userId'] = int
+    __slots__['username'] = str
+    __slots__['nickname'] = str
+    __slots__['sessionKey'] = str
+    __slots__['sex'] = int
+
+    def __setattr__(self, name, val):
+        if name in self.__slots__ and not isinstance(val, self.__slots__[name]):
+            clsName = self.__slots__[name].__name__
+            raise Exception('Value of SLoginReturn.' + name + ' must be ' + clsName + ' object')
+
+        object.__setattr__(self, name, val)
+
     def __init__(self):
         self.userId = int()
         self.username = str()
@@ -207,6 +251,24 @@ class SLoginReturn:
 MessageBlock.register(SLoginReturn)
 
 class SMessage:
+    __slots__ = dict()
+    __slots__['var1'] = int
+    __slots__['var2'] = int
+    __slots__['var3'] = int
+    __slots__['var4'] = float
+    __slots__['var5'] = float
+    __slots__['var6'] = str
+    __slots__['var7'] = datetime.datetime
+    __slots__['intList'] = message.common.publicdef.SeqInt
+    __slots__['dictStrInt'] = message.common.publicdef.DictStringInt
+
+    def __setattr__(self, name, val):
+        if name in self.__slots__ and not isinstance(val, self.__slots__[name]):
+            clsName = self.__slots__[name].__name__
+            raise Exception('Value of SMessage.' + name + ' must be ' + clsName + ' object')
+
+        object.__setattr__(self, name, val)
+
     def __init__(self):
         self.var1 = int()
         self.var2 = int()
@@ -255,9 +317,11 @@ class SMessage:
             self.var6 = js['var6']
         if 'var7' in js and isinstance(js['var7'], datetime.datetime):
             self.var7 = js['var7']
-        if 'intList' in js and isinstance(js['intList'], list):
+        elif 'var7' in js and isinstance(self.var7, datetime.datetime):
+            self.var7 = datetime.datetime.strptime(js['var7'], '%Y-%m-%d %H:%M:%S')
+        if 'intList' in js and isinstance(js['intList'], message.common.publicdef.SeqInt):
             self.intList = message.common.publicdef.SeqIntFromJson(js['intList'])
-        if 'dictStrInt' in js and isinstance(js['dictStrInt'], dict):
+        if 'dictStrInt' in js and isinstance(js['dictStrInt'], message.common.publicdef.DictStringInt):
             self.dictStrInt = message.common.publicdef.DictStringIntFromJson(js['dictStrInt'])
 
     def _toJson(self):
@@ -274,6 +338,8 @@ class SMessage:
         return js
 
 MessageBlock.register(SMessage)
+
+DictMessage = dict
 
 def readDictMessage(_is, valDict):
     dataSize = _is.readInt()

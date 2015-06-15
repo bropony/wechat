@@ -15,6 +15,19 @@ import message.gate.gatemsg
 
 
 class AnRmiTest:
+    __slots__ = dict()
+    __slots__['message'] = message.gate.gatemsg.SMessage
+    __slots__['ip'] = str
+    __slots__['shortDesc'] = str
+    __slots__['passedTimes'] = int
+
+    def __setattr__(self, name, val):
+        if name in self.__slots__ and not isinstance(val, self.__slots__[name]):
+            clsName = self.__slots__[name].__name__
+            raise Exception('Value of AnRmiTest.' + name + ' must be ' + clsName + ' object')
+
+        object.__setattr__(self, name, val)
+
     def __init__(self):
         self.message = message.gate.gatemsg.SMessage()
         self.ip = str()
