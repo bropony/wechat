@@ -15,26 +15,8 @@ from twisted.internet import reactor
 
 from staticdata.serverconfig import ServerConfigManager
 import gamit.app.apptype as AppType
+from gamit.app.application import ApplicationBase
 from gamit.log.logger import Logger
-from gamit.rmi import protocol as Protocol
-
-from gamit.rmi.rmiserver import RmiServer
-from gamit.rmi.rmiclient import RmiClient
-from gamit.message.messagemanager import MessageManager
-from gamit.timer.schedule import Scheduler
-from gamit.rmi.sessionmanager import SessionManager
-
-# choose a network protocol
-NETWORK_PROTOCOL = Protocol.WEBSOCKET
-
-if NETWORK_PROTOCOL == Protocol.WEBSOCKET:
-    from gamit.websocket.ws_acceptor import WsAcceptor as Acceptor
-    from gamit.websocket.ws_connector import WsConnector as Connector
-elif NETWORK_PROTOCOL == Protocol.ASIO:
-    from gamit.websocket.asio_acceptor import AsioAcceptor as Acceptor
-    from gamit.websocket.asio_connector import AsioConnector as Connector
-else:
-    raise Exception("Not network protocol assigned.")
 
 # settings
 from settings.proxy import *
@@ -43,49 +25,12 @@ from settings.message import *
 from logic.connection.preinvoke import Preinvoke
 from logic.connection.dbcache import DbCacheConnectCallback
 
-class Application:
-    def __init__(self, channelId=0):
-        self.server = None
-        self.channelId = channelId
-        self.clientMap = {}
-        self.messageManager = None
-        self.scheduler = Scheduler()
-
-    def start(self):
-        self.server.start()
-        self.scheduler.start()
-        SessionManager.startHeartBeats()
-
-        for _, client in self.clientMap.items():
-            client.start()
-
-        reactor.run()
-
-    def stop(self):
-        self.server.stop()
-        for _, client in self.clientMap.items():
-            client.stop()
-
-        #reactor.stop()
-
-    def init(self):
-        if not self._initRmiServer():
-            return False
-
-        # this must be done before and proxy is initiated...
-        if not self._initMessageManager():
-            return False
-
-        if not self._initDbCacheProxy():
-            return False
-
-        if not self._initDbLogProxy():
-            return False
-
-        return True
+class Application(ApplicationBase):
+    def __init__(self, name="", channelId=0):
+        super().__init__(name, channelId)
 
     # serve as a servant (server side logic)
-    def _initRmiServer(self):
+    def initServant(self):
         if self.channelId:
             channel = ServerConfigManager.getChannelById(self.channelId)
         else:
@@ -95,22 +40,28 @@ class Application:
             Logger.logInfo("Gate Channel not configured:", self.channelId)
             return False
 
-        acceptor = Acceptor(channel.ip, channel.port)
-        rmiServer = RmiServer(acceptor, ServerConfigManager.isDebug)
-        self.server = rmiServer
+        self.createRmiServer(channel, ServerConfigManager.isDebug)
         self.server.setBeforeInvoke(Preinvoke())
-        self.messageManager = rmiServer.messageManager
 
         ServantSetting.initServant(self.server)
         ServantSetting.setChannelId(self.channelId)
 
         return True
 
-    def _initMessageManager(self):
+    def initMessageManager(self):
         if not self.messageManager:
             self.messageManager = MessageManager(self.server)
 
         MessageSetting.initMessangeHandler()
+        return True
+
+    def initProxies(self):
+        if not self._initDbCacheProxy():
+            return False
+
+        if not self._initDbLogProxy():
+            return False
+
         return True
 
     # serve as a proxy (client side logic)
@@ -120,13 +71,9 @@ class Application:
             Logger.logInfo("DbCache channel not configured.")
             return False
 
-        connector = Connector(channel.ip, channel.port)
-        rmiClient = RmiClient(channel.type, connector, ServerConfigManager.isDebug)
         dbConnCb = DbCacheConnectCallback(channel)
-        rmiClient.setOnOpenCallback(dbConnCb, True)
-        rmiClient.setOnCloseCallback(dbConnCb, False)
+        rmiClient = self.addProxyByChannel(channel, ServerConfigManager.isDebug, dbConnCb, dbConnCb, [True], [False])
 
-        self.clientMap[AppType.DBCACHE] = rmiClient
         ProxySetting.initDbCacheProxy(rmiClient)
 
         return True

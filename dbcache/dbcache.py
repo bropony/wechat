@@ -30,7 +30,7 @@ def main():
     ServerConfigManager.loadConfig()
 
     # start logger
-    loggerDir = os.path.join(os.getcwd(), "log/dbcache")
+    loggerDir = os.path.join(os.getcwd(), "log/DbCache")
     Logger.startLogging(loggerDir, ServerConfigManager.isDebug)
 
     Logger.logInfo("loading configs...")
@@ -43,7 +43,7 @@ def main():
     if not MongoDatabase.loadConfig(connConfig, tableConfig):
         return
 
-    app = Application()
+    app = Application("DbCache")
 
     Logger.logInfo("initiating app...")
     if app.init():

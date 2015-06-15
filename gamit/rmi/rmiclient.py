@@ -16,7 +16,6 @@ from gamit.message.message import MessageBlock
 from gamit.serialize.serializer import Serializer, SerializeError
 from gamit.serialize.datatype import RmiDataType
 from gamit.rmi.proxymanager import ProxyManager
-from gamit.rmi.sessionmanager import SessionManager
 from twisted.internet import reactor
 
 class RmiClient:
@@ -36,8 +35,6 @@ class RmiClient:
 
         self.onCloseCallback = None
         self.closeCallArgv = []
-
-        SessionManager.addSession(channelType, self)
 
     def start(self):
         self.connector.start(self.isDebug)
