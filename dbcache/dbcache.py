@@ -41,6 +41,7 @@ def main():
     connConfig = os.path.join(parent_dir, "config/dbcache_connection_config.xml")
     tableConfig = os.path.join(parent_dir, "staticdata/dbconfig/main_db_config.xml")
     if not MongoDatabase.loadConfig(connConfig, tableConfig):
+        Logger.logInfo("DbCache", "Load MongoDatata Config Failed")
         return
 
     app = Application("DbCache")
@@ -50,6 +51,11 @@ def main():
         what, why = Scheduler.schedule(Ticker(), None, 0.3, 0.3)
         if not what:
             print(why)
+
+        Logger.logInfo("starting mongodb")
+        if not MongoDatabase.start():
+            Logger.logInfo("Starting mongoDb Failed")
+            return
 
         Logger.logInfo("starting app...")
         app.start()

@@ -15,7 +15,6 @@ from gamit.app.application import ApplicationBase
 from gamit.message.messagemanager import MessageManager
 from gamit.timer.schedule import Scheduler
 from gamit.rmi.sessionmanager import SessionManager
-from gamit.mongodb.database import MongoDatabase
 
 
 # settings
