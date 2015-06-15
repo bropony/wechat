@@ -9,11 +9,11 @@
 """
 
 from staticdata.loader.manager import *
-from message.tables.TErrorConfig import SeqTErrorConfigFromJson
+from message.tables.TErrorConfig import SeqTErrorConfig
 
 class __ErrorCodeManager(ManagerBase):
     def __init__(self):
-        super().__init__(SeqTErrorConfigFromJson)
+        super().__init__(SeqTErrorConfig)
 
     def loadConfig(self, filepath):
         configs = loadfile(filepath, self.loader)
