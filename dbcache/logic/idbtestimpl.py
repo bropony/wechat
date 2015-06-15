@@ -10,6 +10,7 @@
 
 from message.db.idbtest import IDbTestServant
 from message.db.main_db import AnRmiTest
+from message.gate.command import ETestCommand
 from gamit.mongodb.database import MongoDatabase
 from gamit.log.logger import Logger
 from gamit.message.messagemanager import MessageManager
@@ -32,4 +33,4 @@ class IDbTestImpl(IDbTestServant):
 
         Logger.logInfo("IDbTestImpl.sayhello", "response")
         _request.response(res)
-        MessageManager
+        MessageManager.broadcast(ETestCommand.FirstMessage, res)

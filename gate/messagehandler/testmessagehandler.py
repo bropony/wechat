@@ -14,8 +14,8 @@ from gamit.message.messagemanager import MessageManager
 class TestMessageHandler(CommandHandlerBase):
     def onMessage(self, command, toIdList, data):
         print("message received: ", command)
-        for key, val in data.__dict__.items():
-            print("{}: {}".format(key, val))
+        for key in data.__slots__:
+            print("{}: {}".format(key, data[key]))
 
         MessageManager.broadcast(command, data)
 
