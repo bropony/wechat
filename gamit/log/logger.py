@@ -18,7 +18,6 @@ class Logger:
     _logfile = None
     _logdir = None
     _logfilepath = ""
-    _logObserver = None
 
     @classmethod
     def startLogging(cls, logDir, isDebug):
@@ -27,7 +26,16 @@ class Logger:
 
         cls._logger.FileLogObserver(sys.stdout).start()
         cls._logdir = logDir
-        cls.updateLogFile()
+        cls._logfile = cls.getFile(logDir)
+        cls._logger.startLogging(cls._logfile)
+
+    @staticmethod
+    def getFile(logDir):
+        if not os.path.exists(logDir):
+            os.makedirs(logDir)
+        filename = "gamit.log"
+
+        return open(os.path.join(logDir, filename), "a")
 
     @classmethod
     def updateLogFile(cls):
@@ -56,31 +64,13 @@ class Logger:
         if cls._logLevel > logging.DEBUG:
             return
 
-        cls.updateLogFile()
-
-        if not cls._logfile:
-            sys.stdout.write(*argv)
-            sys.stdout.write("\n")
-        else:
-            cls._logger.msg(*argv, logLevel=logging.DEBUG)
+        cls._logger.msg(*argv, logLevel=logging.DEBUG)
 
     @classmethod
     def logInfo(cls, *argv):
-        cls.updateLogFile()
-
-        if not cls._logfile:
-            sys.stdout.write(*argv)
-            sys.stdout.write("\n")
-        else:
-            cls._logger.msg(*argv, logLevel=logging.INFO)
+        cls._logger.msg(*argv, logLevel=logging.INFO)
 
     @classmethod
     def log(cls, *argv, logLevel=logging.INFO):
-        cls.updateLogFile()
-
-        if not cls._logfile:
-            sys.stdout.write(*argv)
-            sys.stdout.write("\n")
-        else:
-            cls._logger.msg(*argv, logLevel=logLevel)
+        cls._logger.msg(*argv, logLevel=logLevel)
 
