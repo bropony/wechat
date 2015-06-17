@@ -35,8 +35,7 @@ class _WSClientProtocol(WebSocketClientProtocol):
 
     def onPong(self, payload):
         self.pongs += 1
-        #if self.pongs % 10 == 0:
-        if True:
+        if self.pongs % 10 == 0:
             Logger.logInfo("Pong {} from {}".format(self.pongs, self.peer))
 
 
