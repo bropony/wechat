@@ -4,7 +4,6 @@
     <list default="true" readonly="true" id="c74105f1-3c92-4e22-82fc-7b3a15a99860" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../autotools/gmt2cpp.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/logger.py" afterPath="$PROJECT_DIR$/log/logger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gamit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/log/logger.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.46278754">
-              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+              <caret line="36" column="108" selection-start-line="36" selection-start-column="108" selection-end-line="36" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -924,7 +923,7 @@
     <entry file="file://$PROJECT_DIR$/log/logger.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46278754">
-          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+          <caret line="36" column="108" selection-start-line="36" selection-start-column="108" selection-end-line="36" selection-end-column="108" />
           <folding />
         </state>
       </provider>
