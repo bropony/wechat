@@ -34,7 +34,7 @@ class Logger:
             return
 
         dt = datetime.datetime.now()
-        filename = "{:04d}-{:02d}-{:02d}_{:02d}:{:02d}.log".format(dt.year, dt.month, dt.day, dt.hour, dt.min)
+        filename = "{:04d}-{:02d}-{:02d}_{:02d}_{:02d}.log".format(dt.year, dt.month, dt.day, dt.hour, dt.min)
         if filename != cls._logfilepath:
             if cls._logfile:
                 cls._logfile.close()
