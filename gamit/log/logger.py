@@ -18,13 +18,14 @@ class Logger:
     _logfile = None
     _logdir = None
     _logfilepath = ""
+    _logObserver = None
 
     @classmethod
     def startLogging(cls, logDir, isDebug):
         if not isDebug:
             cls._logLevel = logging.INFO
 
-        cls._logger.FileLogObserver(sys.stdout).start()
+        #cls._logger.FileLogObserver(sys.stdout).start()
         cls._logdir = logDir
         cls.updateLogFile()
 
@@ -36,17 +37,19 @@ class Logger:
         dt = datetime.datetime.now()
         filename = "{:04d}-{:02d}-{:02d}_{:02d}_{:02d}.log".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
         if filename != cls._logfilepath:
-            oldLogFile = cls._logfile
+            if cls._logfile:
+                cls._logger.removeObserver(cls._logObserver)
+                cls._logfile.close()
+
             if not os.path.exists(cls._logdir):
                 os.makedirs(cls._logdir)
 
             cls._logfile = open(os.path.join(cls._logdir, filename), "a")
             cls._logfilepath = filename
 
+            cls._logObserver = cls._logger.FileLogObserver(sys.stdout)
+            cls._logObserver.start()
             cls._logger.startLogging(cls._logfile)
-
-            if oldLogFile:
-                oldLogFile.close()
 
     @classmethod
     def logDebug(cls, *argv):
