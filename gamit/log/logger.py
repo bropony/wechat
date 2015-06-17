@@ -36,8 +36,7 @@ class Logger:
         dt = datetime.datetime.now()
         filename = "{:04d}-{:02d}-{:02d}_{:02d}_{:02d}.log".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
         if filename != cls._logfilepath:
-            if cls._logfile:
-                cls._logfile.close()
+            oldLogFile = cls._logfile
             if not os.path.exists(cls._logdir):
                 os.makedirs(cls._logdir)
 
@@ -45,6 +44,9 @@ class Logger:
             cls._logfilepath = filename
 
             cls._logger.startLogging(cls._logfile)
+
+            if oldLogFile:
+                oldLogFile.close()
 
     @classmethod
     def logDebug(cls, *argv):
