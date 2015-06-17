@@ -38,7 +38,7 @@ class Logger:
         filename = "{:04d}-{:02d}-{:02d}_{:02d}_{:02d}.log".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
         if filename != cls._logfilepath:
             if cls._logfile:
-                cls._logger.removeObserver(cls._logObserver)
+                #cls._logger.removeObserver(cls._logObserver)
                 cls._logfile.close()
 
             if not os.path.exists(cls._logdir):
@@ -47,8 +47,8 @@ class Logger:
             cls._logfile = open(os.path.join(cls._logdir, filename), "a")
             cls._logfilepath = filename
 
-            cls._logObserver = cls._logger.FileLogObserver(sys.stdout)
-            cls._logObserver.start()
+            #cls._logObserver = cls._logger.FileLogObserver(sys.stdout)
+            #cls._logObserver.start()
             cls._logger.startLogging(cls._logfile)
 
     @classmethod
