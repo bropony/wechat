@@ -25,7 +25,7 @@ class Logger:
         if not isDebug:
             cls._logLevel = logging.INFO
 
-        #cls._logger.FileLogObserver(sys.stdout).start()
+        cls._logger.FileLogObserver(sys.stdout).start()
         cls._logdir = logDir
         cls.updateLogFile()
 
@@ -37,9 +37,9 @@ class Logger:
         dt = datetime.datetime.now()
         filename = "{:04d}-{:02d}-{:02d}_{:02d}_{:02d}.log".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
         if filename != cls._logfilepath:
-            if cls._logfile:
+            #if cls._logfile:
                 #cls._logger.removeObserver(cls._logObserver)
-                cls._logfile.close()
+            #    cls._logfile.close()
 
             if not os.path.exists(cls._logdir):
                 os.makedirs(cls._logdir)
