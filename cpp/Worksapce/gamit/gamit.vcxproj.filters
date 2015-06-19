@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{4a011d46-3089-45ac-b6a1-8acbb2b9f924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\def">
+      <UniqueIdentifier>{9810a797-dada-4b9a-a779-3018aec2ff62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\serialize">
+      <UniqueIdentifier>{51c0c4b5-c9f0-4510-a184-4f279e320729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rmi">
+      <UniqueIdentifier>{3166d023-4fd0-42be-9fb4-314b036b1952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\message">
+      <UniqueIdentifier>{7277c01e-8315-4c39-aa9f-d1c67d89d87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\net">
+      <UniqueIdentifier>{2aa085fb-e9ee-42aa-b76b-a353d261b8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\net\websocket">
+      <UniqueIdentifier>{1db81bdd-cbf1-4cf1-acf3-e45ec8b440a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\gamit\util\datetime.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\util\exception.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\serialize\serializer.cpp">
+      <Filter>src\serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\serialize\serializeexception.cpp">
+      <Filter>src\serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\rmi\RmiClient.cpp">
+      <Filter>src\rmi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\message\MessageManager.cpp">
+      <Filter>src\message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\message\Message.cpp">
+      <Filter>src\message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\message\MessageHandler.cpp">
+      <Filter>src\message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\rmi\RmiCore.cpp">
+      <Filter>src\rmi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\net\websocket\WebsocketConnector.cpp">
+      <Filter>src\net\websocket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\net\ConnectorBase.cpp">
+      <Filter>src\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\util\logger.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\gamit\util\datetime.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\def\macros.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\util\exception.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\serialize\serializer.h">
+      <Filter>src\serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\serialize\serializeexception.h">
+      <Filter>src\serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\def\types.h">
+      <Filter>src\def</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\util\endian.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\rmi\RmiClient.h">
+      <Filter>src\rmi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\message\MessageManager.h">
+      <Filter>src\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\message\Message.h">
+      <Filter>src\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\message\MessageHandler.h">
+      <Filter>src\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\util\sharedptr.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\util\autorun.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\rmi\RmiCore.h">
+      <Filter>src\rmi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\net\websocket\WebsocketConnector.h">
+      <Filter>src\net\websocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\net\ConnectorBase.h">
+      <Filter>src\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\util\logger.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

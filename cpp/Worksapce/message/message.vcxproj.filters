@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\gate">
+      <UniqueIdentifier>{a6d1a6ec-b8b0-4b81-b067-d43942f4fff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{dd732a61-04b2-4fb2-ba6b-8768b6aeeb79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\message\common\publicdef.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\message\gate\gatemsg.cpp">
+      <Filter>src\gate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\message\gate\itest.cpp">
+      <Filter>src\gate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\message\gate\command.cpp">
+      <Filter>src\gate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\message\common\etest.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\message\common\publicdef.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\message\gate\gatemsg.h">
+      <Filter>src\gate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\message\gate\itest.h">
+      <Filter>src\gate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\message\gate\command.h">
+      <Filter>src\gate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\message\common\etest.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
