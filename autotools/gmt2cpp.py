@@ -242,6 +242,7 @@ class Gmt2Cpp:
         self.hppIndent += 1
 
         self.writeCpp("// implementation of class {}".format(structName))
+        self.writeCpp("gamit::CAutoRun regist{1}({0}::{1}::regist);".format(self.cppScope, structName))
         self.writeCpp("std::string {}::_msgName(\"{}\");".format(classScope, structName))
         self.writeCpp()
 
@@ -317,7 +318,6 @@ class Gmt2Cpp:
 
         self.hppIndent -= 1 # end of class
         self.writeHpp("{}; // class {}".format("}", structName))
-        self.writeHpp("gamit::CAutoRun regist{0}({0}::regist);".format(structName))
         self.writeHpp()
 
     def parseEnum(self, dataType):
