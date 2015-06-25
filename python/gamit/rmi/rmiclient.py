@@ -80,7 +80,7 @@ class RmiClient:
 
     def onMessage(self, payload, isBinary):
         try:
-            simpleDecrypt(payload) # decrypt
+            payload = simpleDecrypt(payload) # decrypt
 
             _is = Serializer(payload)
             _is.startToRead()
@@ -97,7 +97,7 @@ class RmiClient:
             Logger.logInfo(ex)
 
     def send(self, payload, isBinary):
-        simpleEncrypt(payload)
+        payload = simpleEncrypt(payload)
         self.connector.send(payload, isBinary)
 
     def sendMessage(self, command, toIdList, data):

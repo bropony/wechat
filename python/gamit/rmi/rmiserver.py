@@ -51,7 +51,7 @@ class RmiServer:
 
     def onMessage(self, connId, payload, isBinary):
         try:
-            simpleDecrypt(payload)
+            payload = simpleDecrypt(payload)
             _is = Serializer(payload)
             _is.startToRead()
             rmiType = _is.readByte()
@@ -70,7 +70,7 @@ class RmiServer:
             self.connIdSet.remove(connId)
 
     def send(self, connId, payload, isBinary=True):
-        simpleEncrypt(payload)
+        payload = simpleEncrypt(payload)
         self.acceptor.send(connId, payload, isBinary)
 
     def broadcast(self, payload, isBinary=True):

@@ -52,11 +52,17 @@ def __decrypt(src):
 
 
 def simpleEncrypt(src):
-    __mask(src)
-    __encrypt(src)
+    dest = list(src)
+    __mask(dest)
+    __encrypt(dest)
 
+    return bytes(dest)
 
 def simpleDecrypt(src):
-    __decrypt(src)
-    __mask(src)
+    dest = list(src)
+
+    __decrypt(dest)
+    __mask(dest)
+
+    return bytes(dest)
 
