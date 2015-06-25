@@ -2,13 +2,26 @@
 #include "message/gate/gatemsg.h"
 #include <cstdio>
 #include <cstdlib>
+#include <gamit/serialize/encrypt.h>
 
 using namespace Test;
 
 void CMessageTest::runTest()
 {
-	resigt();
-	send();
+	std::string src = "abcdefg";
+	std::string dest = src;
+	gamit::CEncrypto::simpleEncrypt(dest);
+
+	std::string back = dest;
+	gamit::CEncrypto::simpleDecrypt(back);
+
+	std::cout << "src: " << src << std::endl;
+	for (auto c : dest)
+	{
+		std::cout << (unsigned)c << std::endl;
+	}
+
+	std::cout << "back: " << back << std::endl;
 }
 
 void CMessageTest::resigt()
