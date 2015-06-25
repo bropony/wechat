@@ -9,6 +9,7 @@
 from gamit.log.logger import Logger
 from gamit.message.messagemanager import MessageManager
 from gamit.serialize.serializer import Serializer, SerializeError
+from gamit.serialize.encrypt import simpleEncrypt, simpleDecrypt
 from gamit.serialize.datatype import RmiDataType
 from twisted.internet import reactor
 
@@ -50,6 +51,7 @@ class RmiServer:
 
     def onMessage(self, connId, payload, isBinary):
         try:
+            simpleDecrypt(payload)
             _is = Serializer(payload)
             _is.startToRead()
             rmiType = _is.readByte()
@@ -68,6 +70,7 @@ class RmiServer:
             self.connIdSet.remove(connId)
 
     def send(self, connId, payload, isBinary=True):
+        simpleEncrypt(payload)
         self.acceptor.send(connId, payload, isBinary)
 
     def broadcast(self, payload, isBinary=True):

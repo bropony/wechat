@@ -14,6 +14,7 @@ from gamit.log.logger import Logger
 from gamit.message.messagemanager import MessageManager
 from gamit.message.message import MessageBlock
 from gamit.serialize.serializer import Serializer, SerializeError
+from gamit.serialize.encrypt import simpleDecrypt, simpleEncrypt
 from gamit.serialize.datatype import RmiDataType
 from gamit.rmi.proxymanager import ProxyManager
 from twisted.internet import reactor
@@ -79,6 +80,8 @@ class RmiClient:
 
     def onMessage(self, payload, isBinary):
         try:
+            simpleDecrypt(payload) # decrypt
+
             _is = Serializer(payload)
             _is.startToRead()
             rmiType = _is.readByte()
@@ -93,9 +96,13 @@ class RmiClient:
         except Exception as ex:
             Logger.logInfo(ex)
 
+    def send(self, payload, isBinary):
+        simpleEncrypt(payload)
+        self.connector.send(payload, isBinary)
+
     def sendMessage(self, command, toIdList, data):
         msg = MessageBlock(command, toIdList, data)
-        self.connector.send(msg.getOsBuffer(), True)
+        self.send(msg.getOsBuffer(), True)
 
     def onResponse(self, _is):
         msgId = _is.readInt()
@@ -132,7 +139,7 @@ class RmiClient:
         reactor.callLater(self.timeout, self._onTimeout)
 
     def onCall(self, _os, callback):
-        self.connector.send(_os.getBuffer(), True)
+        self.send(_os.getBuffer(), True)
         self.callbackMap[callback._msgId] = callback
 
     def heartbeat(self):
