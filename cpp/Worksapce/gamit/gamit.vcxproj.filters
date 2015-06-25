@@ -64,6 +64,9 @@
     <ClCompile Include="..\..\Source\gamit\util\logger.cpp">
       <Filter>src\util</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\gamit\serialize\encrypt.cpp">
+      <Filter>src\serialize</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\gamit\util\datetime.h">
@@ -116,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\gamit\util\logger.h">
       <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\gamit\serialize\encrypt.h">
+      <Filter>src\serialize</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

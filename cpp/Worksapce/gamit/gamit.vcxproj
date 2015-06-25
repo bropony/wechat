@@ -76,6 +76,7 @@
     <ClCompile Include="..\..\Source\gamit\net\websocket\WebsocketConnector.cpp" />
     <ClCompile Include="..\..\Source\gamit\rmi\RmiClient.cpp" />
     <ClCompile Include="..\..\Source\gamit\rmi\RmiCore.cpp" />
+    <ClCompile Include="..\..\Source\gamit\serialize\encrypt.cpp" />
     <ClCompile Include="..\..\Source\gamit\serialize\serializeexception.cpp" />
     <ClCompile Include="..\..\Source\gamit\serialize\serializer.cpp" />
     <ClCompile Include="..\..\Source\gamit\util\datetime.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="..\..\Source\gamit\net\websocket\WebsocketConnector.h" />
     <ClInclude Include="..\..\Source\gamit\rmi\RmiClient.h" />
     <ClInclude Include="..\..\Source\gamit\rmi\RmiCore.h" />
+    <ClInclude Include="..\..\Source\gamit\serialize\encrypt.h" />
     <ClInclude Include="..\..\Source\gamit\serialize\serializeexception.h" />
     <ClInclude Include="..\..\Source\gamit\serialize\serializer.h" />
     <ClInclude Include="..\..\Source\gamit\util\autorun.h" />
