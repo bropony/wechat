@@ -1,6 +1,7 @@
 #include <rmi/RmiClient.h>
 #include <message/MessageManager.h>
 #include <gamit/util/logger.h>
+#include <gamit/serialize/encrypt.h>
 
 using namespace gamit;
 
@@ -38,7 +39,10 @@ void CRmiClient::onMessage(const std::string & payload, bool isBinary)
 	try{
 		if (isBinary)
 		{
-			CSerializer __is(payload);
+			std::string decrypt = payload;
+			CEncrypto::simpleDecrypt(decrypt);
+
+			CSerializer __is(decrypt);
 			__is.startToRead();
 			byte_t __type = 0;
 			__is.read(__type);
@@ -97,12 +101,15 @@ void CRmiClient::addResponse(const CRmiResponseBasePtr & cb)
 
 void CRmiClient::send(const CSerializer & __os)
 {
-	_connector->send(__os.getBuffer(), true);
+	send(__os.getBuffer(), true);
 }
 
 void CRmiClient::send(const std::string & payload, bool isBinary)
 {
-	_connector->send(payload, isBinary);
+	std::string encrypt = payload;
+	CEncrypto::simpleEncrypt(encrypt);
+
+	_connector->send(encrypt, isBinary);
 }
 
 void CRmiClient::onResponse(CSerializer & __is)
