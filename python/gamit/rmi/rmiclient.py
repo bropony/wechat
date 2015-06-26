@@ -143,4 +143,5 @@ class RmiClient:
         self.callbackMap[callback._msgId] = callback
 
     def heartbeat(self):
-        self.connector.ws.sendPing()
+        if self.isOpen:
+            self.connector.ws.sendPing()
