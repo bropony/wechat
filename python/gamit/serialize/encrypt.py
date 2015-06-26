@@ -8,6 +8,8 @@
 * @desc encrypt.py
 """
 
+import random
+
 def __mask(src):
     mask = 108
 
@@ -36,10 +38,12 @@ def __encrypt(src):
     if buffSize == 0:
         return
 
-    pivot = src[0]
-    for i in range(1, buffSize):
+    pivot = random.randint(1, 127)
+    for i in range(buffSize):
         src[i] ^= pivot
         pivot = src[i]
+
+    src.append(pivot)
 
 def __decrypt(src):
     buffSize = len(src)
@@ -47,9 +51,11 @@ def __decrypt(src):
     if buffSize == 0:
         return
 
-    for i in range(buffSize - 1, 0, -1):
-        src[i] ^= src[i - 1]
+    pivot = src[-1]
+    for i in range(buffSize - 1):
+        src[i] ^= pivot
 
+    del src[-1]
 
 def simpleEncrypt(src):
     dest = list(src)
