@@ -1,4 +1,5 @@
 #include "encrypt.h"
+#include <random>
 
 using namespace gamit;
 
@@ -51,13 +52,14 @@ void CEncrypto::__encrypt(std::string & src)
 		return;
 	}
 
-	byte_t pivot = src[0];
+	byte_t pivot = byte_t(std::rand() % 127 + 1);
 
-	for (byte_t i = 1; i < src.size(); ++i)
+	for (byte_t i = 0; i < src.size(); ++i)
 	{
 		src[i] ^= pivot;
-		pivot = src[i];
 	}
+
+	src.push_back(pivot);
 }
 
 void CEncrypto::__decrypt(std::string & src)
@@ -67,8 +69,11 @@ void CEncrypto::__decrypt(std::string & src)
 		return;
 	}
 
-	for (byte_t i = src.size() - 1; i > 0; i--)
+	byte_t pivot = *src.rbegin();
+	src.pop_back();
+
+	for (std::string::size_type i = 0; i < src.size(); ++i)
 	{
-		src[i] ^= src[i - 1];
+		src[i] ^= pivot;
 	}
 }
