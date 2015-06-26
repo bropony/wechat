@@ -41,7 +41,6 @@ def __encrypt(src):
     pivot = random.randint(1, 127)
     for i in range(buffSize):
         src[i] ^= pivot
-        pivot = src[i]
 
     src.append(pivot)
 
