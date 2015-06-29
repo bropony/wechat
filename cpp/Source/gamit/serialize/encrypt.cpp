@@ -53,13 +53,13 @@ void CEncrypto::__encrypt(std::string & src)
 	}
 
 	byte_t pivot = byte_t(std::rand() % 127 + 1);
+	src.push_back(pivot);
 
-	for (byte_t i = 0; i < src.size(); ++i)
+	for (int i = int(src.size() - 2); i >= 0; i--)
 	{
 		src[i] ^= pivot;
+		pivot = src[i];
 	}
-
-	src.push_back(pivot);
 }
 
 void CEncrypto::__decrypt(std::string & src)
@@ -69,11 +69,10 @@ void CEncrypto::__decrypt(std::string & src)
 		return;
 	}
 
-	byte_t pivot = *src.rbegin();
-	src.pop_back();
-
-	for (std::string::size_type i = 0; i < src.size(); ++i)
+	for (byte_t i = 0; i < src.size() - 1; i++)
 	{
-		src[i] ^= pivot;
+		src[i] ^= src[i + 1];
 	}
+
+	src.pop_back();
 }
