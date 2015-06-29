@@ -39,10 +39,11 @@ def __encrypt(src):
         return
 
     pivot = random.randint(1, 127)
-    for i in range(buffSize):
-        src[i] ^= pivot
-
     src.append(pivot)
+
+    for i in range(buffSize - 1, -1, -1):
+        src[i] ^= pivot
+        pivot = src[i]
 
 def __decrypt(src):
     buffSize = len(src)
@@ -50,9 +51,8 @@ def __decrypt(src):
     if buffSize == 0:
         return
 
-    pivot = src[-1]
-    for i in range(buffSize - 1):
-        src[i] ^= pivot
+    for i in range(0, buffSize - 1):
+        src[i] ^= src[i + 1]
 
     del src[-1]
 
