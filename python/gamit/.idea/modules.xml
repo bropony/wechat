@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/../gate/.idea/gate.iml" filepath="$PROJECT_DIR$/../gate/.idea/gate.iml" />
       <module fileurl="file://$PROJECT_DIR$/../message/.idea/message.iml" filepath="$PROJECT_DIR$/../message/.idea/message.iml" />
       <module fileurl="file://$PROJECT_DIR$/../staticdata/.idea/staticdata.iml" filepath="$PROJECT_DIR$/../staticdata/.idea/staticdata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../struct_def/.idea/struct_def.iml" filepath="$PROJECT_DIR$/../struct_def/.idea/struct_def.iml" />
     </modules>
   </component>
 </project>
