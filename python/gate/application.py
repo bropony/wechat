@@ -25,6 +25,7 @@ from settings.message import *
 from logic.connection.preinvoke import Preinvoke
 from logic.connection.dbcache import DbCacheConnectCallback
 
+
 class Application(ApplicationBase):
     def __init__(self, name="", channelId=0):
         super().__init__(name, channelId)
