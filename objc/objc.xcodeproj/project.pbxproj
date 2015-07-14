@@ -14,6 +14,8 @@
 		57AD37121B549FA400111609 /* GYSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37111B549FA400111609 /* GYSerializer.m */; };
 		57AD37161B54AF1900111609 /* GYSerializingError.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37151B54AF1900111609 /* GYSerializingError.m */; };
 		57AD37191B54EFC400111609 /* GYRmiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37181B54EFC400111609 /* GYRmiClient.m */; };
+		57AD371E1B54F17600111609 /* GYWSConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD371D1B54F17600111609 /* GYWSConnector.m */; };
+		57AD37211B54F4E700111609 /* GYRmiCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37201B54F4E700111609 /* GYRmiCore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		57AD37151B54AF1900111609 /* GYSerializingError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYSerializingError.m; path = serialize/GYSerializingError.m; sourceTree = "<group>"; };
 		57AD37171B54EFC400111609 /* GYRmiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYRmiClient.h; path = rmi/GYRmiClient.h; sourceTree = "<group>"; };
 		57AD37181B54EFC400111609 /* GYRmiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYRmiClient.m; path = rmi/GYRmiClient.m; sourceTree = "<group>"; };
+		57AD371C1B54F17600111609 /* GYWSConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYWSConnector.h; path = websocket/GYWSConnector.h; sourceTree = "<group>"; };
+		57AD371D1B54F17600111609 /* GYWSConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYWSConnector.m; path = websocket/GYWSConnector.m; sourceTree = "<group>"; };
+		57AD371F1B54F4E700111609 /* GYRmiCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYRmiCore.h; path = rmi/GYRmiCore.h; sourceTree = "<group>"; };
+		57AD37201B54F4E700111609 /* GYRmiCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYRmiCore.m; path = rmi/GYRmiCore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		57AD36F11B549D2200111609 /* gamit */ = {
 			isa = PBXGroup;
 			children = (
+				57AD371B1B54F12000111609 /* websocket */,
 				57AD370F1B549F3900111609 /* serialize */,
 				57AD370D1B549F0000111609 /* rmi */,
 				57AD37071B549D4400111609 /* SocketRocket */,
@@ -146,6 +153,8 @@
 			children = (
 				57AD37171B54EFC400111609 /* GYRmiClient.h */,
 				57AD37181B54EFC400111609 /* GYRmiClient.m */,
+				57AD371F1B54F4E700111609 /* GYRmiCore.h */,
+				57AD37201B54F4E700111609 /* GYRmiCore.m */,
 			);
 			name = rmi;
 			sourceTree = "<group>";
@@ -159,6 +168,15 @@
 				57AD37151B54AF1900111609 /* GYSerializingError.m */,
 			);
 			name = serialize;
+			sourceTree = "<group>";
+		};
+		57AD371B1B54F12000111609 /* websocket */ = {
+			isa = PBXGroup;
+			children = (
+				57AD371C1B54F17600111609 /* GYWSConnector.h */,
+				57AD371D1B54F17600111609 /* GYWSConnector.m */,
+			);
+			name = websocket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +269,10 @@
 				57AD370B1B549ED200111609 /* SRWebSocket.m in Sources */,
 				57AD37191B54EFC400111609 /* GYRmiClient.m in Sources */,
 				57AD36F51B549D2200111609 /* gamit.m in Sources */,
+				57AD37211B54F4E700111609 /* GYRmiCore.m in Sources */,
 				57AD37161B54AF1900111609 /* GYSerializingError.m in Sources */,
 				57AD37121B549FA400111609 /* GYSerializer.m in Sources */,
+				57AD371E1B54F17600111609 /* GYWSConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
