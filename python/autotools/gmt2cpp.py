@@ -608,7 +608,7 @@ def main():
                       dest="scope")
     parser.add_option("-g", "--gmt-dir", help="root directory of gmt files",
                       dest="inRootDir")
-    parser.add_option("-o", "--out-dir", help="root directory of generated python files",
+    parser.add_option("-o", "--out-dir", help="root directory of generated c++ files",
                       dest="outRootDir")
     parser.add_option("-f", "--file", dest="sources", action="append",
                       help="relative path of source gmt file. Multi-assignation is allowed.")
