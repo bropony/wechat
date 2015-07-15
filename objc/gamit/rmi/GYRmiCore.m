@@ -65,7 +65,7 @@ static int gMsgIdBase = 0;
 @implementation GYRmiProxyBase
 {
     NSString * _name;
-    id<GYRmiClientProtocal> _rmiClient;
+    __weak id<GYRmiClientProtocal> _rmiClient;
 }
 
 + (int) getMsgId
@@ -78,7 +78,7 @@ static int gMsgIdBase = 0;
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         return [self initWithName:@"" rmiClient: nil];
     }
@@ -90,7 +90,7 @@ static int gMsgIdBase = 0;
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         return [self initWithName: name rmiClient: nil];
     }
@@ -102,7 +102,7 @@ static int gMsgIdBase = 0;
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         _name = name;
         _rmiClient = rmiClient;
@@ -114,6 +114,11 @@ static int gMsgIdBase = 0;
 - (void) setRmiClient:(id<GYRmiClientProtocal>)rmiClient
 {
     _rmiClient = rmiClient;
+}
+
+- (NSString *) name
+{
+    return _name;
 }
 
 - (void) invoke:(GYSerializer *)__os withCallback:(GYRmiResponseBase *)callback

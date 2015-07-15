@@ -11,6 +11,7 @@
 #import "GYLogger.h"
 #import "GYSerializingError.h"
 #import "GYMessageManager.h"
+#import "GYProxyManager.h"
 
 
 //impl...
@@ -274,6 +275,12 @@
 - (void) setConnectionOpenCallback: (id<GYRmiConnectionOpenCallbackProtocol>) callback
 {
     _onOpenCallback = callback;
+}
+
+- (void) addProxy: (GYRmiProxyBase *) proxy
+{
+    [[GYProxyManager instance] addProxy: proxy];
+    [proxy setRmiClient: self];
 }
 
 - (void) digestUnsentRequest

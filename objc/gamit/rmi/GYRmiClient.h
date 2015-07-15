@@ -32,6 +32,7 @@
 
 - (void) addResponse: (GYRmiResponseBase *) response;
 - (void) setConnectionOpenCallback: (id<GYRmiConnectionOpenCallbackProtocol>) callback;
+- (void) addProxy: (GYRmiProxyBase *) proxy;
 
 - (void) digestUnsentRequest;
 - (void) checkCallbacksTimout;

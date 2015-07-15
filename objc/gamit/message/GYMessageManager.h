@@ -12,7 +12,6 @@
 @interface GYMessageManager : NSObject
 + (GYMessageManager *) instance;
 
-- (id) init;
 - (void) registCommand: (int) command withHandler: (id<GYMessageBaseProtocol>) handler;
 - (void) onMessage: (GYSerializer *) __is;
 @end

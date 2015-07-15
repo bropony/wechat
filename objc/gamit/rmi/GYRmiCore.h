@@ -51,5 +51,6 @@
 - (id) initWithName: (NSString *) name rmiClient: (id<GYRmiClientProtocal>) rmiClient;
 
 - (void) setRmiClient:(id<GYRmiClientProtocal>) rmiClient;
+- (NSString *) name;
 - (void) invoke: (GYSerializer *) __os withCallback: (GYRmiResponseBase *) callback;
 @end

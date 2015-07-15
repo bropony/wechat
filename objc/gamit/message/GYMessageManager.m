@@ -10,6 +10,10 @@
 
 static GYMessageManager * gMessageManagerInstance = nil;
 
+@interface GYMessageManager()
+- (id) init;
+@end
+
 @implementation GYMessageManager
 {
     NSMutableDictionary * _commandDict;
@@ -27,17 +31,11 @@ static GYMessageManager * gMessageManagerInstance = nil;
 
 - (id) init
 {
-    if (gMessageManagerInstance)
+    self = [super init];
+    
+    if (self)
     {
-        self = gMessageManagerInstance;
-    }
-    else
-    {
-        self = [super init];
-        if (self)
-        {
-            _commandDict = [[NSMutableDictionary alloc] init];
-        }
+        _commandDict = [[NSMutableDictionary alloc] init];
     }
     
     return self;
