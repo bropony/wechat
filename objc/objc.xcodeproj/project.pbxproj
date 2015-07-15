@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		576BD05B1B55EBBD005FE979 /* GYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD05A1B55EBBD005FE979 /* GYLogger.m */; };
+		576BD05F1B5601C4005FE979 /* GYMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD05E1B5601C4005FE979 /* GYMessage.m */; };
+		576BD0621B560EA5005FE979 /* GYMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0611B560EA5005FE979 /* GYMessageManager.m */; };
+		576BD0641B5617DD005FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0631B5617DD005FE979 /* main.m */; };
 		57AD36F31B549D2200111609 /* gamit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57AD36F21B549D2200111609 /* gamit.h */; };
 		57AD36F51B549D2200111609 /* gamit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD36F41B549D2200111609 /* gamit.m */; };
 		57AD36FB1B549D2200111609 /* libgamit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AD36EF1B549D2200111609 /* libgamit.a */; };
@@ -42,6 +46,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		576BD0591B55EBBD005FE979 /* GYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYLogger.h; path = logutil/GYLogger.h; sourceTree = "<group>"; };
+		576BD05A1B55EBBD005FE979 /* GYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYLogger.m; path = logutil/GYLogger.m; sourceTree = "<group>"; };
+		576BD05D1B5601C4005FE979 /* GYMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYMessage.h; path = message/GYMessage.h; sourceTree = "<group>"; };
+		576BD05E1B5601C4005FE979 /* GYMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYMessage.m; path = message/GYMessage.m; sourceTree = "<group>"; };
+		576BD0601B560EA5005FE979 /* GYMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYMessageManager.h; path = message/GYMessageManager.h; sourceTree = "<group>"; };
+		576BD0611B560EA5005FE979 /* GYMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYMessageManager.m; path = message/GYMessageManager.m; sourceTree = "<group>"; };
+		576BD0631B5617DD005FE979 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		57AD36EF1B549D2200111609 /* libgamit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgamit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD36F21B549D2200111609 /* gamit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamit.h; sourceTree = "<group>"; };
 		57AD36F41B549D2200111609 /* gamit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gamit.m; sourceTree = "<group>"; };
@@ -82,6 +93,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		576BD0581B55EB81005FE979 /* logutil */ = {
+			isa = PBXGroup;
+			children = (
+				576BD0591B55EBBD005FE979 /* GYLogger.h */,
+				576BD05A1B55EBBD005FE979 /* GYLogger.m */,
+			);
+			name = logutil;
+			sourceTree = "<group>";
+		};
+		576BD05C1B5601A2005FE979 /* message */ = {
+			isa = PBXGroup;
+			children = (
+				576BD05D1B5601C4005FE979 /* GYMessage.h */,
+				576BD05E1B5601C4005FE979 /* GYMessage.m */,
+				576BD0601B560EA5005FE979 /* GYMessageManager.h */,
+				576BD0611B560EA5005FE979 /* GYMessageManager.m */,
+			);
+			name = message;
+			sourceTree = "<group>";
+		};
 		57AD36E41B549CDB00111609 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +134,8 @@
 		57AD36F11B549D2200111609 /* gamit */ = {
 			isa = PBXGroup;
 			children = (
+				576BD05C1B5601A2005FE979 /* message */,
+				576BD0581B55EB81005FE979 /* logutil */,
 				57AD371B1B54F12000111609 /* websocket */,
 				57AD370F1B549F3900111609 /* serialize */,
 				57AD370D1B549F0000111609 /* rmi */,
@@ -118,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				57AD36FF1B549D2200111609 /* Supporting Files */,
+				576BD0631B5617DD005FE979 /* main.m */,
 			);
 			path = gamitTests;
 			sourceTree = "<group>";
@@ -269,8 +303,11 @@
 				57AD370B1B549ED200111609 /* SRWebSocket.m in Sources */,
 				57AD37191B54EFC400111609 /* GYRmiClient.m in Sources */,
 				57AD36F51B549D2200111609 /* gamit.m in Sources */,
+				576BD0621B560EA5005FE979 /* GYMessageManager.m in Sources */,
 				57AD37211B54F4E700111609 /* GYRmiCore.m in Sources */,
 				57AD37161B54AF1900111609 /* GYSerializingError.m in Sources */,
+				576BD05B1B55EBBD005FE979 /* GYLogger.m in Sources */,
+				576BD05F1B5601C4005FE979 /* GYMessage.m in Sources */,
 				57AD37121B549FA400111609 /* GYSerializer.m in Sources */,
 				57AD371E1B54F17600111609 /* GYWSConnector.m in Sources */,
 			);
@@ -280,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576BD0641B5617DD005FE979 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +541,7 @@
 				57AD37031B549D2200111609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		57AD37041B549D2200111609 /* Build configuration list for PBXNativeTarget "gamitTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +550,7 @@
 				57AD37061B549D2200111609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

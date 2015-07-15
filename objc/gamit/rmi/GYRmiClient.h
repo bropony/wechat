@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "GYRmiCore.h"
 
-@interface GYRmiClient : NSObject <GYRMiClientProtocol>
+@interface GYRmiClient : NSObject <GYRmiClientProtocal>
 - (id) initWithIp: (NSString *) ip andPort: (int) port;
 - (void) start;
 - (void) stop;
-- (void) checkCallbackTimeout; // run in a every event loop;
+- (void) fireOut; // run in a every event loop;
+- (void) setCallbackTimeout: (GYInt) timeoutSecs;
+
+- (void) connect;
+- (void) disconnect;
 
 - (void) onOpen;
 - (void) onCloseWithCode:(NSInteger) code reason:(NSString *) reason;
@@ -22,12 +26,17 @@
 - (void) send: (GYSerializer *) __os;
 - (void) sendWithData: (NSData *) data;
 - (void) sendWithString: (NSString *) str;
-
-- (void) connect;
-- (void) disconnect;
+- (void) sendOut: (id) data;
 
 - (void) onCall: (GYSerializer *) __os withCallback: (GYRmiResponseBase *) callbak;
 
 - (void) addResponse: (GYRmiResponseBase *) response;
 - (void) setConnectionOpenCallback: (id<GYRmiConnectionOpenCallbackProtocol>) callback;
+
+- (void) digestUnsentRequest;
+- (void) checkCallbacksTimout;
+
+- (void) _onRmiResponse: (GYSerializer *) __is;
+- (void) _onRmiMessage: (GYSerializer *) __is;
+- (void) _onRmiError: (GYSerializer *) __is;
 @end
