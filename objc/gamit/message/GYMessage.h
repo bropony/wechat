@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GYSerializer.h"
 
-@protocol GYMessageBaseProtocol <NSObject>
+@protocol GYMessageBaseProtocol <NSCopying>
 - (void) __read: (GYSerializer *) __is;
 - (void) __write: (GYSerializer *) __os;
 @end

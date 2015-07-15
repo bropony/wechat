@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface gamit : NSObject
-
-@end
+#import "GYMessageManager.h"
+#import "GYProxyManager.h"
+#import "GYRmiClient.h"
+#import "GYLogger.h"

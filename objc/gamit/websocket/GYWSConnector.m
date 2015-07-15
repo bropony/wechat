@@ -23,7 +23,7 @@
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         _ws = nil;
         _ip = ip;

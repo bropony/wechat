@@ -19,7 +19,7 @@
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         _msgId = 0;
         _createDt = [NSDate date];

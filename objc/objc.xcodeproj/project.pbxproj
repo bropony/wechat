@@ -12,6 +12,10 @@
 		576BD0621B560EA5005FE979 /* GYMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0611B560EA5005FE979 /* GYMessageManager.m */; };
 		576BD0641B5617DD005FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0631B5617DD005FE979 /* main.m */; };
 		576BD0671B562A59005FE979 /* GYProxyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0661B562A59005FE979 /* GYProxyManager.m */; };
+		576BD06F1B5630CF005FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD06E1B5630CF005FE979 /* main.m */; };
+		576BD07B1B563403005FE979 /* command.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0761B563403005FE979 /* command.m */; };
+		576BD07C1B563403005FE979 /* gatemsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0781B563403005FE979 /* gatemsg.m */; };
+		576BD07D1B563403005FE979 /* itest.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD07A1B563403005FE979 /* itest.m */; };
 		57AD36F31B549D2200111609 /* gamit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57AD36F21B549D2200111609 /* gamit.h */; };
 		57AD36F51B549D2200111609 /* gamit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD36F41B549D2200111609 /* gamit.m */; };
 		57AD36FB1B549D2200111609 /* libgamit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AD36EF1B549D2200111609 /* libgamit.a */; };
@@ -21,6 +25,7 @@
 		57AD37191B54EFC400111609 /* GYRmiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37181B54EFC400111609 /* GYRmiClient.m */; };
 		57AD371E1B54F17600111609 /* GYWSConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD371D1B54F17600111609 /* GYWSConnector.m */; };
 		57AD37211B54F4E700111609 /* GYRmiCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37201B54F4E700111609 /* GYRmiCore.m */; };
+		57E389281B5658EF003F4A8F /* publicdef.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E389271B5658EF003F4A8F /* publicdef.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		576BD06A1B5630CF005FE979 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		57AD36ED1B549D2200111609 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,6 +70,14 @@
 		576BD0631B5617DD005FE979 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		576BD0651B562A59005FE979 /* GYProxyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYProxyManager.h; path = rmi/GYProxyManager.h; sourceTree = "<group>"; };
 		576BD0661B562A59005FE979 /* GYProxyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYProxyManager.m; path = rmi/GYProxyManager.m; sourceTree = "<group>"; };
+		576BD06C1B5630CF005FE979 /* rmiTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rmiTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		576BD06E1B5630CF005FE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		576BD0751B563403005FE979 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = command.h; path = message/gate/command.h; sourceTree = "<group>"; };
+		576BD0761B563403005FE979 /* command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = command.m; path = message/gate/command.m; sourceTree = "<group>"; };
+		576BD0771B563403005FE979 /* gatemsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gatemsg.h; path = message/gate/gatemsg.h; sourceTree = "<group>"; };
+		576BD0781B563403005FE979 /* gatemsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gatemsg.m; path = message/gate/gatemsg.m; sourceTree = "<group>"; };
+		576BD0791B563403005FE979 /* itest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = itest.h; path = message/gate/itest.h; sourceTree = "<group>"; };
+		576BD07A1B563403005FE979 /* itest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = itest.m; path = message/gate/itest.m; sourceTree = "<group>"; };
 		57AD36EF1B549D2200111609 /* libgamit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgamit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD36F21B549D2200111609 /* gamit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamit.h; sourceTree = "<group>"; };
 		57AD36F41B549D2200111609 /* gamit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gamit.m; sourceTree = "<group>"; };
@@ -75,9 +97,18 @@
 		57AD371D1B54F17600111609 /* GYWSConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYWSConnector.m; path = websocket/GYWSConnector.m; sourceTree = "<group>"; };
 		57AD371F1B54F4E700111609 /* GYRmiCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYRmiCore.h; path = rmi/GYRmiCore.h; sourceTree = "<group>"; };
 		57AD37201B54F4E700111609 /* GYRmiCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYRmiCore.m; path = rmi/GYRmiCore.m; sourceTree = "<group>"; };
+		57E389261B5658EF003F4A8F /* publicdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = publicdef.h; path = message/common/publicdef.h; sourceTree = "<group>"; };
+		57E389271B5658EF003F4A8F /* publicdef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = publicdef.m; path = message/common/publicdef.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		576BD0691B5630CF005FE979 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57AD36EC1B549D2200111609 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,11 +147,43 @@
 			name = message;
 			sourceTree = "<group>";
 		};
+		576BD06D1B5630CF005FE979 /* rmiTest */ = {
+			isa = PBXGroup;
+			children = (
+				576BD0731B563269005FE979 /* message */,
+				576BD06E1B5630CF005FE979 /* main.m */,
+			);
+			path = rmiTest;
+			sourceTree = "<group>";
+		};
+		576BD0731B563269005FE979 /* message */ = {
+			isa = PBXGroup;
+			children = (
+				57E389251B5658D9003F4A8F /* common */,
+				576BD0741B5633F4005FE979 /* gate */,
+			);
+			name = message;
+			sourceTree = "<group>";
+		};
+		576BD0741B5633F4005FE979 /* gate */ = {
+			isa = PBXGroup;
+			children = (
+				576BD0751B563403005FE979 /* command.h */,
+				576BD0761B563403005FE979 /* command.m */,
+				576BD0771B563403005FE979 /* gatemsg.h */,
+				576BD0781B563403005FE979 /* gatemsg.m */,
+				576BD0791B563403005FE979 /* itest.h */,
+				576BD07A1B563403005FE979 /* itest.m */,
+			);
+			name = gate;
+			sourceTree = "<group>";
+		};
 		57AD36E41B549CDB00111609 = {
 			isa = PBXGroup;
 			children = (
 				57AD36F11B549D2200111609 /* gamit */,
 				57AD36FE1B549D2200111609 /* gamitTests */,
+				576BD06D1B5630CF005FE979 /* rmiTest */,
 				57AD36F01B549D2200111609 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,6 +193,7 @@
 			children = (
 				57AD36EF1B549D2200111609 /* libgamit.a */,
 				57AD36FA1B549D2200111609 /* gamitTests.xctest */,
+				576BD06C1B5630CF005FE979 /* rmiTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,9 +282,35 @@
 			name = websocket;
 			sourceTree = "<group>";
 		};
+		57E389251B5658D9003F4A8F /* common */ = {
+			isa = PBXGroup;
+			children = (
+				57E389261B5658EF003F4A8F /* publicdef.h */,
+				57E389271B5658EF003F4A8F /* publicdef.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		576BD06B1B5630CF005FE979 /* rmiTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 576BD0701B5630CF005FE979 /* Build configuration list for PBXNativeTarget "rmiTest" */;
+			buildPhases = (
+				576BD0681B5630CF005FE979 /* Sources */,
+				576BD0691B5630CF005FE979 /* Frameworks */,
+				576BD06A1B5630CF005FE979 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rmiTest;
+			productName = rmiTest;
+			productReference = 576BD06C1B5630CF005FE979 /* rmiTest */;
+			productType = "com.apple.product-type.tool";
+		};
 		57AD36EE1B549D2200111609 /* gamit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57AD37011B549D2200111609 /* Build configuration list for PBXNativeTarget "gamit" */;
@@ -264,6 +354,9 @@
 			attributes = {
 				LastUpgradeCheck = 0640;
 				TargetAttributes = {
+					576BD06B1B5630CF005FE979 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					57AD36EE1B549D2200111609 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -286,6 +379,7 @@
 			targets = (
 				57AD36EE1B549D2200111609 /* gamit */,
 				57AD36F91B549D2200111609 /* gamitTests */,
+				576BD06B1B5630CF005FE979 /* rmiTest */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +395,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		576BD0681B5630CF005FE979 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				576BD06F1B5630CF005FE979 /* main.m in Sources */,
+				576BD07C1B563403005FE979 /* gatemsg.m in Sources */,
+				576BD07B1B563403005FE979 /* command.m in Sources */,
+				576BD07D1B563403005FE979 /* itest.m in Sources */,
+				57E389281B5658EF003F4A8F /* publicdef.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57AD36EB1B549D2200111609 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,6 +444,85 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		576BD0711B5630CF005FE979 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		576BD0721B5630CF005FE979 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		57AD36E91B549CDB00111609 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -531,6 +716,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		576BD0701B5630CF005FE979 /* Build configuration list for PBXNativeTarget "rmiTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				576BD0711B5630CF005FE979 /* Debug */,
+				576BD0721B5630CF005FE979 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		57AD36E81B549CDB00111609 /* Build configuration list for PBXProject "objc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -11,11 +11,11 @@
 
 @class GYRmiResponseBase;
 
-@protocol GYRmiConnectionOpenCallbackProtocol <NSObject>
+@protocol GYRmiConnectionOpenCallbackProtocol
 - (void) onOpen;
 @end
 
-@protocol GYRmiClientProtocal <NSObject>
+@protocol GYRmiClientProtocal
 - (void) onOpen;
 - (void) onCloseWithCode:(NSInteger) code reason:(NSString *) reason;
 - (void) onError: (NSError *)error;

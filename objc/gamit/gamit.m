@@ -8,6 +8,3 @@
 
 #import "gamit.h"
 
-@implementation gamit
-
-@end

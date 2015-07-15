@@ -12,7 +12,7 @@
 - (id) init
 {
     self = [super init];
-    if (NULL != self)
+    if (self)
     {
         return [self initWhat:@"" andCode: 0];
     }
@@ -24,7 +24,7 @@
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         _what = what;
         _code = code;

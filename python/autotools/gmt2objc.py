@@ -124,7 +124,7 @@ class Gmt2Objc:
         self.writeHh()
 
         self.writeMm("/*")
-        self.writeMm("* @filename {}".format(self.cppName))
+        self.writeMm("* @filename {}".format(self.mmName))
         self.writeMm("*")
         self.writeMm("* @author ahda86@gmail.com")
         self.writeMm("*")
@@ -134,14 +134,14 @@ class Gmt2Objc:
         self.writeMm()
 
     def writeImports(self):
-        self.writeHh("#import <Foundation/Foundation.h>")
+        self.writeHh("#import \"gamit/gamit.h\"")
 
         for inc in self.loader.includes:
             fields = re.split(r'\.', inc)
-            self.writeHh("#import <{}.h>".format("/".join(fields)))
-        self.writeHpp()
+            self.writeHh("#import \"{}.h\"".format("/".join(fields)))
+        self.writeHh()
 
-        self.writeMm("#import <{}.h>".format("/".join(self.scopes)))
+        self.writeMm("#import \"{}.h\"".format("/".join(self.scopes)))
         self.writeMm()
 
     def begin(self):
@@ -151,40 +151,383 @@ class Gmt2Objc:
         pass
 
     def getObjcClassName(self, name):
-        return "GY" + name
+        return name
 
-    def getOjbcType(self, dataType):
+    def getPropertyDeclare(self, field):
+        res = "@property"
+        if isinstance(field.type, BasicType):
+            if field.type.name in ("string", "date", "binary"):
+                res += " (copy, nonatomic)"
+        elif not isinstance(field.type, Enum):
+            res += " (copy, nonatomic)"
+
+        res += " {} {}".format(self.getObjcRef(field.type), field.name)
+        return res
+
+    def getObjcType(self, dataType):
         if isinstance(dataType, BasicType):
             if dataType.name == 'bool':
-                return "BOOL"
+                return "GYBool"
             if dataType.name == "string":
                 return "NSString"
             if dataType.name == "date":
                 return "NSDate"
             if dataType.name == "binary":
-                return "NSString"
-            return "NSNumber"
+                return "NSData"
+
+            return "GY" + dataType.name.capitalize()
 
         if isinstance(dataType, Enum):
-            pass
+            return "enum " + self.getObjcClassName(dataType.name)
+
+        return dataType.name
+
+    def getObjcRef(self, dataType):
+        if isinstance(dataType, BasicType):
+            if dataType.name == 'bool':
+                return "GYBool"
+            if dataType.name == "string":
+                return "NSString *"
+            if dataType.name == "date":
+                return "NSDate *"
+            if dataType.name == "binary":
+                return "NSData *"
+
+            return "GY" + dataType.name.capitalize()
+
+        if isinstance(dataType, Enum):
+            return "enum " + self.getObjcClassName(dataType.name)
+
+        return dataType.name + " *"
+
+    def getInitValue(self, dataType):
+        if dataType.name == "bool":
+            return "NO"
+        if dataType.name in ("byte", "short", "int", "long"):
+            return "0"
+        if dataType.name in ("float", "double"):
+            return "0.0"
+        if dataType.name == "enum":
+            return dataType.name + dataType.pairs[0][0]
+        if dataType.name == "string":
+            return '@""'
+        if dataType.name == "date":
+            return "[NSDate date]"
+
+        return "[[{} alloc] init]".format(dataType.name)
+
+    def getReadExpr(self, dataType, varName):
+        if isinstance(dataType, BasicType):
+            return "{} = [__is read{}];".format(varName, dataType.name.capitalize())
+
+        if isinstance(dataType, Enum):
+            return "{} = ({})[__is readInt];".format(varName, dataType.name)
+
+        return "[{} __read: __is];".format(varName)
+
+    def getWriteExpr(self, dataType, varName):
+        if isinstance(dataType, BasicType):
+            return "[__os write{}: {}];".format(dataType.name.capitalize(), varName)
+
+        if isinstance(dataType, Enum):
+            return "[__os writeInt: {}];".format(varName)
+
+        return "[{} __write: __os];".format(varName)
+
+    def getCopyExpr(self, dataType, varName):
+        if isinstance(dataType, BasicType):
+            if dataType.name in ("string", "date", "binary"):
+                return "[{} copy]".format(varName)
+            return varName
+        if isinstance(dataType, Enum):
+            return varName
+
+        return "[{} copy]".format(varName)
 
     def parseStruct(self, dataType):
-        className = self.getObjcClassName(dataType.name)
+        # className = self.getObjcClassName(dataType.name)
+        className = dataType.name
 
-        self.writeHh("@interface {}".format(className))
+        self.writeHh("// class {}".format(className))
+        self.writeHh("@interface {}: NSObject <GYMessageBaseProtocol>".format(className))
+        self.writeHh()
+        self.writeMm("@implementation {}".format(className))
+        self.writeMm()
         for field in dataType.fields:
-            pass
+            self.writeHh(self.getPropertyDeclare(field) + ";")
+            self.writeMm("@synthesize {} {};".format(self.getObjcRef(field.type), field.name))
+        self.writeHh()
+        self.writeMm()
 
+        self.writeHh("- (id) init;")
+        self.writeHh("- (void) __read: (GYSerializer *) __is;")
+        self.writeHh("- (void) __write: (GYSerializer *) __os;")
+        self.writeHh("- (id) copyWithZone: (NSZone *) zone;")
         self.writeHh("@end")
+        self.writeHh()
+        self.writeHh()
+
+        # - (id) init
+        self.writeMm("- (id) init")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("self = [super init];")
+        self.writeMm("if (!self) return self;")
+        self.writeMm()
+        for field in dataType.fields:
+            self.writeMm("{} = {};".format(field.name, self.getInitValue(field.type)))
+
+        self.writeMm()
+        self.writeMm("return self;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __read
+        self.writeMm("- (void) __read: (GYSerializer *) __is")
+        self.writeMm("{")
+        self.mmIndent += 1
+        for field in dataType.fields:
+            self.writeMm(self.getReadExpr(field.type, field.name))
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __write
+        self.writeMm("- (void) __write: (GYSerializer *) __os")
+        self.writeMm("{")
+        self.mmIndent += 1
+        for field in dataType.fields:
+            self.writeMm(self.getWriteExpr(field.type, field.name))
+
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (id) copyWithZone
+        self.writeMm("- (id) copyWithZone: (NSZone *) zone")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("id __newObj = [[[self class] allocWithZone: zone] init];")
+        self.writeMm()
+        for field in dataType.fields:
+            self.writeMm("__newObj.{} = {};".format(field.name, self.getCopyExpr(field.type, "self." + field.name)))
+        self.writeMm()
+        self.writeMm("return __newObj;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+
+        self.writeMm("@end")
+        self.writeMm()
+        self.writeMm()
 
     def parseEnum(self, dataType):
-        pass
+        enumName = dataType.name
+
+        self.writeHh("enum {}: GYInt".format(enumName))
+        self.writeHh("{")
+        self.hhIndent += 1
+
+        for pair in dataType.pairs:
+            self.writeHh("{}{} = {},".format(enumName, pair[0], pair[1]))
+
+        self.hhIndent -= 1
+        self.writeHh("};")
+        self.writeHh()
 
     def parseList(self, dataType):
-        pass
+        listName = dataType.name
+
+        self.writeHh("// " + listName)
+        self.writeHh("@interface {}: NSObject <GYMessageBaseProtocol>".format(listName))
+        self.writeHh("@property (copy, nonatomic) NSMutableArray * data;")
+        self.writeHh()
+        self.writeHh("- (id) init;")
+        self.writeHh("- (void) __read: (GYSerializer *) __is;")
+        self.writeHh("- (void) __write: (GYSerializer *) __os;")
+        self.writeHh("- (id) copyWithZone: (NSZone *) zone;")
+        self.writeHh("@end")
+        self.writeHh()
+        self.writeHh()
+
+        self.writeMm("@implementation {}".format(listName))
+
+        # - (id) init
+        self.writeMm("- (id) init")
+        self.writeMm("{")
+        self.mmIndent += 1
+
+        self.writeMm("self = [super init];")
+        self.writeMm("if (!self) return self;")
+        self.writeMm()
+        self.writeMm("_data = [[NSMutableArray alloc] init];")
+        self.writeMm("return self;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __read
+        self.writeMm("- (void) __read: (GYSerializer *) __is")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("GYInt dataSize = [__is readInt];")
+        self.writeMm("for (GYInt i = 0; i < dataSize; ++i)")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("{} {} = {};".format(self.getObjcRef(dataType.type), "__tmpObj", self.getInitValue(dataType.type)))
+        self.writeMm(self.getReadExpr(dataType.type, "__tmpObj"))
+        self.writeMm("[_data addObject: {}];".format(self._basicToObjectExpr(dataType.type, "__tmpObj")))
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __write
+        self.writeMm("- (void) __write: (GYSerializer *) __os")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("GYInt dataSize = (GYInt)[data count];")
+        self.writeMm("for (id obj in _data)")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm(self.getWriteExpr(dataType.type, self._objectToBasicExpr(dataType.type, "id")))
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (id) copyWithZone
+        self.writeMm("- (id) copyWithZone: (NSZone *) zone")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("id __newList = [[[self class] allocWithZone: zone] init];")
+        self.writeMm("for (id __obj in _data)")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("id __newObj = [__obj copy];")
+        self.writeMm("[__newList.data addObject: __newObj];")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm("return __newList;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm("@end")
+        self.writeMm()
+        self.writeMm()
+
+    def _basicToObjectExpr(self, dataType, varName):
+        if dataType.name in ("bool", "byte", "short", "int", "long", "float", "double"):
+            return "[NSNumber numberWith{}: {}]".format(dataType.name.capitalize(), varName)
+        if dataType.name == "enum":
+            return "[NSNumber numberWithInt: {}".format(varName)
+
+        return varName
+
+    def _objectToBasicExpr(self, dataType, varName):
+        if dataType.name in ("bool", "byte", "short", "int", "long", "float", "double"):
+            return "[{} {}Value]".format(varName, dataType.name)
+        if dataType.name == "enum":
+            return "[{} intValue]".format(varName)
+
+        return varName
 
     def parseDict(self, dataType):
-        pass
+        dictName = dataType.name
+        valType = dataType.valType
+        keyType = dataType.keyType
+
+        self.writeHh("// {}".format(dictName))
+        self.writeHh("@interface {}: NSObject <GYMessageBaseProtocol>".format(dictName))
+        self.writeHh("@property (copy, nonatomic) NSMutableDictionary * data;")
+        self.writeHh()
+        self.writeHh("- (id) init;")
+        self.writeHh("- (void) __read: (GYSerializer *) __is;")
+        self.writeHh("- (void) __write: (GYSerializer *) __os;")
+        self.writeHh("- (id) copyWithZone: (NSZone *) zone;")
+        self.writeHh("@end")
+        self.writeHh()
+        self.writeHh()
+
+        self.writeMm("@implementation {}".format(dictName))
+
+        # - (id) init
+        self.writeMm("- (id) init")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("self = [super init];")
+        self.writeMm("if (!self) return self;")
+        self.writeMm()
+        self.writeMm("_data = [[NSMutableDictionary alloc] init];")
+        self.writeMm("return self;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __read
+        self.writeMm("- (void) __read: (GYSerializer *) __is")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("GYInt dataSize = [__is readInt];")
+        self.writeMm("for (GYInt i = 0; i < dataSize; ++i)")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("{} __key = {};".format(self.getObjcRef(keyType), self.getInitValue(keyType)))
+        self.writeMm("{} __val = {};".format(self.getObjcRef(valType), self.getInitValue(valType)))
+        self.writeMm(self.getReadExpr(keyType, "__key"))
+        self.writeMm(self.getReadExpr(valType, "__val"))
+
+        self.writeMm("[_data setObject: {} forKey: {}];".format(
+            self._basicToObjectExpr(valType, "__val"), self._basicToObjectExpr(keyType, "__key"))
+        )
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __write
+        self.writeMm("- (void) __write: (GYSerializer *) __os")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("GYInt dataSize = (GYInt)[_data count];")
+        self.writeMm("[__os writeInt: dataSize];")
+        self.writeMm("for (id __key in [_data keyEnumerator])")
+        self.writeMm("{")
+        self.mmIndent += 1
+        varExpr = self._objectToBasicExpr(keyType, "__key")
+        self.writeMm(self.getWriteExpr(keyType, varExpr))
+        self.writeMm()
+        self.writeMm("id __val = [_data objectForKey: __key];")
+        varExpr = self._objectToBasicExpr(valType, "__val")
+        self.writeMm(self.getWriteExpr(valType, varExpr))
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (id) copyWithZone
+        self.writeMm("- (id) copyWithZone: (NSZone *) zone")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("id __newDict = [[[self class] allocWithZone: zone] init];")
+        self.writeMm("for (id __key in [_data keyEnumerator])")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("id __newKey = [__key copy];")
+        self.writeMm("id __val = [_data objectForKey: __key];")
+        self.writeMm("id __newVal = [__val copy];")
+        self.writeMm("[__newDict.data setObject: __newVal forKey: __newKey];")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm("return __newDict;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm("@end")
+        self.writeMm()
+        self.writeMm()
 
     def parseInterface(self, dataType):
         for method in dataType.methodList:

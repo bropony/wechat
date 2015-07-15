@@ -29,7 +29,7 @@ static const char VERSION = 1;
 {
     self = [super init];
     
-    if (NULL != self)
+    if (self)
     {
         _buffer = [[NSMutableData alloc] init];
         _currentPos = 0;
@@ -42,7 +42,7 @@ static const char VERSION = 1;
 {
     self = [super init];
     
-    if (NULL == self)
+    if (self)
     {
         _buffer = [[NSMutableData alloc] initWithData: data];
         _currentPos = 0;
