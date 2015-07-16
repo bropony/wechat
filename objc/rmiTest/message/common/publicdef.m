@@ -7,7 +7,7 @@
 *        you know what you are doing.
 */
 
-#import "message/common/publicdef.h"
+#import "publicdef.h"
 
 @implementation SeqInt
 - (id) init
@@ -32,20 +32,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [__os writeInt: [id intValue]];
+        [__os writeInt: [obj intValue]];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqInt * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -75,20 +76,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [__os writeLong: [id longValue]];
+        [__os writeLong: [obj longValue]];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqLong * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -118,20 +120,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [__os writeString: id];
+        [__os writeString: obj];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqString * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -161,20 +164,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [__os writeFloat: [id floatValue]];
+        [__os writeFloat: [obj floatValue]];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqFloat * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -219,13 +223,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newDict = [[[self class] allocWithZone: zone] init];
+    DictIntInt * __newDict = [[[self class] allocWithZone: zone] init];
     for (id __key in [_data keyEnumerator])
     {
         id __newKey = [__key copy];
         id __val = [_data objectForKey: __key];
         id __newVal = [__val copy];
-        [__newDict.data setObject: __newVal forKey: __newKey];
+        [[__newDict data] setObject: __newVal forKey: __newKey];
     }
     return __newDict;
 }
@@ -270,13 +274,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newDict = [[[self class] allocWithZone: zone] init];
+    DictIntString * __newDict = [[[self class] allocWithZone: zone] init];
     for (id __key in [_data keyEnumerator])
     {
         id __newKey = [__key copy];
         id __val = [_data objectForKey: __key];
         id __newVal = [__val copy];
-        [__newDict.data setObject: __newVal forKey: __newKey];
+        [[__newDict data] setObject: __newVal forKey: __newKey];
     }
     return __newDict;
 }
@@ -321,13 +325,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newDict = [[[self class] allocWithZone: zone] init];
+    DictStringInt * __newDict = [[[self class] allocWithZone: zone] init];
     for (id __key in [_data keyEnumerator])
     {
         id __newKey = [__key copy];
         id __val = [_data objectForKey: __key];
         id __newVal = [__val copy];
-        [__newDict.data setObject: __newVal forKey: __newKey];
+        [[__newDict data] setObject: __newVal forKey: __newKey];
     }
     return __newDict;
 }
@@ -372,13 +376,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newDict = [[[self class] allocWithZone: zone] init];
+    DictStringString * __newDict = [[[self class] allocWithZone: zone] init];
     for (id __key in [_data keyEnumerator])
     {
         id __newKey = [__key copy];
         id __val = [_data objectForKey: __key];
         id __newVal = [__val copy];
-        [__newDict.data setObject: __newVal forKey: __newKey];
+        [[__newDict data] setObject: __newVal forKey: __newKey];
     }
     return __newDict;
 }

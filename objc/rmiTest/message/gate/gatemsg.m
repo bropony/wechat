@@ -7,7 +7,7 @@
 *        you know what you are doing.
 */
 
-#import "message/gate/gatemsg.h"
+#import "gatemsg.h"
 
 @implementation SeqSeqInt
 - (id) init
@@ -32,20 +32,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [id __write: __os];
+        [obj __write: __os];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqSeqInt * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -75,20 +76,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [id __write: __os];
+        [obj __write: __os];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqDictIntInt * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -133,13 +135,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newDict = [[[self class] allocWithZone: zone] init];
+    DictDictStringInt * __newDict = [[[self class] allocWithZone: zone] init];
     for (id __key in [_data keyEnumerator])
     {
         id __newKey = [__key copy];
         id __val = [_data objectForKey: __key];
         id __newVal = [__val copy];
-        [__newDict.data setObject: __newVal forKey: __newKey];
+        [[__newDict data] setObject: __newVal forKey: __newKey];
     }
     return __newDict;
 }
@@ -389,20 +391,21 @@
 
 - (void) __write: (GYSerializer *) __os
 {
-    GYInt dataSize = (GYInt)[data count];
+    GYInt dataSize = (GYInt)[_data count];
+    [__os writeInt: dataSize];
     for (id obj in _data)
     {
-        [id __write: __os];
+        [obj __write: __os];
     }
 }
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newList = [[[self class] allocWithZone: zone] init];
+    SeqMessage * __newList = [[[self class] allocWithZone: zone] init];
     for (id __obj in _data)
     {
         id __newObj = [__obj copy];
-        [__newList.data addObject: __newObj];
+        [[__newList data] addObject: __newObj];
     }
     return __newList;
 }
@@ -447,13 +450,13 @@
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    id __newDict = [[[self class] allocWithZone: zone] init];
+    DictMessage * __newDict = [[[self class] allocWithZone: zone] init];
     for (id __key in [_data keyEnumerator])
     {
         id __newKey = [__key copy];
         id __val = [_data objectForKey: __key];
         id __newVal = [__val copy];
-        [__newDict.data setObject: __newVal forKey: __newKey];
+        [[__newDict data] setObject: __newVal forKey: __newKey];
     }
     return __newDict;
 }

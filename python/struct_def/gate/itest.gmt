@@ -10,7 +10,9 @@ interface ITest:
                             out common.publicdef.DictIntString intStrMap)
                             
     method getFloatList(in int size,
-                        out common.publicdef.SeqFloat floatList)
+                        out common.publicdef.SeqFloat floatList, out int dummy)
     
     method signup(in gatemsg.SSignup signup,
                   out gatemsg.SLoginReturn loginReturn)
+
+    method doNothing()

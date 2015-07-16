@@ -7,8 +7,8 @@
 *        you know what you are doing.
 */
 
-#import "gamit/gamit.h"
-#import "message/common/publicdef.h"
+#import "gamit.h"
+#import "publicdef.h"
 
 // SeqSeqInt
 @interface SeqSeqInt: NSObject <GYMessageBaseProtocol>

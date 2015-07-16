@@ -39,7 +39,7 @@
 - (BOOL) isExpiredTil: (NSDate *) endDt withinInterval: (GYLong) interval;
 
 - (void) __onResponse: (GYSerializer *) __is;
-- (void) __onError: (NSString *) error code: (int) code;
+- (void) __onError: (NSString *) what code: (GYInt) code;
 - (void) __onTimeout;
 @end
 

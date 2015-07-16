@@ -46,10 +46,10 @@
     @throw [[GYSerializingError alloc] initWhat: what andCode: 0];
 }
 
-- (void) __onError: (NSString *) error code: (int) code
+- (void) __onError: (NSString *) what code: (GYInt) code
 {
-    NSString * what = @"GYRmiResponseBase.__onError must be overriden";
-    @throw [[GYSerializingError alloc] initWhat: what andCode: 0];
+    NSString * __what = @"GYRmiResponseBase.__onError must be overriden";
+    @throw [[GYSerializingError alloc] initWhat: __what andCode: 0];
 }
 
 - (void) __onTimeout

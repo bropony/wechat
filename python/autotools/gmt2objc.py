@@ -134,14 +134,14 @@ class Gmt2Objc:
         self.writeMm()
 
     def writeImports(self):
-        self.writeHh("#import \"gamit/gamit.h\"")
+        self.writeHh("#import \"gamit.h\"")
 
         for inc in self.loader.includes:
             fields = re.split(r'\.', inc)
-            self.writeHh("#import \"{}.h\"".format("/".join(fields)))
+            self.writeHh("#import \"{}.h\"".format(fields[-1]))
         self.writeHh()
 
-        self.writeMm("#import \"{}.h\"".format("/".join(self.scopes)))
+        self.writeMm("#import \"{}.h\"".format(self.scopes[-1]))
         self.writeMm()
 
     def begin(self):
@@ -244,6 +244,11 @@ class Gmt2Objc:
 
         return "[{} copy]".format(varName)
 
+    def cap(self, name):
+        if not name:
+            return name
+        return name[0].capitalize() + name[1:]
+
     def parseStruct(self, dataType):
         # className = self.getObjcClassName(dataType.name)
         className = dataType.name
@@ -255,7 +260,7 @@ class Gmt2Objc:
         self.writeMm()
         for field in dataType.fields:
             self.writeHh(self.getPropertyDeclare(field) + ";")
-            self.writeMm("@synthesize {} {};".format(self.getObjcRef(field.type), field.name))
+            self.writeMm("@synthesize {};".format(field.name))
         self.writeHh()
         self.writeMm()
 
@@ -311,7 +316,7 @@ class Gmt2Objc:
         self.writeMm("id __newObj = [[[self class] allocWithZone: zone] init];")
         self.writeMm()
         for field in dataType.fields:
-            self.writeMm("__newObj.{} = {};".format(field.name, self.getCopyExpr(field.type, "self." + field.name)))
+            self.writeMm("[__newObj set{}: {}];".format(self.cap(field.name), self.getCopyExpr(field.type, "self." + field.name)))
         self.writeMm()
         self.writeMm("return __newObj;")
         self.mmIndent -= 1
@@ -387,11 +392,12 @@ class Gmt2Objc:
         self.writeMm("- (void) __write: (GYSerializer *) __os")
         self.writeMm("{")
         self.mmIndent += 1
-        self.writeMm("GYInt dataSize = (GYInt)[data count];")
+        self.writeMm("GYInt dataSize = (GYInt)[_data count];")
+        self.writeMm("[__os writeInt: dataSize];")
         self.writeMm("for (id obj in _data)")
         self.writeMm("{")
         self.mmIndent += 1
-        self.writeMm(self.getWriteExpr(dataType.type, self._objectToBasicExpr(dataType.type, "id")))
+        self.writeMm(self.getWriteExpr(dataType.type, self._objectToBasicExpr(dataType.type, "obj")))
         self.mmIndent -= 1
         self.writeMm("}")
         self.mmIndent -= 1
@@ -402,12 +408,12 @@ class Gmt2Objc:
         self.writeMm("- (id) copyWithZone: (NSZone *) zone")
         self.writeMm("{")
         self.mmIndent += 1
-        self.writeMm("id __newList = [[[self class] allocWithZone: zone] init];")
+        self.writeMm("{} * __newList = [[[self class] allocWithZone: zone] init];".format(listName))
         self.writeMm("for (id __obj in _data)")
         self.writeMm("{")
         self.mmIndent += 1
         self.writeMm("id __newObj = [__obj copy];")
-        self.writeMm("[__newList.data addObject: __newObj];")
+        self.writeMm("[[__newList data] addObject: __newObj];")
         self.mmIndent -= 1
         self.writeMm("}")
         self.writeMm("return __newList;")
@@ -512,14 +518,14 @@ class Gmt2Objc:
         self.writeMm("- (id) copyWithZone: (NSZone *) zone")
         self.writeMm("{")
         self.mmIndent += 1
-        self.writeMm("id __newDict = [[[self class] allocWithZone: zone] init];")
+        self.writeMm("{} * __newDict = [[[self class] allocWithZone: zone] init];".format(dictName))
         self.writeMm("for (id __key in [_data keyEnumerator])")
         self.writeMm("{")
         self.mmIndent += 1
         self.writeMm("id __newKey = [__key copy];")
         self.writeMm("id __val = [_data objectForKey: __key];")
         self.writeMm("id __newVal = [__val copy];")
-        self.writeMm("[__newDict.data setObject: __newVal forKey: __newKey];")
+        self.writeMm("[[__newDict data] setObject: __newVal forKey: __newKey];")
         self.mmIndent -= 1
         self.writeMm("}")
         self.writeMm("return __newDict;")
@@ -535,11 +541,209 @@ class Gmt2Objc:
 
         self.parseProxy(dataType)
 
+    def _getResponseMethodSignature(self, fields):
+        res = "onResponse"
+        isFirst = True
+
+        for field in fields:
+            paraName = ""
+            if isFirst:
+                paraName = "With"
+                isFirst = False
+            else:
+                paraName = " and"
+            paraName += field.name[0].capitalize() + field.name[1:]
+            paraName += ": "
+            paraName += "({}) {}".format(self.getObjcRef(field.type), field.name)
+            res += paraName
+
+        return res
+
+    def _getResponseMethodCall(self, fields):
+        res = "onResponse"
+        isFirst = True
+
+        for field in fields:
+            paraName = ""
+            if isFirst:
+                paraName = "With"
+                isFirst = False
+            else:
+                paraName = " and"
+            paraName += field.name[0].capitalize() + field.name[1:]
+            paraName += ": "
+            paraName += "{}".format(field.name)
+            res += paraName
+
+        return res
+
+    def _getResponseMethodFullName(self, fields):
+        return "- (void) " + self._getResponseMethodSignature(fields)
+
+    def _getCallMethodFullName(self, interfaceName, method):
+        responseName = "{}_{}_response".format(interfaceName, method.name)
+        res = "- (void) {}WithResponse: ({} *) __response".format(method.name, responseName)
+
+        for field in method.infields:
+            paraName = " and"
+            paraName += field.name[0].capitalize() + field.name[1:]
+            paraName += ": "
+            paraName += "({}) {}".format(self.getObjcRef(field.type), field.name)
+            res += paraName
+
+        return res
+
     def parseResponse(self, interfaceType, method):
-        pass
+        methodName = method.name
+        interfaceName = interfaceType.name
+        className = "{}_{}_response".format(interfaceName, methodName)
+
+        self.writeHh("// {}".format(className))
+        self.writeHh("@interface {}: GYRmiResponseBase".format(className))
+        self.writeHh("- (id) init;")
+        self.writeHh("")
+        self.writeHh("#pragma mark - overridden methods")
+        self.writeHh("- (void) __onResponse: (GYSerializer *) __is;")
+        self.writeHh("- (void) __onError: (NSString *) what code: (int) code;")
+        self.writeHh("- (void) __onTimeout;")
+        self.writeHh()
+        self.writeHh("#pragma mark - class-special methods")
+        self.writeHh(self._getResponseMethodFullName(method.outfields) + ";")
+        self.writeHh("- (void) onError: (NSString *) what code: (GYInt) code;")
+        self.writeHh("- (void) onTimeout;")
+        self.writeHh("@end")
+        self.writeHh()
+        self.writeHh()
+
+        self.writeMm("@implementation " + className)
+
+        # - (id) init
+        self.writeMm("- (id) init")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("self = [super init];")
+        self.writeMm("return self;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __onResponse
+        self.writeMm("- (void) __onResponse: (GYSerializer *) __is")
+        self.writeMm("{")
+        self.mmIndent += 1
+        for field in method.outfields:
+            self.writeMm("{} {} = {};".format(self.getObjcRef(field.type), field.name, self.getInitValue(field.type)))
+            self.writeMm(self.getReadExpr(field.type, field.name))
+            self.writeMm()
+        self.writeMm("[self {}];".format(self._getResponseMethodCall(method.outfields)))
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __onError
+        self.writeMm("- (void) __onError: (NSString *) what code: (GYInt) code")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("[self onError: what code: code];")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) __onTimeout
+        self.writeMm("- (void) __onTimeout")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("[self onTimeout];")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) onResponse
+        self.writeMm(self._getResponseMethodFullName(method.outfields))
+        self.writeMm("{")
+        self.writeMm("    // todo:")
+        self.writeMm("    // override this method in subclasses")
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) onError
+        self.writeMm("- (void) onError: (NSString *) what code: (GYInt) code")
+        self.writeMm("{")
+        self.writeMm("    // todo:")
+        self.writeMm("    // override this method in subclasses")
+        self.writeMm("}")
+        self.writeMm()
+
+        # - (void) onTimeout
+        self.writeMm("- (void) onTimeout")
+        self.writeMm("{")
+        self.writeMm("    // todo:")
+        self.writeMm("    // override this method in subclasses")
+        self.writeMm("}")
+
+        self.writeMm("@end")
+        self.writeMm()
+        self.writeMm()
 
     def parseProxy(self, interfaceType):
-        pass
+        className = interfaceType.name + "Proxy"
+        self.writeHh("// " + className)
+        self.writeHh("@interface {}: GYRmiProxyBase".format(className))
+        self.writeHh("- (id) init;")
+        self.writeHh()
+
+        self.writeMm("@implementation {}".format(className))
+
+        # - (id) init
+        self.writeMm("- (id) init")
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("self = [super initWithName: @\"{}\"];".format(interfaceType.name))
+        self.writeMm("return self;")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
+
+        for method in interfaceType.methodList:
+            self.parseMethod(interfaceType.name, method)
+
+        self.writeHh("@end")
+        self.writeHh()
+        self.writeHh()
+
+        self.writeMm("@end")
+        self.writeMm()
+        self.writeMm()
+
+    def parseMethod(self, interfaceName, method):
+        # declaration
+        self.writeHh(self._getCallMethodFullName(interfaceName, method) + ";")
+
+        # definition
+        self.writeMm(self._getCallMethodFullName(interfaceName, method))
+        self.writeMm("{")
+        self.mmIndent += 1
+        self.writeMm("GYSerializer * __os = [[GYSerializer alloc] init];")
+        self.writeMm("[__os startToWrite];")
+        self.writeMm("[__os writeByte: GYRmiDataCall];")
+        self.writeMm("[__os writeString: [self name]];")
+        self.writeMm("[__os writeString: @\"{}\"];".format(method.name))
+        self.writeMm()
+        self.writeMm("GYInt __msgId = [GYRmiProxyBase getMsgId];")
+        self.writeMm("[__os writeInt: __msgId];")
+        self.writeMm("[__response setMsgId: __msgId];")
+
+        if method.infields:
+            self.writeMm()
+
+        for field in method.infields:
+            self.writeMm(self.getWriteExpr(field.type, field.name));
+
+        self.writeMm()
+        self.writeMm("[self invoke: __os withCallback: __response];")
+        self.mmIndent -= 1
+        self.writeMm("}")
+        self.writeMm()
 
 
 def main():

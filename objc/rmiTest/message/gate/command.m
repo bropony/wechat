@@ -7,5 +7,5 @@
 *        you know what you are doing.
 */
 
-#import "message/gate/command.h"
+#import "command.h"
 

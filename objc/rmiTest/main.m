@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "gamit/gamit.h"
+#import "gamit.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {

@@ -7,7 +7,7 @@
 *        you know what you are doing.
 */
 
-#import "gamit/gamit.h"
+#import "gamit.h"
 
 enum ETestCommand: GYInt
 {
