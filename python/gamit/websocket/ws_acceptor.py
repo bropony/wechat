@@ -94,7 +94,6 @@ class WsAcceptor:
         if connId not in self.connMap:
             self.connMap[connId] = ws
             self.rmiServer.onOpen(connId)
-            self.send(connId, "Hello XXXXX", False)
         else:
             Logger.log("[WsAcceptor.onOpen]", "Critical Error: ", connId, logLevel=logging.ERROR)
 
