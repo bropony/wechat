@@ -241,6 +241,10 @@
         _firstConnectTryDt = [NSDate date];
     }*/
     
+    NSLog(@"RmiClient Connecting To Server....");
+    
+    _isConnecting = YES;
+    
     [_connector _connect];
 }
 

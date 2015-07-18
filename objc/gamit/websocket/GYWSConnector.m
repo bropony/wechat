@@ -78,6 +78,8 @@
         [self close];
     }
     
+    NSLog( @"SRConnector connecting to Server...");
+    
     _ws = [[SRWebSocket alloc] initWithURLRequest: [NSURLRequest requestWithURL: _wsUrl]];
     _ws.delegate = self;
     

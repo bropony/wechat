@@ -187,16 +187,20 @@ static const char VERSION = 1;
     
     [self readBytes: &fVal withLength: LENGTH_OF_FLOAT];
     
-    fVal = CFSwapInt32LittleToHost(fVal);
+    GYInt * p = (GYInt *)&fVal;
+    
+    *p = CFSwapInt32LittleToHost(*p);
     
     return fVal;
 }
 
 - (void) writeFloat:(GYFloat)fVal
 {
-    fVal = CFSwapInt32HostToLittle(fVal);
+    GYInt * p = (GYInt *)&fVal;
     
-    [_buffer appendBytes: &fVal length: LENGTH_OF_FLOAT];
+    *p = CFSwapInt32HostToLittle(*p);
+    
+    [_buffer appendBytes: p length: LENGTH_OF_FLOAT];
 }
 
 - (GYDouble) readDouble
@@ -205,16 +209,20 @@ static const char VERSION = 1;
     
     [self readBytes: &dbVal withLength: LENGHT_OF_DOUBLE];
     
-    dbVal = CFSwapInt64LittleToHost(dbVal);
+    GYLong * lp = (GYLong *)&dbVal;
+    
+    *lp = CFSwapInt64LittleToHost(*lp);
     
     return dbVal;
 }
 
 - (void) writeDouble:(GYDouble)dbVal
 {
-    dbVal = CFSwapInt64HostToLittle(dbVal);
+    GYLong * lp = (GYLong *)&dbVal;
     
-    [_buffer appendBytes: &dbVal length: LENGHT_OF_DOUBLE];
+    *lp = CFSwapInt64HostToLittle(*lp);
+    
+    [_buffer appendBytes: lp length: LENGHT_OF_DOUBLE];
 }
 
 - (NSString *) readString
