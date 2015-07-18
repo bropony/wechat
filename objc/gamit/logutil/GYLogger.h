@@ -13,5 +13,5 @@
  * For simple usage.
  * Please modify it into a more sophisticated logger in production.
  */
-+ (void) log: (NSString *) info, ...;
++ (void) log: (NSString *) info;
 @end

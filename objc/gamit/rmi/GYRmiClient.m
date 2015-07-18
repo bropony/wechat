@@ -40,6 +40,8 @@
     }
     
     _connector = [[GYWSConnector alloc] initWithIp: ip andPort: port];
+    [_connector setRmiClient: self];
+    
     _isNetworkOk = NO;
     _isConnecting = NO;
     _firstConnectTryDt = nil;
@@ -104,7 +106,7 @@
 
 - (void) onError: (NSError *)error
 {
-    [GYLogger log: @"Network connection error:", error];
+    [GYLogger log: [NSString stringWithFormat: @"Network error: %@", error]];
     
     _isConnecting = NO;
     _isNetworkOk = NO;
@@ -145,11 +147,11 @@
     else if ([data isKindOfClass: [NSString class]])
     {
         //todo
-        [GYLogger log: @"GYRmiClient", @"plain text received..."];
+        [GYLogger log: [NSString stringWithFormat: @"GYRmiClient: %@", @"plain text received..."]];
     }
     else
     {
-        [GYLogger log: @"GYRmiClient", @"Unrecognised data..."];
+        [GYLogger log: [NSString stringWithFormat: @"GYRmiClient: %@", @"Unregconised data type..."]];
     }
 }
 
