@@ -41,7 +41,7 @@ static GYMessageManager * gMessageManagerInstance = nil;
     return self;
 }
 
-- (void) registCommand: (int) command withHandler: (id<GYMessageBaseProtocol>) handler
+- (void) registCommand: (int) command withHandler: (id<GYMessageCommandHandlerProtocal>) handler
 {
     NSNumber * key = [NSNumber numberWithInt: command];
     
