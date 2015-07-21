@@ -10,16 +10,22 @@
 
 from message.gate import gatemsg
 from message.gate import itest
+from message.common import publicdef
+from message.gate import command
+
+from gamit.message.messagemanager import MessageManager
 
 class ItestImpl(itest.ITestServant):
     def __init__(self, name):
         super().__init__(name)
 
     def getIntList(self, size, __request):
-        res = []
+        res = publicdef.SeqInt()
         for _ in range(size):
             res.append(_)
         __request.response(res)
+
+        MessageManager.broadcast(command.ETestCommand.FirstMessage, gatemsg.SMessage())
 
     def getDictIntString(self, size, __request):
         res = {}

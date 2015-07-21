@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-    <public_ip>192.168.0.103</public_ip>
-    <private_ip>192.168.0.103</private_ip>
+    <public_ip>192.168.0.168</public_ip>
+    <private_ip>192.168.0.168</private_ip>
     <db_ip1>127.0.0.1</db_ip1>
     <db_ip2>127.0.0.1</db_ip2>
     <port_var>01</port_var>

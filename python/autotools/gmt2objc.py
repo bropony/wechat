@@ -2,13 +2,13 @@ __author__ = 'mahanzhou'
 
 
 """
-* @name gmt2cpp.py
+* @name gmt2objc.py
 *
 * @author ahda86@gmail.com
 *
 * @date 2015/6/16 15:01
 *
-* @desc gmt2cpp.py
+* @desc gmt2objc.py
 """
 
 import sys
