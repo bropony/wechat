@@ -59,7 +59,7 @@ public class RmiCore {
 		
 		public void call(Serializer __os, RmiResponseBase resposne)
 		{
-			RmiManager.instance();
+			RmiManager.instance().invoke(resposne, __os);
 		}
 	}
 }

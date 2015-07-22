@@ -15,14 +15,23 @@ public class MessageBlock {
 		public abstract MessageBase create();
 	}
 	
-	private static Map<String, AutoRegist> _mapClass;
-	static{
-		_mapClass = new HashMap<String, AutoRegist>();
-	}
+	private static Map<String, AutoRegist> _mapClass = null;
 	
 	public static void regist(String name, AutoRegist autoRegist)
 	{
+		if (_mapClass == null)
+		{
+			_mapClass = new HashMap<String, AutoRegist>();
+		}
+	
 		_mapClass.put(name, autoRegist);
+	}
+	
+	private static int __msgIdBase = 0;
+	public static int getMsgId()
+	{
+		__msgIdBase += 1;
+		return __msgIdBase;
 	}
 	
 	private int __command;

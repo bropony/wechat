@@ -17,7 +17,6 @@ import java.util.Set;
 import java.util.Iterator;
 
 import rmi.Serializer;
-import rmi.RmiCore;
 import rmi.MessageBlock;
 import message.common.publicdef;
 
@@ -32,6 +31,11 @@ public class gatemsg
         public SeqSeqInt()
         {
             __array = null;
+        }
+
+        public publicdef.SeqInt[] getArray()
+        {
+            return __array;
         }
 
         public void __read(Serializer __is)
@@ -66,6 +70,11 @@ public class gatemsg
         public SeqDictIntInt()
         {
             __array = null;
+        }
+
+        public publicdef.DictIntInt[] getArray()
+        {
+            return __array;
         }
 
         public void __read(Serializer __is)
@@ -148,7 +157,7 @@ public class gatemsg
             }
         }
 
-        static {
+        public static void __regist(){
             MessageBlock.regist("SSignup", new AutoRegist());
         }
 
@@ -196,7 +205,7 @@ public class gatemsg
             }
         }
 
-        static {
+        public static void __regist(){
             MessageBlock.regist("SLogin", new AutoRegist());
         }
 
@@ -236,7 +245,7 @@ public class gatemsg
             }
         }
 
-        static {
+        public static void __regist(){
             MessageBlock.regist("SLoginReturn", new AutoRegist());
         }
 
@@ -288,7 +297,7 @@ public class gatemsg
             }
         }
 
-        static {
+        public static void __regist(){
             MessageBlock.regist("SMessage", new AutoRegist());
         }
 
@@ -352,6 +361,11 @@ public class gatemsg
         public SeqMessage()
         {
             __array = null;
+        }
+
+        public SMessage[] getArray()
+        {
+            return __array;
         }
 
         public void __read(Serializer __is)

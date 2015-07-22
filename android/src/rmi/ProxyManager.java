@@ -15,7 +15,7 @@ public class ProxyManager {
 		_mapProxy = new HashMap<String, RmiCore.RmiProxyBase>();
 	}
 	
-	public ProxyManager instance()
+	public static ProxyManager instance()
 	{
 		if (_inst == null)
 		{

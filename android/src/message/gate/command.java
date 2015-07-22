@@ -17,7 +17,6 @@ import java.util.Set;
 import java.util.Iterator;
 
 import rmi.Serializer;
-import rmi.RmiCore;
 import rmi.MessageBlock;
 
 

@@ -17,7 +17,6 @@ import java.util.Set;
 import java.util.Iterator;
 
 import rmi.Serializer;
-import rmi.RmiCore;
 import rmi.MessageBlock;
 
 
@@ -31,6 +30,11 @@ public class publicdef
         public SeqInt()
         {
             __array = null;
+        }
+
+        public int[] getArray()
+        {
+            return __array;
         }
 
         public void __read(Serializer __is)
@@ -67,6 +71,11 @@ public class publicdef
             __array = null;
         }
 
+        public long[] getArray()
+        {
+            return __array;
+        }
+
         public void __read(Serializer __is)
         {
             int __dataSize = __is.readInt();
@@ -101,6 +110,11 @@ public class publicdef
             __array = null;
         }
 
+        public String[] getArray()
+        {
+            return __array;
+        }
+
         public void __read(Serializer __is)
         {
             int __dataSize = __is.readInt();
@@ -133,6 +147,11 @@ public class publicdef
         public SeqFloat()
         {
             __array = null;
+        }
+
+        public float[] getArray()
+        {
+            return __array;
         }
 
         public void __read(Serializer __is)

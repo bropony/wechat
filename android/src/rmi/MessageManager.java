@@ -7,10 +7,7 @@ public class MessageManager {
 	private Map<Integer, MessageHandler> _mapHandler;
 	
 	static MessageManager _inst;
-	static {
-		_inst = new MessageManager();
-	}
-	
+
 	private MessageManager()
 	{
 		_mapHandler = new HashMap<Integer, MessageHandler>();
@@ -18,6 +15,11 @@ public class MessageManager {
 	
 	public static MessageManager instance()
 	{
+		if (_inst == null)
+		{
+			_inst = new MessageManager();
+		}
+		
 		return _inst;
 	}
 	
