@@ -3,6 +3,7 @@
 #
 
 include "common/publicdef.gmt"
+include "gate/command.gmt"
 
 list<common.publicdef.SeqInt> SeqSeqInt
 list<common.publicdef.DictIntInt> SeqDictIntInt
@@ -36,6 +37,7 @@ struct SMessage:
     date var7
     common.publicdef.SeqInt intList
     common.publicdef.DictStringInt dictStrInt
+    command.ETestCommand commandType
     
 list<SMessage> SeqMessage
 dict<int, SMessage> DictMessage

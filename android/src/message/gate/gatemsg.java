@@ -19,6 +19,7 @@ import java.util.Iterator;
 import rmi.Serializer;
 import rmi.MessageBlock;
 import message.common.publicdef;
+import message.gate.command;
 
 
 public class gatemsg
@@ -310,6 +311,7 @@ public class gatemsg
         public Date var7;
         public publicdef.SeqInt intList;
         public publicdef.DictStringInt dictStrInt;
+        public int commandType;
 
         public SMessage()
         {
@@ -322,6 +324,7 @@ public class gatemsg
             var7 = new Date();
             intList = new publicdef.SeqInt();
             dictStrInt = new publicdef.DictStringInt();
+            commandType = command.ETestCommand.FirstMessage;
         }
 
         @Override
@@ -336,6 +339,7 @@ public class gatemsg
             var7 = __is.read(var7);
             intList.__read(__is);
             dictStrInt.__read(__is);
+            commandType = __is.readInt();
         }
 
         @Override
@@ -350,6 +354,7 @@ public class gatemsg
             __os.write(var7);
             intList.__write(__os);
             dictStrInt.__write(__os);
+            __os.write(commandType);
         }
     } // end of class SMessage
 

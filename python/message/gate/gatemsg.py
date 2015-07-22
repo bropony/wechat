@@ -12,6 +12,7 @@ import datetime
 from gamit.message.message import MessageBlock
 from gamit.serialize.util import *
 import message.common.publicdef
+import message.gate.command
 
 
 class SeqSeqInt(ListBase):
@@ -273,6 +274,7 @@ class SMessage:
     __slots__['var7'] = datetime.datetime
     __slots__['intList'] = message.common.publicdef.SeqInt
     __slots__['dictStrInt'] = message.common.publicdef.DictStringInt
+    __slots__['commandType'] = int
 
     def __setattr__(self, name, val):
         if name in self.__slots__ and not isinstance(val, self.__slots__[name]):
@@ -294,6 +296,7 @@ class SMessage:
         self.var7 = datetime.datetime.now()
         self.intList = message.common.publicdef.SeqInt()
         self.dictStrInt = message.common.publicdef.DictStringInt()
+        self.commandType = message.gate.command.ETestCommand.FirstMessage
 
     def _read(self, _is):
         self.var1 = _is.readShort()
@@ -305,6 +308,7 @@ class SMessage:
         self.var7 = _is.readDate()
         self.intList._read(_is)
         self.dictStrInt._read(_is)
+        self.commandType = _is.readInt()
 
     def _write(self, _os):
         _os.writeShort(self.var1)
@@ -316,6 +320,7 @@ class SMessage:
         _os.writeDate(self.var7)
         self.intList._write(_os)
         self.dictStrInt._write(_os)
+        _os.writeInt(self.commandType)
 
     def _fromJson(self, js):
         if 'var1' in js and isinstance(js['var1'], int):
@@ -342,6 +347,8 @@ class SMessage:
             self.dictStrInt._fromJson(js['dictStrInt'])
         elif 'dictStrInt' in js and isinstance(js['dictStrInt'], dict):
             self.dictStrInt._fromJson(js['dictStrInt'])
+        if 'commandType' in js and isinstance(js['commandType'], int):
+            self.commandType = js['commandType']
 
     def _toJson(self):
         js = dict()
@@ -354,6 +361,7 @@ class SMessage:
         js['var7'] = self.var7
         js['intList'] = self.intList._toJson()
         js['dictStrInt'] = self.dictStrInt._toJson()
+        js['commandType'] = self.commandType
         return js
 
 MessageBlock.register(SMessage)
