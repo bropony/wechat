@@ -30,6 +30,8 @@ class Gmt2Java:
         self.filename = ""
         self.scopes = []
 
+        self.registTypeList = []
+
     @staticmethod
     def _getIndent(indent):
         if not indent:
@@ -119,8 +121,11 @@ class Gmt2Java:
         self.write("import java.util.Iterator;")
         self.write()
         self.write("import rmi.Serializer;")
-        self.write("import rmi.RmiCore;")
         self.write("import rmi.MessageBlock;")
+        if self.loader.hasInterface:
+            self.write("import rmi.RmiCore;")
+            self.write("import rmi.ProxyManager;")
+            self.write("import rmi.RmiManager;")
 
         for include in self.loader.includes:
             self.write("import {};".format(include))
@@ -208,6 +213,8 @@ class Gmt2Java:
         return "{}.__write(__os)".format(name)
 
     def parseStruct(self, dataType):
+        self.registTypeList.append(dataType)
+
         className = dataType.name
 
         self.write("// class {}".format(className))
@@ -230,8 +237,8 @@ class Gmt2Java:
         self.write("}")
         self.write()
 
-        # static block
-        self.write("static {")
+        ## static block
+        self.write("public static void __regist(){")
         self.indent += 1
         self.write("MessageBlock.regist(\"{0}\", new AutoRegist());".format(className))
         self.indent -= 1
@@ -311,6 +318,15 @@ class Gmt2Java:
         self.write("{")
         self.indent += 1
         self.write("__array = null;")
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # accessor
+        self.write("public {}[] getArray()".format(self.getJavaRef(dataType.type)))
+        self.write("{")
+        self.indent += 1
+        self.write("return __array;")
         self.indent -= 1
         self.write("}")
         self.write()
@@ -475,14 +491,208 @@ class Gmt2Java:
         self.write()
 
     def parseInterface(self, dataType):
-        pass
+        for method in dataType.methodList:
+            self.parseResponse(dataType, method)
+
+        self.parseProxy(dataType)
 
     def parseResponse(self, interfaceType, method):
-        pass
+        interfaceName = interfaceType.name
+        methodName = method.name
+        className = "{}_{}_response".format(interfaceName, methodName)
+
+        # class
+        self.write("// Reponse " + className)
+        self.write("public static abstract class {} extends RmiCore.RmiResponseBase".format(className))
+        self.write("{")
+        self.indent += 1
+
+        # ctor
+        self.write("public {}()".format(className))
+        self.write("{")
+        self.indent += 1
+        self.write("super();")
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # override
+        # __onResponse
+        self.write("@Override")
+        self.write("public void __onResponse(Serializer __is)")
+        self.write("{")
+        self.indent += 1
+
+        for field in method.outfields:
+            self.write("{} {} = {};".format(self.getJavaRef(field.type), field.name, self.getInitValue(field.type)))
+            self.write(self.getReadExpr(field.type, field.name) + ";")
+
+        if method.outfields:
+            self.write()
+
+        self.write("onResponse(", False)
+        isFirst = True
+        for field in method.outfields:
+            if not isFirst:
+                self.fjava.write(", ")
+            else:
+                isFirst = False
+            self.fjava.write(field.name)
+        self.fjava.write(");\n")
+
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # override
+        # __onError
+        self.write("@Override")
+        self.write("public void __onError(String what, int code)")
+        self.write("{")
+        self.indent += 1
+        self.write("onError(what, code);")
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # override
+        # __onTimeout
+        self.write("@Override")
+        self.write("public void __onTimeout()")
+        self.write("{")
+        self.indent += 1
+        self.write("onTimeout();")
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # abstract methods
+        self.write("public abstract void onResponse(", False)
+        isFirst = True
+        for field in method.outfields:
+            if not isFirst:
+                self.fjava.write(", ")
+            else:
+                isFirst = False
+            self.fjava.write("{} {}".format(self.getJavaRef(field.type), field.name))
+        self.fjava.write(");\n")
+
+        self.write("public abstract void onError(String what, int code);")
+        self.write("public abstract void onTimeout();")
+
+        # end of class
+        self.indent -= 1
+        self.write("}")
+        self.write()
 
     def parseProxy(self, interfaceType):
-        pass
+        self.registTypeList.append(interfaceType)
 
+        className = "{}Proxy".format(interfaceType.name)
+        self.write("// Proxy {}".format(className))
+        self.write("public static class {} extends RmiCore.RmiProxyBase".format(className))
+        self.write("{")
+        self.indent += 1
+
+        # regist
+        self.write("public static void __regist(){")
+        self.indent += 1
+        self.write("// regist proxy at startup...")
+        self.write("ProxyManager.instance().addProxy(new {}());".format(className))
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # ctor
+        self.write("public {}()".format(className))
+        self.write("{")
+        self.indent += 1
+        self.write("super(\"{}\");".format(interfaceType.name))
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+        # methods
+        for method in interfaceType.methodList:
+            self.parseProxyOutCall(interfaceType, method)
+
+        # end of class
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+    def parseProxyOutCall(self, interfaceType, method):
+        callbackName = "{}_{}_response".format(interfaceType.name, method.name)
+        self.write("public void {}({} __response".format(method.name, callbackName), False)
+        for field in method.infields:
+            self.fjava.write(", {} {}".format(self.getJavaRef(field.type), field.name))
+        self.fjava.write(")")
+        self.write("{")
+        self.indent += 1
+
+        self.write("Serializer __os = new Serializer();")
+        self.write("__os.startToWrite();")
+        self.write("__os.write(Serializer.RmiDataCall);")
+        self.write("__os.write(getName());")
+        self.write("__os.write(new String(\"{}\"));".format(method.name))
+        self.write()
+        self.write("int __msgId = MessageBlock.getMsgId();")
+        self.write("__response.setMsgId(__msgId);")
+        self.write("__os.write(__msgId);")
+
+        if method.infields:
+            self.write()
+
+        for field in method.infields:
+            self.write(self.getWriteExpr(field.type, field.name) + ";")
+
+        if method.infields:
+            self.write()
+
+        self.write("RmiManager.instance().invoke(__response, __os);")
+
+        # end of definition
+        self.indent -= 1
+        self.write("}")
+        self.write()
+
+def processRegist(outDir, scope, typeList):
+    if scope:
+        outDir = os.path.join(outDir, scope)
+
+    outFileName = os.path.join(outDir, "MessageRegister.java")
+    registSet = set()
+    if os.path.exists(outFileName):
+        lines = open(outFileName, 'r').readlines()
+        for line in lines:
+            line = line.strip()
+            if line.find("__regist") >= 0:
+                registSet.add(line)
+
+    fout = open(outFileName, "w")
+    if scope:
+        fout.write("package {};\n\n".format(scope))
+
+    for dataType in typeList:
+        if not isinstance(dataType, Interface):
+            line = "{}.__regist();".format(dataType.fullname)
+        else:
+            line = "{}Proxy.__regist();".format(dataType.fullname)
+        registSet.add(line)
+
+    fout.write("import rmi.MessageBlock;\n")
+    for line in registSet:
+        m = re.match(r"^(.+)\.__regist", line)
+        if m:
+            fout.write("import {};\n".format(m.group(1)))
+
+    fout.write("\n")
+    fout.write("public class MessageRegister{\n")
+    fout.write("    public static void regist(){\n")
+    for line in registSet:
+        fout.write("        {}\n".format(line))
+    fout.write("    }\n")
+    fout.write("}\n\n")
 
 def main():
     parser = OptionParser()
@@ -512,10 +722,15 @@ def main():
 
     structManager = StructManager(scope, inRootDir, outRootDir)
     loaders = []
+    typeList = []
     for f in sources:
         loader = structManager.loadFile(f)
         gmt = Gmt2Java(structManager, loader)
         gmt.generate()
+
+        typeList.extend(gmt.registTypeList)
+
+    processRegist(outRootDir, scope, typeList)
 
 if __name__ == "__main__":
     main()
