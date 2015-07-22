@@ -214,6 +214,9 @@ class Gmt2Objc:
         if dataType.name == "date":
             return "[NSDate date]"
 
+        if isinstance(dataType, Enum):
+            return "{}{}".format(dataType.name, dataType.pairs[0][0])
+
         return "[[{} alloc] init]".format(dataType.name)
 
     def getReadExpr(self, dataType, varName):
@@ -221,7 +224,7 @@ class Gmt2Objc:
             return "{} = [__is read{}];".format(varName, dataType.name.capitalize())
 
         if isinstance(dataType, Enum):
-            return "{} = ({})[__is readInt];".format(varName, dataType.name)
+            return "{} = (enum {})[__is readInt];".format(varName, dataType.name)
 
         return "[{} __read: __is];".format(varName)
 

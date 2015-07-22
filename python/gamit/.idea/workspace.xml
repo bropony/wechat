@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="2b3a9665-f758-4393-a4e0-0c0005f6387d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../struct_def/gate/gatemsg.gmt" afterPath="$PROJECT_DIR$/../struct_def/gate/gatemsg.gmt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../autotools/gmt2objc.py" afterPath="$PROJECT_DIR$/../autotools/gmt2objc.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../config/server_config.xml" afterPath="$PROJECT_DIR$/../config/server_config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -25,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="gmt2objc.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gmt2objc.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../autotools/gmt2objc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.40632054">
+              <caret line="217" column="48" selection-start-line="217" selection-start-column="48" selection-end-line="217" selection-end-column="48" />
               <folding>
                 <element signature="e#133#143#0" expanded="true" />
               </folding>
@@ -49,11 +50,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gatemsg.gmt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gatemsg.gmt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../struct_def/gate/gatemsg.gmt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66027087">
+            <state vertical-scroll-proportion="0.0">
               <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testmessagehandler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="idbtestimpl.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -111,26 +132,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="etest.gmt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../struct_def/common/etest.gmt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loader.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../autotools/gmtloader/loader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -150,9 +151,9 @@
         <option value="$PROJECT_DIR$/../config/server_config.xml" />
         <option value="$PROJECT_DIR$/../gate/logic/itestimpl.py" />
         <option value="$PROJECT_DIR$/message/messagemanager.py" />
-        <option value="$PROJECT_DIR$/../autotools/gmt2objc.py" />
         <option value="$PROJECT_DIR$/../autotools/gmt2java.py" />
         <option value="$PROJECT_DIR$/../struct_def/gate/gatemsg.gmt" />
+        <option value="$PROJECT_DIR$/../autotools/gmt2objc.py" />
       </list>
     </option>
   </component>
@@ -286,6 +287,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="messagehandler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="logic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -301,6 +320,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dbcache" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dbcache" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -437,18 +474,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mongodb/table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../client_test/application.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -701,13 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/message/message.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -738,16 +761,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../autotools/gmt2objc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding>
-            <element signature="e#133#143#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -813,9 +826,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../struct_def/gate/gatemsg.gmt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66027087">
+        <state vertical-scroll-proportion="0.0">
           <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dbcache/logic/idbtestimpl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gate/messagehandler/testmessagehandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../autotools/gmt2objc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40632054">
+          <caret line="217" column="48" selection-start-line="217" selection-start-column="48" selection-end-line="217" selection-end-column="48" />
+          <folding>
+            <element signature="e#133#143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

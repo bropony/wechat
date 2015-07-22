@@ -59,7 +59,7 @@ public class RmiTest {
 		URI serverURI = null;
 		
 		try{
-			serverURI = new URI("ws://localhost:8001");
+			serverURI = new URI("ws://localhost:8101");
 		}
 		catch(Exception e)
 		{
