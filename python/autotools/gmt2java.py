@@ -649,7 +649,7 @@ class Gmt2Java:
         if method.infields:
             self.write()
 
-        self.write("RmiManager.instance().invoke(__response, __os);")
+        self.write("this.call(__os, __response);")
 
         # end of definition
         self.indent -= 1
