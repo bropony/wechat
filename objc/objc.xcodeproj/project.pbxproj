@@ -12,10 +12,6 @@
 		576BD0621B560EA5005FE979 /* GYMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0611B560EA5005FE979 /* GYMessageManager.m */; };
 		576BD0641B5617DD005FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0631B5617DD005FE979 /* main.m */; };
 		576BD0671B562A59005FE979 /* GYProxyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0661B562A59005FE979 /* GYProxyManager.m */; };
-		576BD06F1B5630CF005FE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD06E1B5630CF005FE979 /* main.m */; };
-		576BD07B1B563403005FE979 /* command.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0761B563403005FE979 /* command.m */; };
-		576BD07C1B563403005FE979 /* gatemsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD0781B563403005FE979 /* gatemsg.m */; };
-		576BD07D1B563403005FE979 /* itest.m in Sources */ = {isa = PBXBuildFile; fileRef = 576BD07A1B563403005FE979 /* itest.m */; };
 		57AD36F31B549D2200111609 /* gamit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57AD36F21B549D2200111609 /* gamit.h */; };
 		57AD36F51B549D2200111609 /* gamit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD36F41B549D2200111609 /* gamit.m */; };
 		57AD36FB1B549D2200111609 /* libgamit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AD36EF1B549D2200111609 /* libgamit.a */; };
@@ -25,7 +21,6 @@
 		57AD37191B54EFC400111609 /* GYRmiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37181B54EFC400111609 /* GYRmiClient.m */; };
 		57AD371E1B54F17600111609 /* GYWSConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD371D1B54F17600111609 /* GYWSConnector.m */; };
 		57AD37211B54F4E700111609 /* GYRmiCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD37201B54F4E700111609 /* GYRmiCore.m */; };
-		57E389281B5658EF003F4A8F /* publicdef.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E389271B5658EF003F4A8F /* publicdef.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,13 +66,6 @@
 		576BD0651B562A59005FE979 /* GYProxyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYProxyManager.h; path = rmi/GYProxyManager.h; sourceTree = "<group>"; };
 		576BD0661B562A59005FE979 /* GYProxyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYProxyManager.m; path = rmi/GYProxyManager.m; sourceTree = "<group>"; };
 		576BD06C1B5630CF005FE979 /* rmiTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rmiTest; sourceTree = BUILT_PRODUCTS_DIR; };
-		576BD06E1B5630CF005FE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		576BD0751B563403005FE979 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = command.h; path = message/gate/command.h; sourceTree = "<group>"; };
-		576BD0761B563403005FE979 /* command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = command.m; path = message/gate/command.m; sourceTree = "<group>"; };
-		576BD0771B563403005FE979 /* gatemsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gatemsg.h; path = message/gate/gatemsg.h; sourceTree = "<group>"; };
-		576BD0781B563403005FE979 /* gatemsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gatemsg.m; path = message/gate/gatemsg.m; sourceTree = "<group>"; };
-		576BD0791B563403005FE979 /* itest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = itest.h; path = message/gate/itest.h; sourceTree = "<group>"; };
-		576BD07A1B563403005FE979 /* itest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = itest.m; path = message/gate/itest.m; sourceTree = "<group>"; };
 		57AD36EF1B549D2200111609 /* libgamit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgamit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AD36F21B549D2200111609 /* gamit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamit.h; sourceTree = "<group>"; };
 		57AD36F41B549D2200111609 /* gamit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gamit.m; sourceTree = "<group>"; };
@@ -97,8 +85,6 @@
 		57AD371D1B54F17600111609 /* GYWSConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYWSConnector.m; path = websocket/GYWSConnector.m; sourceTree = "<group>"; };
 		57AD371F1B54F4E700111609 /* GYRmiCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GYRmiCore.h; path = rmi/GYRmiCore.h; sourceTree = "<group>"; };
 		57AD37201B54F4E700111609 /* GYRmiCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GYRmiCore.m; path = rmi/GYRmiCore.m; sourceTree = "<group>"; };
-		57E389261B5658EF003F4A8F /* publicdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = publicdef.h; path = message/common/publicdef.h; sourceTree = "<group>"; };
-		57E389271B5658EF003F4A8F /* publicdef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = publicdef.m; path = message/common/publicdef.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,43 +133,11 @@
 			name = message;
 			sourceTree = "<group>";
 		};
-		576BD06D1B5630CF005FE979 /* rmiTest */ = {
-			isa = PBXGroup;
-			children = (
-				576BD0731B563269005FE979 /* message */,
-				576BD06E1B5630CF005FE979 /* main.m */,
-			);
-			path = rmiTest;
-			sourceTree = "<group>";
-		};
-		576BD0731B563269005FE979 /* message */ = {
-			isa = PBXGroup;
-			children = (
-				57E389251B5658D9003F4A8F /* common */,
-				576BD0741B5633F4005FE979 /* gate */,
-			);
-			name = message;
-			sourceTree = "<group>";
-		};
-		576BD0741B5633F4005FE979 /* gate */ = {
-			isa = PBXGroup;
-			children = (
-				576BD0751B563403005FE979 /* command.h */,
-				576BD0761B563403005FE979 /* command.m */,
-				576BD0771B563403005FE979 /* gatemsg.h */,
-				576BD0781B563403005FE979 /* gatemsg.m */,
-				576BD0791B563403005FE979 /* itest.h */,
-				576BD07A1B563403005FE979 /* itest.m */,
-			);
-			name = gate;
-			sourceTree = "<group>";
-		};
 		57AD36E41B549CDB00111609 = {
 			isa = PBXGroup;
 			children = (
 				57AD36F11B549D2200111609 /* gamit */,
 				57AD36FE1B549D2200111609 /* gamitTests */,
-				576BD06D1B5630CF005FE979 /* rmiTest */,
 				57AD36F01B549D2200111609 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -282,15 +236,6 @@
 			name = websocket;
 			sourceTree = "<group>";
 		};
-		57E389251B5658D9003F4A8F /* common */ = {
-			isa = PBXGroup;
-			children = (
-				57E389261B5658EF003F4A8F /* publicdef.h */,
-				57E389271B5658EF003F4A8F /* publicdef.m */,
-			);
-			name = common;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -362,6 +307,7 @@
 					};
 					57AD36F91B549D2200111609 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = KD3S79428T;
 					};
 				};
 			};
@@ -399,11 +345,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				576BD06F1B5630CF005FE979 /* main.m in Sources */,
-				576BD07C1B563403005FE979 /* gatemsg.m in Sources */,
-				576BD07B1B563403005FE979 /* command.m in Sources */,
-				576BD07D1B563403005FE979 /* itest.m in Sources */,
-				57E389281B5658EF003F4A8F /* publicdef.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +579,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -667,6 +609,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -688,6 +631,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -710,6 +654,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
