@@ -57,28 +57,12 @@ class ItestGetIntListResponse extends itest.ITest_getIntList_response
 public class RmiTest {
 	public static void main(String[] argv)
 	{
-		URI serverURI = null;
+		MessageRegister.regist(); // always run before any settings...
 		
-		try{
-			serverURI = new URI("ws://localhost:8101");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return;
-		}
-		
-		MessageManager.instance().registMessageHandler(command.ETestCommand.FirstMessage, new FirstMessageHandler());
-		
-		MessageRegister.regist();
-		
-		RmiClient client = new RmiClient(serverURI);
-		client.bindProxy("ITest");
-		
-		RmiManager.instance().addRmiClient(RmiManager.ClientType_GateServer, client);
-		
+		RmiSetting.initSettings();
 		RmiManager.instance().startService();
 		
+		//a single RMI call TEST test...
 		ItestGetIntListResponse response = new ItestGetIntListResponse();
 		itest.ITestProxy proxy = (itest.ITestProxy)ProxyManager.instance().getProxy("ITest");
 		proxy.getIntList(response, 10);
