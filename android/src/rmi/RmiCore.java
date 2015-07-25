@@ -46,10 +46,12 @@ public class RmiCore {
 	public static class RmiProxyBase
 	{
 		private String __name;
+		protected RmiClient _rmiClient;
 		
 		public RmiProxyBase(String name)
 		{
 			__name = name;
+			_rmiClient = null;
 		}
 		
 		public String getName()
@@ -57,9 +59,21 @@ public class RmiCore {
 			return __name;
 		}
 		
+		public void setRmiClient(RmiClient client)
+		{
+			_rmiClient = client;
+		}
+		
 		public void call(Serializer __os, RmiResponseBase resposne)
 		{
-			RmiManager.instance().invoke(resposne, __os);
+			if (_rmiClient != null)
+			{
+				_rmiClient.invoke(resposne, __os);
+			}
+			else
+			{
+				Logger.log("RmiClient not set for Proxy: " + __name);
+			}
 		}
 	}
 }

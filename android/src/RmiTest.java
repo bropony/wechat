@@ -3,6 +3,7 @@ import java.net.URI;
 import rmi.RmiManager;
 import rmi.MessageManager;
 import rmi.ProxyManager;
+import rmi.RmiClient;
 import rmi.MessageBlock;
 import rmi.MessageHandler;
 import message.MessageRegister;
@@ -70,13 +71,19 @@ public class RmiTest {
 		MessageManager.instance().registMessageHandler(command.ETestCommand.FirstMessage, new FirstMessageHandler());
 		
 		MessageRegister.regist();
-		RmiManager.initInstance(serverURI);
-		RmiManager.instance().connect();
+		
+		RmiClient client = new RmiClient(serverURI);
+		client.bindProxy("ITest");
+		
+		RmiManager.instance().addRmiClient(RmiManager.ClientType_GateServer, client);
+		
+		RmiManager.instance().startService();
 		
 		ItestGetIntListResponse response = new ItestGetIntListResponse();
 		itest.ITestProxy proxy = (itest.ITestProxy)ProxyManager.instance().getProxy("ITest");
 		proxy.getIntList(response, 10);
 		
 		RmiManager.instance().join();
+		RmiManager.instance().stopService();
 	}
 }

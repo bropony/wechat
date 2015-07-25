@@ -22,6 +22,7 @@ import rmi.RmiCore;
 import rmi.ProxyManager;
 import rmi.RmiManager;
 import message.common.publicdef;
+import message.gate.command;
 import message.gate.gatemsg;
 
 
@@ -266,7 +267,7 @@ public class itest
 
             __os.write(size);
 
-            RmiManager.instance().invoke(__response, __os);
+            this.call(__os, __response);
         }
 
         public void getDictIntString(ITest_getDictIntString_response __response, int size)        {
@@ -282,7 +283,7 @@ public class itest
 
             __os.write(size);
 
-            RmiManager.instance().invoke(__response, __os);
+            this.call(__os, __response);
         }
 
         public void getFloatList(ITest_getFloatList_response __response, int size)        {
@@ -298,7 +299,7 @@ public class itest
 
             __os.write(size);
 
-            RmiManager.instance().invoke(__response, __os);
+            this.call(__os, __response);
         }
 
         public void signup(ITest_signup_response __response, gatemsg.SSignup signup)        {
@@ -314,7 +315,7 @@ public class itest
 
             signup.__write(__os);
 
-            RmiManager.instance().invoke(__response, __os);
+            this.call(__os, __response);
         }
 
         public void doNothing(ITest_doNothing_response __response)        {
@@ -327,7 +328,7 @@ public class itest
             int __msgId = MessageBlock.getMsgId();
             __response.setMsgId(__msgId);
             __os.write(__msgId);
-            RmiManager.instance().invoke(__response, __os);
+            this.call(__os, __response);
         }
 
     }
