@@ -43,8 +43,15 @@ class StructManager:
         return loader
 
     def find(self, name, scope=""):
+        # print("Scope: " + scope + ", name: " + name)
+
         if name in self.typeMap:
             return self.typeMap[name]
+
+        if self.baseScope:
+            fullName = self.baseScope + "." + name
+            if fullName in self.typeMap:
+                return self.typeMap[fullName]
 
         if not scope:
             return None
@@ -53,7 +60,7 @@ class StructManager:
         if newName in self.typeMap:
             return self.typeMap[newName]
         #else:
-        #    print("type not found:", newName)
+        #    print("Seconde Try: Type not found:", newName)
 
         parent_scopes = re.split(r'\.', scope)
         child_scopes = re.split(r'\.', name)
@@ -75,7 +82,7 @@ class StructManager:
         if newName in self.typeMap:
             return self.typeMap[newName]
         #else:
-            #print("Type Not Found:", newName)
+        #    print("Third try: Type Not Found:", newName)
 
         return None
 

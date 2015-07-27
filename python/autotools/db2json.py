@@ -16,6 +16,8 @@ import datetime
 import MySQLdb
 import json
 
+print("Encoding: ", sys.getdefaultencoding())
+
 def toCamel(src, cap):
     tags = re.split(r'_', src)
     flag = 0 if cap else 1
@@ -53,7 +55,7 @@ def main():
     parser.add_option("-d", "--database", help="database. Always required", dest="database")
     parser.add_option("-u", "--user", help="username. Default: root", dest="username")
     parser.add_option("-p", "--passwd", help="passwords. Always required", dest="passwd")
-    parser.add_option("-o", "--out-dir", help="output dir of generated gmt files. Default: working dir",
+    parser.add_option("-o", "--out-dir", help="output dir of generated json files. Default: working dir",
                       dest="outDir")
     parser.add_option("-t", "--table", dest="tables", action="append",
                       help="Table to deal with. By default, all tables are dealt with. "
@@ -79,6 +81,7 @@ def main():
 
     conn = MySQLdb.connect(host=host, user=username, passwd=passwd, db=database, port=port, charset='utf8')
     cursor = conn.cursor()
+    # cursor.execute("SET NAMES utf8")
 
     cursor.execute("show tables")
     __tables = []

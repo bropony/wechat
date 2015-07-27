@@ -23,7 +23,7 @@ def toCamel(src, cap):
     tags[flag:] = [t.capitalize() for t in tags[flag:]]
     return "".join(tags)
 
-def table2gmt(name, fields, gmtOutDir, pyOutDir):
+def table2gmt(name, fields, gmtOutDir, pyOutDir, namespace):
     if not os.path.exists(gmtOutDir):
         os.makedirs(gmtOutDir)
 
@@ -71,6 +71,9 @@ def table2gmt(name, fields, gmtOutDir, pyOutDir):
     argv.append(gmt2py.__name__)
     argv.append("-g" + gmtOutDir)
     argv.append("-o" + pyOutDir)
+    if namespace:
+        argv.append("-n" + namespace)
+
     argv.append("-f" + tableName + ".gmt")
     sys.argv = argv
     gmt2py.main()
@@ -88,6 +91,8 @@ def main():
                       help="output dir of generated gmt files. Default: working dir")
     parser.add_option("-c", "--py-code-out-dir", dest="pyOutDir",
                       help="output dir of generated py files. If not given, no py files will be generated.")
+    parser.add_option("-n", "--py-namespace", dest="namespace",
+                      help="namespace for python code. Default: message.db.configs")
     parser.add_option("-t", "--table", dest="tables", action="append",
                       help="Table to deal with. By default, all tables are dealt with. "
                            "Multi-assignation is allowed.")
@@ -106,6 +111,7 @@ def main():
     gmtOutDir = options.gmtOutDir or "."
     tables = options.tables or []
     pyOutDir = options.pyOutDir or ""
+    namespace = options.namespace or "message.db.configs"
 
     if not database:
         print("database is not specified")
@@ -132,7 +138,7 @@ def main():
         cursor.execute("desc {}".format(t))
         fields = cursor.fetchall()
         print("Dealing with '{}'".format(t))
-        table2gmt(t, fields, gmtOutDir, pyOutDir)
+        table2gmt(t, fields, gmtOutDir, pyOutDir, namespace)
     print("All jobs done...")
 
 if __name__ == "__main__":

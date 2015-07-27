@@ -380,6 +380,8 @@ class Gmt2Java:
 
         if dataType.name == "int":
             return "Integer"
+        if dataType.name == "bool":
+            return "Boolean"
 
         return dataType.name.capitalize()
 

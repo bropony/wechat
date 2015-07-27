@@ -294,10 +294,14 @@ class Gmt2Py:
 
         self.write("class {}(ListBase):".format(capName))
         self.indent = 1
-        self.write("def __init__(self):")
+        self.write("def __init__(self, _data=None):")
         self.indent = 2
         valTypeName = self.getTypePyName(listType.type, self.loader.scope)
         self.write("super().__init__({}, '{}')".format(valTypeName, capName))
+        self.writeEmptyLine()
+        self.write("if _data:")
+        self.indent = 3
+        self.write("self.extend(_data)")
 
         self.writeEmptyLine()
         self.indent = 1
@@ -365,11 +369,15 @@ class Gmt2Py:
         self.indent = 0
         self.write("class {}(DictBase):".format(dictType.name))
         self.indent = 1
-        self.write("def __init__(self):")
+        self.write("def __init__(self, _data=None):")
         self.indent = 2
         keyTypeName = self.getTypePyName(dictType.keyType, self.loader.scope)
         valTypeName = self.getTypePyName(dictType.valType, self.loader.scope)
         self.write("super().__init__({}, {}, '{}')".format(keyTypeName, valTypeName, dictType.name))
+        self.writeEmptyLine()
+        self.write("if _data:")
+        self.indent = 3
+        self.write("self.update(_data)")
 
         self.writeEmptyLine()
         self.indent = 1
@@ -539,7 +547,7 @@ class Gmt2Py:
 
         self.write("class {}(RmiServant):".format(clsName))
         self.indent = 1
-        self.write("def __init__(self, name):")
+        self.write("def __init__(self, name='{}'):".format(interfaceType.name))
         self.indent = 2
         self.write("super().__init__(name)")
         for method in interfaceType.methodList:
@@ -582,7 +590,7 @@ class Gmt2Py:
         self.write("class {}(RmiProxy):".format(clsName))
 
         self.indent = 1
-        self.write("def __init__(self, name):")
+        self.write("def __init__(self, name='{}'):".format(interfaceType.name))
         self.indent = 2
         self.write("super().__init__(name)")
         self.writeEmptyLine()

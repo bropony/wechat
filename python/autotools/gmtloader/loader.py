@@ -267,6 +267,7 @@ class Loader:
         m = re.match(r'^include\s*"([^"]+)"$', line)
         if not m:
             self.raiseExp("Syntax error at line %d" % fin.lno)
+
         file = m.group(1)
         loader = self.structManager.loadFile(file)
 
