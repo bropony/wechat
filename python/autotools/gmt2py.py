@@ -130,6 +130,19 @@ class Gmt2Py:
                 return dataType.fullname
 
     @classmethod
+    def getTypeNotation(cls, dataType):
+        nonsense = "________"
+        if isinstance(dataType, List):
+            return "list[{}]".format(cls.getTypePyName(dataType.type, nonsense))
+
+        if isinstance(dataType, Dict):
+            return "dict[{}, {}]".format(
+                cls.getTypePyName(dataType.keyType, nonsense),
+                cls.getTypePyName(dataType.valType, nonsense))
+
+        return cls.getTypePyName(dataType, nonsense)
+
+    @classmethod
     def getTypePyInitExpression(cls, dataType, currentScope):
         if isinstance(dataType, Enum):
             if dataType.scope == currentScope:
@@ -285,6 +298,20 @@ class Gmt2Py:
         self.indent = 1
         for pair in enumType.pairs:
             self.write("{} = {}".format(*pair))
+        self.writeEmptyLine()
+
+        self.write("@classmethod")
+        self.write("def isValueValid(cls, _val):")
+        self.indent = 2
+        for pair in enumType.pairs:
+            self.indent = 2
+            self.write("if _val == cls.{}:".format(pair[0]))
+            self.indent = 3
+            self.write("return True")
+            self.writeEmptyLine()
+        self.indent = 2
+        self.write("return False")
+
         self.indent = 0
         self.writeEmptyLine()
 
@@ -523,6 +550,10 @@ class Gmt2Py:
             self.fout.write(", {}".format(field.name))
         self.fout.write("):\n")
         self.indent = 2
+        self.write('"""')
+        for field in method.outfields:
+            self.write(":type {}: {}".format(field.name, self.getTypeNotation(field.type)))
+        self.write('"""')
         self.write("pass")
 
         self.writeEmptyLine()
@@ -530,6 +561,10 @@ class Gmt2Py:
         self.write("@abc.abstractmethod")
         self.write("def onError(self, what, code):")
         self.indent = 2
+        self.write('"""')
+        self.write(":type what: str")
+        self.write(":type code: int")
+        self.write('"""')
         self.write("pass")
 
         self.writeEmptyLine()
@@ -574,6 +609,10 @@ class Gmt2Py:
             self.fout.write("_request)\n")
             self.indent = 1
             self.writeEmptyLine()
+
+        self.writeEmptyLine()
+        for method in interfaceType.methodList:
+            self.indent = 1
             self.write("@abc.abstractmethod")
             self.fout.write(self.getIndent(self.indent))
             self.fout.write("def {}(self".format(method.name))
@@ -581,6 +620,13 @@ class Gmt2Py:
                 self.fout.write(", {}".format(field.name))
             self.fout.write(", _request):\n")
             self.indent = 2
+            self.write('"""')
+            for field in method.infields:
+                self.write(":type {}: {}".format(field.name, self.getTypeNotation(field.type)))
+            clsName = "{}_{}_Request".format(interfaceType.name, method.name.capitalize())
+            self.write(":type _request: {}".format(clsName))
+            self.write('"""')
+
             self.write("pass")
             self.writeEmptyLine()
 
@@ -603,6 +649,12 @@ class Gmt2Py:
                 self.fout.write(", {}".format(field.name))
             self.fout.write("):\n")
             self.indent = 2
+            self.write('"""')
+            self.write(":type _response: {}_{}_Response".format(interfaceType.name, method.name.capitalize()))
+            for field in method.infields:
+                self.write(":type {}: {}".format(field.name, self.getTypeNotation(field.type)))
+            self.write('"""')
+            self.writeEmptyLine()
             self.write("_os = Serializer()")
             self.write("_os.startToWrite()")
             self.write("_os.writeByte(RmiDataType.RmiCall)")
