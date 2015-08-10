@@ -682,6 +682,9 @@ def processRegist(outDir, scope, typeList):
             line = "{}Proxy.__regist();".format(dataType.fullname)
         registSet.add(line)
 
+    registSet = [line for line in registSet]
+    registSet.sort()
+
     fout.write("import rmi.MessageBlock;\n")
     for line in registSet:
         m = re.match(r"^(.+)\.__regist", line)

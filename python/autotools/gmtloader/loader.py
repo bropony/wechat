@@ -111,6 +111,7 @@ class Interface(TypeBase):
 
         m = re.match(r'.+\((.*)\)', declaration)
         if not m:
+            print("method pattern: ", declaration)
             return syntaxError
         fieldGroup = m.group(1).strip()
 
@@ -123,6 +124,7 @@ class Interface(TypeBase):
             tag = tag.strip()
             m = re.match(r'(in|out)\s+([.a-zA-Z_]+)\s+(\w+)', tag)
             if not m:
+                print("Argument declaration:", tag)
                 return syntaxError
             action, argType, argName = m.groups()
             if action == "in":
@@ -131,6 +133,7 @@ class Interface(TypeBase):
             elif action == "out":
                 allowIn = False
             else:
+                print("action declaration: ", action)
                 return syntaxError
             argDataType = structManager.find(argType, scope=self.scope)
             if not argDataType:
@@ -205,7 +208,7 @@ class Loader:
         raise Exception("{} {}".format(self.relPath, what))
 
     def raiseSyntaxError(self, lineno):
-        self.raiseExp("Syntax error at line %d" % lineno)
+        self.raiseExp("Syntax error at line {}".format(lineno))
 
     @staticmethod
     def getKeyWord(line):

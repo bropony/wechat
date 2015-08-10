@@ -215,6 +215,7 @@ class Gmt2Py:
 
     def parseStruct(self, structType):
         self.indent = 0
+        self.write("# {}".format(structType.fullname))
         self.write("class {}:".format(structType.name))
 
         # slots
@@ -293,6 +294,7 @@ class Gmt2Py:
 
     def parseEnum(self, enumType):
         self.indent = 0
+        self.write("# {}".format(enumType.fullname))
         self.write("class {}:".format(enumType.name))
 
         self.indent = 1
@@ -319,6 +321,7 @@ class Gmt2Py:
         self.indent = 0
         capName = listType.name
 
+        self.write("# {}".format(listType.fullname))
         self.write("class {}(ListBase):".format(capName))
         self.indent = 1
         self.write("def __init__(self, _data=None):")
@@ -394,6 +397,7 @@ class Gmt2Py:
 
     def parseDict(self, dictType):
         self.indent = 0
+        self.write("# {}".format(dictType.fullname))
         self.write("class {}(DictBase):".format(dictType.name))
         self.indent = 1
         self.write("def __init__(self, _data=None):")
@@ -624,7 +628,7 @@ class Gmt2Py:
             for field in method.infields:
                 self.write(":type {}: {}".format(field.name, self.getTypeNotation(field.type)))
             clsName = "{}_{}_Request".format(interfaceType.name, method.name.capitalize())
-            self.write(":type _request: {}".format(clsName))
+            self.write(":type _request: {}.{}".format(self.loader.scope, clsName))
             self.write('"""')
 
             self.write("pass")
@@ -633,6 +637,7 @@ class Gmt2Py:
     def parseProxy(self, interfaceType):
         clsName = "{}Proxy".format(interfaceType.name)
         self.indent = 0
+        self.write("# {}.{}".format(interfaceType.scope, clsName))
         self.write("class {}(RmiProxy):".format(clsName))
 
         self.indent = 1
