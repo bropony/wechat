@@ -1,4 +1,0 @@
-include "db/main_db.gmt"
-
-interface IDbTest:
-    method sayhello(in main_db.AnRmiTest hello, out main_db.AnRmiTest world)

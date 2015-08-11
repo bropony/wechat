@@ -1,8 +1,0 @@
-include "gate/gatemsg.gmt"
-
-struct AnRmiTest:
-    gate.gatemsg.SMessage message
-    string ip
-    string shortDesc
-    int passedTimes
-
